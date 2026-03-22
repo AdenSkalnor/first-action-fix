@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TextBlock from '../components/TextBlock.astro';
+import Footer from '../components/Footer.astro';
+
+const footerLinks = [
+  { label: 'About', href: '/' },
+  { label: 'Lead Magnet', href: '/eec/' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/YOURPROFILE' },
+];
+---
+
+<BaseLayout
+  title="Behavioral Email Sequences — First Action Fix"
+  description="[PLACEHOLDER] Behavioral email sequences for AI SaaS — trigger-based, data-driven, built for conversion."
+  theme="behavioral"
+  activePage="behavioral"
+>
+
+  <!-- ===== HERO ===== -->
+  <Hero
+    headline="Behavioral Email Sequences for AI SaaS"
+    subheadline="[PLACEHOLDER] Traditional drip sequences send emails on a timer. Behavioral sequences send emails based on what users actually do. The difference in conversion is not incremental."
+  />
+
+  <!-- ===== WHY BEHAVIORAL ===== -->
+  <TextBlock heading="Why Behavioral, Not Timed" alt>
+    <p>[PLACEHOLDER] Traditional 1-3-7 day sequences treat every user the same. Behavioral triggers respond to individual actions. For AI SaaS — where usage patterns vary wildly — timed sequences are guessing. Behavioral sequences are reacting.</p>
+    <p>[PLACEHOLDER] The data advantage: what you learn from behavioral triggers compounds. Every sequence run improves the next. You're training your email system the same way you train your AI product.</p>
+  </TextBlock>
+
+  <!-- ===== WHAT IT TAKES ===== -->
+  <TextBlock heading="What It Takes">
+    <p>[PLACEHOLDER] The infrastructure reality — event tracking (Mixpanel, Amplitude), a capable email platform, and someone who understands the logic. Most AI SaaS companies have the tracking but don't use it for email.</p>
+  </TextBlock>
+
+  <!-- ===== THE THEORY ===== -->
+  <TextBlock heading="The Theory" alt>
+    <p>[PLACEHOLDER] 26+ different behavioral interruption types. How they map to user psychology. Why certain triggers (feature-discovery moments, usage drop-offs) are high-leverage points for email.</p>
+    <p>[PLACEHOLDER] Traditional 1-3-7 sequences actually lose in some instances where behavioral triggers win. Not always better — but when they're better, they're dramatically better.</p>
+  </TextBlock>
+
+  <!-- ===== TWO PATHS ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-4">Two Ways Forward</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Build With Me</h3>
+          <p class="mt-2">[PLACEHOLDER] What the done-with-you service looks like. You design the behavioral logic, map triggers to sequences, and build the system together. Outcome: a running behavioral email system tailored to their product.</p>
+          <a href="https://calendly.com/YOURLINK" class="btn btn--primary mt-3">Book a Call &rarr;</a>
+        </div>
+        <div class="card">
+          <h3>Build It Yourself</h3>
+          <p class="mt-2">[PLACEHOLDER] The DIY product bundle. User map, user pains, behavior applications, product stack, pricing model, the theory, AI prompts, 26+ interruption types, 150+ examples, voice adapter prompt.</p>
+          <p class="mt-2" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Coming soon — pricing and access details will be available here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FREE RESOURCE ===== -->
+  <TextBlock heading="Free Resource" alt>
+    <p>[PLACEHOLDER] How to correctly configure tags and what metrics to track — what to optimize for scaling instead of collecting noise.</p>
+    <a href="/" class="btn btn--outline mt-3">Learn More About Me</a>
+  </TextBlock>
+
+  <Footer links={footerLinks} />
+
+</BaseLayout>

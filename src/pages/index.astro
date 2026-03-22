@@ -1,17 +1,81 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TextBlock from '../components/TextBlock.astro';
+import LinkCard from '../components/LinkCard.astro';
+import Footer from '../components/Footer.astro';
 
+const footerLinks = [
+  { label: 'Lead Magnet', href: '/eec/' },
+  { label: 'Behavioral Emails', href: '/behavioral-emails/' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/YOURPROFILE' },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="First Action Fix — AI SaaS Consulting"
+  description="[PLACEHOLDER] One-line description of what you do for AI SaaS companies."
+  theme="main"
+  activePage="about"
+>
+
+  <!-- ===== HERO ===== -->
+  <Hero
+    headline="[Your Name] — Helping AI SaaS Convert Strangers Into Users"
+    subheadline="[PLACEHOLDER] 1-2 sentences. What you do, who you do it for, and why it matters."
+    ctaText="Book a Call"
+    ctaLink="https://calendly.com/YOURLINK"
+  />
+
+  <!-- ===== ABOUT / AUTHORITY ===== -->
+  <TextBlock heading="What I Do" alt>
+    <p>[PLACEHOLDER] Explain your positioning. You help AI SaaS companies bridge the gap between 'stranger' and 'trial user' using educational email courses and behavioral email sequences.</p>
+    <p>[PLACEHOLDER] Your qualification — what makes you the person to do this. Experience, results, unique perspective on the AI SaaS market.</p>
+  </TextBlock>
+
+  <!-- ===== OFFERINGS / LINKS ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-4">Explore</h2>
+      <div class="grid-2">
+        <LinkCard
+          title="Educational Email Courses (EEC)"
+          description="[PLACEHOLDER] What an EEC is and why it matters for AI SaaS. Links to the EEC page."
+          href="/eec/"
+        />
+        <LinkCard
+          title="Behavioral Email Sequences"
+          description="[PLACEHOLDER] What behavioral emails are and why they outperform traditional drip sequences."
+          href="/behavioral-emails/"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARTICLES / LINKEDIN ===== -->
+  <TextBlock heading="Articles" alt>
+    <div class="grid-2">
+      <LinkCard
+        title="How AI SaaS Differs from Traditional SaaS"
+        description="[PLACEHOLDER] Unique challenges, known solutions on the market."
+        href="https://linkedin.com/pulse/YOURARTICLE1"
+        external
+      />
+      <LinkCard
+        title="The Reality of AI SaaS"
+        description="[PLACEHOLDER] Processing power, hierarchy, consumer preferences, agentic AI shift."
+        href="https://linkedin.com/pulse/YOURARTICLE2"
+        external
+      />
+    </div>
+  </TextBlock>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <TextBlock heading="Newsletter">
+    <p>[PLACEHOLDER] Your AI SaaS newsletter premise. What subscribers get, how often (twice a week), and why it's worth reading.</p>
+    <a href="https://YOURNEWSLETTERLINK" class="btn btn--primary mt-3">Subscribe</a>
+  </TextBlock>
+
+  <Footer links={footerLinks} />
+
+</BaseLayout>

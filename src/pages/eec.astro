@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TextBlock from '../components/TextBlock.astro';
+import LinkCard from '../components/LinkCard.astro';
+import Footer from '../components/Footer.astro';
+
+const footerLinks = [
+  { label: 'About', href: '/' },
+  { label: 'Behavioral Emails', href: '/behavioral-emails/' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/YOURPROFILE' },
+];
+
+/*
+  EEC links — point to your Carrd-hosted landing pages.
+  Update href values with your actual Carrd URLs.
+*/
+const eecLinks = [
+  {
+    title: '[EEC Name 1]',
+    description: '[PLACEHOLDER] What this EEC covers and who it is for.',
+    href: 'https://YOURNAME.carrd.co/eec1',
+  },
+  {
+    title: '[EEC Name 2]',
+    description: '[PLACEHOLDER] What this EEC covers and who it is for.',
+    href: 'https://YOURNAME.carrd.co/eec2',
+  },
+  {
+    title: '[EEC Name 3]',
+    description: '[PLACEHOLDER] What this EEC covers and who it is for.',
+    href: 'https://YOURNAME.carrd.co/eec3',
+  },
+];
+
+/* Checkmark SVG path for reuse */
+const checkIcon = 'M5 12l5 5L20 7';
+---
+
+<BaseLayout
+  title="Educational Email Courses — First Action Fix"
+  description="[PLACEHOLDER] What EECs are and why AI SaaS companies need them."
+  theme="eec"
+  activePage="eec"
+>
+
+  <!-- ===== HERO ===== -->
+  <Hero
+    headline="Educational Email Courses for AI SaaS"
+    subheadline="[PLACEHOLDER] Most AI SaaS companies have two states: stranger and trial user. Nothing in between. EECs fill that gap."
+  />
+
+  <!-- ===== WHAT IS AN EEC — checkmark feature layout ===== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="split">
+        <!-- Left: text with checkmarks -->
+        <div>
+          <h2 class="mb-4">What Is an EEC?</h2>
+
+          <div class="feature-item">
+            <div class="feature-item__icon">
+              <svg viewBox="0 0 24 24"><path d={checkIcon} /></svg>
+            </div>
+            <div class="feature-item__content">
+              <h3>Fills the Pipeline Gap</h3>
+              <p>[PLACEHOLDER] An EEC doesn't sit where onboarding emails sit. It sits before the trial even starts. It creates a middle state: educated subscriber.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-item__icon">
+              <svg viewBox="0 0 24 24"><path d={checkIcon} /></svg>
+            </div>
+            <div class="feature-item__content">
+              <h3>Solves the Blank Canvas Problem</h3>
+              <p>[PLACEHOLDER] 60% of AI users never send a first message. The EEC teaches them what to DO with the product before they ever open it.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-item__icon">
+              <svg viewBox="0 0 24 24"><path d={checkIcon} /></svg>
+            </div>
+            <div class="feature-item__content">
+              <h3>Closes the Trust Gap</h3>
+              <p>[PLACEHOLDER] AI is new. Users are choosing their AI partner now. An EEC that teaches honest evaluation builds the exact trust AI products struggle to earn during trials.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: visual placeholder card -->
+        <div class="eec-visual">
+          <div class="card">
+            <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; padding: 3rem 1rem;">
+              [PLACEHOLDER — visual: pipeline diagram, example email sequence preview, or illustration showing stranger → educated subscriber → trial user]
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <TextBlock heading="How It Works">
+    <p>[PLACEHOLDER] The cascade logic. How an EEC takes a cold lead through a structured education sequence over 5-7 days. What happens at each stage.</p>
+    <p>[PLACEHOLDER] Behavioral triggers vs. timed sends — why behavioral works surprisingly well even when traditional sequences lose.</p>
+  </TextBlock>
+
+  <!-- ===== AVAILABLE COURSES (links to Carrd) ===== -->
+  <section class="section section--alt">
+    <div class="container">
+      <h2 class="mb-4">Available Courses</h2>
+      <p class="mb-4" style="color: var(--text-muted);">Each course is hosted on its own page. Click through to learn more and sign up.</p>
+      <div class="grid-3">
+        {eecLinks.map(eec => (
+          <LinkCard
+            title={eec.title}
+            description={eec.description}
+            href={eec.href}
+            external
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <TextBlock heading="Want a Custom EEC for Your AI SaaS?">
+    <p>[PLACEHOLDER] Brief pitch — you build custom EECs for AI SaaS companies. What the outcome looks like.</p>
+    <a href="https://calendly.com/YOURLINK" class="btn btn--primary mt-3">Book a Call &rarr;</a>
+  </TextBlock>
+
+  <Footer links={footerLinks} />
+
+</BaseLayout>
+
+<style>
+  .eec-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+/*
+  Footer — bottom of every page.
+  Props:
+    links — array of { label, href } for footer nav (optional)
+*/
+interface Props {
+  links?: { label: string; href: string }[];
+}
+
+const { links = [] } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <hr class="divider" />
+    <div class="footer__inner">
+      <p class="footer__copy">&copy; {year} First Action Fix</p>
+      {links.length > 0 && (
+        <nav class="footer__nav">
+          {links.map(link => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </nav>
+      )}
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 2rem;
+  }
+  .footer__copy {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .footer__nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .footer__nav a {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+  .footer__nav a:hover {
+    color: var(--accent);
+  }
+</style>

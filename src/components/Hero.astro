@@ -1,0 +1,40 @@
+---
+/*
+  Hero — top section of any page.
+  Props:
+    headline    — main H1 text
+    subheadline — paragraph below headline
+    ctaText     — button label (optional, hides button if empty)
+    ctaLink     — button URL
+*/
+interface Props {
+  headline: string;
+  subheadline?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const { headline, subheadline = '', ctaText = '', ctaLink = '#' } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container">
+    <h1>{headline}</h1>
+    {subheadline && <p class="hero__sub">{subheadline}</p>}
+    {ctaText && <a href={ctaLink} class="btn btn--primary mt-3">{ctaText}</a>}
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 6rem 0 4rem;
+  }
+  .hero h1 {
+    max-width: 720px;
+  }
+  .hero__sub {
+    margin-top: 1.25rem;
+    font-size: 1.15rem;
+    max-width: 600px;
+  }
+</style>

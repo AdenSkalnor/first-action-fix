@@ -1,0 +1,50 @@
+---
+/*
+  LinkCard — a clickable card that links somewhere.
+  Use for: article previews, EEC links to Carrd, product links, etc.
+  Props:
+    title       — card heading
+    description — short description text
+    href        — link destination
+    external    — if true, opens in new tab
+*/
+interface Props {
+  title: string;
+  description?: string;
+  href: string;
+  external?: boolean;
+}
+
+const { title, description = '', href, external = false } = Astro.props;
+const target = external ? '_blank' : '_self';
+const rel = external ? 'noopener noreferrer' : undefined;
+---
+
+<a href={href} target={target} rel={rel} class="link-card card">
+  <h3>{title}</h3>
+  {description && <p class="mt-1">{description}</p>}
+  <span class="link-card__arrow">&rarr;</span>
+</a>
+
+<style>
+  .link-card {
+    display: block;
+    position: relative;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .link-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .link-card__arrow {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.3rem;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+  .link-card:hover .link-card__arrow {
+    transform: translateX(4px);
+  }
+</style>
