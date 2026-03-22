@@ -386,3 +386,96 @@ p {
 
 /* --- Page padding for fixed nav --- */
 body { padding-top: 60px; }
+
+/* =====================
+   ANIMATIONS
+   Scroll-reveal + page-load transitions.
+   Elements start invisible and translate up;
+   the .revealed class (added by IntersectionObserver)
+   triggers the transition.
+   ===================== */
+
+/* --- Scroll reveal: fade-up --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children inside a grid or list */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.24s; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.36s; }
+
+/* --- Hero entrance (plays once on page load) --- */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate h1 {
+  animation: hero-fade-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-animate .hero__sub {
+  animation: hero-fade-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.hero-animate .btn {
+  animation: hero-fade-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+/* --- Card lift on hover (enhanced) --- */
+.card {
+  transition: border-color 0.2s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--card-shadow);
+}
+
+/* --- Feature items: subtle slide-in from left --- */
+.feature-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.feature-item.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.feature-item:nth-child(2) { transition-delay: 0.15s; }
+.feature-item:nth-child(3) { transition-delay: 0.3s; }
+
+/* --- Respect reduced-motion preference --- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .feature-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-animate h1,
+  .hero-animate .hero__sub,
+  .hero-animate .btn {
+    animation: none;
+  }
+}

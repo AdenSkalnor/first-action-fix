@@ -17,7 +17,7 @@ interface Props {
 const { headline, subheadline = '', ctaText = '', ctaLink = '#' } = Astro.props;
 ---
 
-<section class="hero">
+<section class="hero hero-animate">
   <div class="container">
     <h1>{headline}</h1>
     {subheadline && <p class="hero__sub">{subheadline}</p>}

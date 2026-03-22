@@ -48,6 +48,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://example.
     <main>
       <slot />
     </main>
+
+    <!-- Scroll-reveal observer -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target); // animate once
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      document.querySelectorAll('.reveal, .feature-item').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
   </body>
 </html>
 
