@@ -5,15 +5,15 @@ import TextBlock from '../components/TextBlock.astro';
 import Footer from '../components/Footer.astro';
 
 const footerLinks = [
-  { label: 'About', href: '/' },
-  { label: 'Lead Magnet', href: '/eec/' },
+  { label: 'Home', href: '/' },
+  { label: 'EEC', href: '/eec/' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/andrew-malashenko/' },
 ];
 ---
 
 <BaseLayout
   title="Behavioral Email Sequences — First Action Fix"
-  description="[PLACEHOLDER] Behavioral email sequences for AI SaaS — trigger-based, data-driven, built for conversion."
+  description="Behavioral email sequences for AI SaaS. Triggered by what users actually do, not what day it is."
   theme="behavioral"
   activePage="behavioral"
 >
@@ -21,51 +21,140 @@ const footerLinks = [
   <!-- ===== HERO ===== -->
   <Hero
     headline="Behavioral Email Sequences for AI SaaS"
-    subheadline="[PLACEHOLDER] Traditional drip sequences send emails on a timer. Behavioral sequences send emails based on what users actually do. The difference in conversion is not incremental."
+    subheadline="Your trial users act in real time. Your emails should respond in real time too."
   />
 
-  <!-- ===== WHY BEHAVIORAL ===== -->
-  <TextBlock heading="Why Behavioral, Not Timed" alt>
-    <p>[PLACEHOLDER] Traditional 1-3-7 day sequences treat every user the same. Behavioral triggers respond to individual actions. For AI SaaS — where usage patterns vary wildly — timed sequences are guessing. Behavioral sequences are reacting.</p>
-    <p>[PLACEHOLDER] The data advantage: what you learn from behavioral triggers compounds. Every sequence run improves the next. You're training your email system the same way you train your AI product.</p>
+  <!-- ===== WHAT BEHAVIORAL EMAILS ARE ===== -->
+  <TextBlock heading="What Behavioral Emails Are" alt>
+    <p>A calendar-based onboarding sequence sends emails on a schedule. Day 1, Day 3, Day 7. Every user gets the same emails in the same order, regardless of what they've done in the product.</p>
+    <p class="mt-2">A behavioral sequence sends emails based on real user actions. Someone who signed up but never completed setup gets one sequence. Someone who used the core feature once and dropped off gets a different one. Someone who hit the activation threshold gets the conversion nudge at the moment it matters.</p>
+    <p class="mt-2">For AI SaaS, where no two users behave the same way, calendar sequences are guessing. Behavioral sequences are reacting to what's actually happening.</p>
   </TextBlock>
 
-  <!-- ===== WHAT IT TAKES ===== -->
-  <TextBlock heading="What It Takes">
-    <p>[PLACEHOLDER] The infrastructure reality — event tracking (Mixpanel, Amplitude), a capable email platform, and someone who understands the logic. Most AI SaaS companies have the tracking but don't use it for email.</p>
+  <!-- ===== INFRASTRUCTURE ===== -->
+  <TextBlock heading="This Only Works With Real Infrastructure">
+    <p>Behavioral emails need event tracking to exist. If the company isn't recording user actions — signups, feature usage, drop-offs, return visits — in a structured way, there's nothing to trigger emails from.</p>
+    <p class="mt-2">The tools exist: Mixpanel, Amplitude, Segment, PostHog. Most AI SaaS companies already have one of these running. They're collecting event data. They're just not piping it into email.</p>
+    <p class="mt-2">That's the gap. The data is there. The logic layer connecting it to emails isn't.</p>
+    <p class="mt-2">If your tracking isn't set up or the data is noisy, that's the first problem to solve. The free 3-day course at the bottom of this page covers that.</p>
   </TextBlock>
 
-  <!-- ===== THE THEORY ===== -->
-  <TextBlock heading="The Theory" alt>
-    <p>[PLACEHOLDER] 26+ different behavioral interruption types. How they map to user psychology. Why certain triggers (feature-discovery moments, usage drop-offs) are high-leverage points for email.</p>
-    <p>[PLACEHOLDER] Traditional 1-3-7 sequences actually lose in some instances where behavioral triggers win. Not always better — but when they're better, they're dramatically better.</p>
+  <!-- ===== WHEN BEHAVIORAL BEATS CALENDAR ===== -->
+  <TextBlock heading="When Behavioral Beats Calendar" alt>
+    <p>This isn't always better. For simple products with predictable user paths, a well-timed drip sequence works fine.</p>
+    <p class="mt-2">But for AI SaaS — where usage patterns vary wildly, where the blank canvas problem means some users never take a first action, where trust verification creates loops that don't follow a linear timeline — behavioral triggers win. And in the cases where they win, it's not incremental. Timed sequences don't just underperform. They actively lose ground by sending the wrong message at the wrong moment.</p>
+    <p class="mt-2">The data advantage compounds too. Every behavioral sequence run generates information about which triggers work and which don't. You're training your email system the same way you train your AI product.</p>
   </TextBlock>
 
-  <!-- ===== TWO PATHS ===== -->
+  <!-- ===== BUILD WITH ME ===== -->
   <section class="section">
+    <div class="container reveal">
+      <h2 class="mb-4">Build With Me</h2>
+      <p>I take your existing event data, identify the behavioral moments where users get stuck or drop off, and build triggered email sequences for each one. You get production-ready copy, sequence logic, and implementation specs your engineering team can ship.</p>
+      <h3 class="mt-4 mb-2">How it works</h3>
+      <p>Free diagnostic first. 30 minutes. I audit your current onboarding flow, identify the biggest drop-off points, and show you where behavioral triggers would have the most impact.</p>
+      <p class="mt-2">Then build. I design the sequence logic, write every email, and deliver implementation specs.</p>
+      <p class="mt-2">Then optimize. After launch, real behavioral data shows what's working. The system gets sharper with every cohort.</p>
+    </div>
+  </section>
+
+  <!-- ===== SERVICE TIERS ===== -->
+  <section class="section section--alt">
     <div class="container">
-      <h2 class="mb-4">Two Ways Forward</h2>
       <div class="grid-2 reveal-stagger">
         <div class="card reveal">
-          <h3>Build With Me</h3>
-          <p class="mt-2">[PLACEHOLDER] What the done-with-you service looks like. You design the behavioral logic, map triggers to sequences, and build the system together. Outcome: a running behavioral email system tailored to their product.</p>
-          <a href="https://calendly.com/YOURLINK" class="btn btn--primary mt-3">Book a Call &rarr;</a>
+          <h3>Trial Rescue Campaign</h3>
+          <p class="mt-2 tier-detail">14 days. Targets your biggest drop-off point.</p>
+          <p class="mt-2">3–5 behavioral emails. Triggered sequences, production-ready copy, implementation specs. The fastest way to stop silent churn.</p>
+          <a href="https://calendly.com/YOURLINK" class="btn btn--primary mt-3">Book a Free Diagnostic →</a>
         </div>
         <div class="card reveal">
-          <h3>Build It Yourself</h3>
-          <p class="mt-2">[PLACEHOLDER] The DIY product bundle. User map, user pains, behavior applications, product stack, pricing model, the theory, AI prompts, 26+ interruption types, 150+ examples, voice adapter prompt.</p>
-          <p class="mt-2" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Coming soon — pricing and access details will be available here.</p>
+          <h3>Activation Path</h3>
+          <p class="mt-2 tier-detail">21 days. Full signup-to-value behavioral email system.</p>
+          <p class="mt-2">Maps every stage from first login to paid conversion with behavioral triggers at each one. The complete onboarding engine.</p>
+          <a href="https://calendly.com/YOURLINK" class="btn btn--primary mt-3">Book a Free Diagnostic →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FREE RESOURCE ===== -->
-  <TextBlock heading="Free Resource" alt>
-    <p>[PLACEHOLDER] How to correctly configure tags and what metrics to track — what to optimize for scaling instead of collecting noise.</p>
-    <a href="/" class="btn btn--outline mt-3">Learn More About Me</a>
+  <!-- ===== BUILD IT YOURSELF ===== -->
+  <section class="section">
+    <div class="container reveal">
+      <h2 class="mb-4">Build It Yourself</h2>
+      <p>A reference system is being built that packages the complete methodology into files you can implement internally. It's a learning sequence, not a template pack — each piece walks through the reasoning so you can adapt it to your product.</p>
+      <p class="mt-2"><strong>The starting point is free.</strong> A 3-day course on setting up healthy event tracking. What actions to record and why, how to batch events into meaningful categories, what metrics matter for behavioral triggers versus what's vanity noise. Without this, nothing else in the system works.</p>
+      <h3 class="mt-4 mb-2">After that, three files. Each depends on the one before it:</h3>
+      <div class="diy-stack mt-3">
+        <div class="diy-item">
+          <span class="diy-item__label">1 — Diagnostic</span>
+          <p><strong>Understand your users.</strong> Who they are, what they actually do during a trial, where they get stuck, what patterns separate converters from churners.</p>
+        </div>
+        <div class="diy-item">
+          <span class="diy-item__label">2 — Strategy</span>
+          <p><strong>Understand your business model.</strong> How your pricing, product stack, and commitment curve shape which triggers matter most. A usage drop-off email for a $49/mo tool is fundamentally different from one for a $500/mo platform.</p>
+        </div>
+        <div class="diy-item">
+          <span class="diy-item__label">3 — Execution</span>
+          <p><strong>Write the system.</strong> Behavioral email methodology, writing frameworks, a taxonomy of interruption types, an example library, and a voice configuration tool so every email sounds like your company.</p>
+        </div>
+      </div>
+      <p class="mt-3" style="font-size: 0.9rem; color: var(--text-muted);">The whole system is coming soon. For early access, DM "DDD" on LinkedIn.</p>
+    </div>
+  </section>
+
+  <!-- ===== FREE COURSE ===== -->
+  <TextBlock heading="Free: 3-Day Tracking Course" alt>
+    <p>How to set up healthy event tracking for behavioral email triggers.</p>
+    <p class="mt-2">What actions to record in the first place. How to batch them so the data compounds into useful patterns over time. What to optimize for when scaling, instead of collecting noise. How to configure tags so they serve long-term intelligence, not short-term dashboards.</p>
+    <p class="mt-2">Platform-agnostic. References Mixpanel, Amplitude, Segment, PostHog.</p>
+    <p class="mt-2">This course has standalone value. It's also the prerequisite for the Build It Yourself path — without clean tracking, the rest of the system is built on bad data.</p>
+    <p class="mt-3" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Coming soon</p>
   </TextBlock>
+
+  <!-- ===== BOTTOM CTA ===== -->
+  <section class="section">
+    <div class="container reveal text-center">
+      <h2 class="mb-2">The diagnostic is free. 30 minutes.</h2>
+      <p style="max-width: 600px; margin: 0 auto;">I'll walk through where your trial users are dropping off and which behavioral triggers would catch them.</p>
+      <a href="https://calendly.com/YOURLINK" class="btn btn--primary mt-3">Book a Free Diagnostic →</a>
+    </div>
+  </section>
 
   <Footer links={footerLinks} />
 
 </BaseLayout>
+
+<style>
+  .tier-detail {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .diy-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .diy-item {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .diy-item__label {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    min-width: 90px;
+  }
+
+  .diy-item p {
+    font-size: 0.95rem;
+  }
+</style>
