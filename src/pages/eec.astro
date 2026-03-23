@@ -119,24 +119,23 @@ const checkIcon = 'M5 12l5 5L20 7';
   <section class="section">
     <div class="container">
       <h2 class="mb-4 reveal">Available Courses</h2>
-      <div class="grid-2 reveal-stagger">
-        <div class="card reveal">
-          <h3>From Tool to Platform</h3>
-          <p class="mt-2" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">5 Days on What Moves AI SaaS Past the Growth Ceiling</p>
-          <div class="eec-day-list mt-3" style="font-size: 0.9rem;">
-            <p><strong>Day 1 —</strong> High-Signal Data Architecture. Building collection systems where data quality compounds product intelligence.</p>
-            <p class="mt-2"><strong>Day 2 —</strong> The Trust Window. Earning long-term user loyalty during the "partner selection" phase.</p>
-            <p class="mt-2"><strong>Day 3 —</strong> The Usage Equation. Solving the friction between token costs and user retention.</p>
-            <p class="mt-2"><strong>Day 4 —</strong> Category Education as a Moat. Whoever teaches the user how to evaluate AI output quality sets the criteria.</p>
-            <p class="mt-2"><strong>Day 5 —</strong> Informational Advantage. Turning behavioral signals into new revenue models and agent-led expansion.</p>
-          </div>
-          <p class="mt-3" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Coming soon</p>
-        </div>
-        <div class="card reveal">
-          <h3>Mistakes AI SaaS Make</h3>
-          <p class="mt-2">The basics that quietly determine survival. Wider lens, sharper hooks.</p>
-          <p class="mt-3" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Coming soon</p>
-        </div>
+      <p class="mb-4" style="color: var(--text-muted);">Each course is hosted on its own page. Click through to learn more and sign up.</p>
+      <div class="grid-3 reveal-stagger">
+        <LinkCard
+          title="From Tool to Platform"
+          description="5 days on what moves AI SaaS past the growth ceiling. Data architecture, trust economics, usage equations, category education, informational advantage."
+          href="/eec/"
+        />
+        <LinkCard
+          title="Mistakes AI SaaS Make"
+          description="The basics that quietly determine survival. Wider lens, sharper hooks."
+          href="/eec/"
+        />
+        <LinkCard
+          title="[Course 3]"
+          description="[Coming soon]"
+          href="/eec/"
+        />
       </div>
     </div>
   </section>

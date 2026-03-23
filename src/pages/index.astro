@@ -48,13 +48,22 @@ const footerLinks = [
     <p>The difference: the EEC converts cold traffic that would otherwise bounce.</p>
   </TextBlock>
 
-  <!-- ===== ALSO: BEHAVIORAL ===== -->
+  <!-- ===== EXPLORE / OFFERINGS ===== -->
   <section class="section section--alt">
-    <div class="container reveal">
-      <h2 class="mb-4">Also: Behavioral Email Sequences</h2>
-      <p>For companies that already have event tracking in place, I also build behavioral onboarding email sequences — emails triggered by what users actually do during a trial, not by what day it is.</p>
-      <p class="mt-2">This is the heavier service. It requires infrastructure (Mixpanel, Amplitude, or similar) and a product with enough user data to build triggers from.</p>
-      <a href="/behavioral-emails/" class="btn btn--outline mt-3">Learn about behavioral emails →</a>
+    <div class="container">
+      <h2 class="mb-4">Explore</h2>
+      <div class="grid-2 reveal-stagger">
+        <LinkCard
+          title="Educational Email Courses (EEC)"
+          description="The step between 'stranger' and 'trial user.' A 5–7 day course that turns cold traffic into educated subscribers ready for a trial."
+          href="/eec/"
+        />
+        <LinkCard
+          title="Behavioral Email Sequences"
+          description="Emails triggered by what users actually do during a trial, not by what day it is. For companies with event tracking in place."
+          href="/behavioral-emails/"
+        />
+      </div>
     </div>
   </section>
 
@@ -77,6 +86,30 @@ const footerLinks = [
       <p class="mt-3" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Coming soon</p>
     </div>
   </section>
+
+  <!-- ===== ARTICLES / LINKEDIN ===== -->
+  <TextBlock heading="Articles" alt>
+    <div class="grid-2 reveal-stagger">
+      <LinkCard
+        title="How AI SaaS Differs from Traditional SaaS"
+        description="Unique challenges, known solutions on the market."
+        href="https://linkedin.com/pulse/YOURARTICLE1"
+        external
+      />
+      <LinkCard
+        title="The Reality of AI SaaS"
+        description="Processing power, hierarchy, consumer preferences, agentic AI shift."
+        href="https://linkedin.com/pulse/YOURARTICLE2"
+        external
+      />
+    </div>
+  </TextBlock>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <TextBlock heading="Newsletter">
+    <p>AI SaaS newsletter. Twice a week.</p>
+    <a href="https://YOURNEWSLETTERLINK" class="btn btn--primary mt-3">Subscribe</a>
+  </TextBlock>
 
   <Footer links={footerLinks} />
 
