@@ -115,12 +115,26 @@ const checkIcon = 'M5 12l5 5L20 7';
     </div>
   </section>
 
+  <!-- ===== THE USER'S ACTUAL JOURNEY ===== -->
+  <TextBlock heading="The User's Actual Journey">
+    <ol class="journey-list">
+      <li>Founder sees a LinkedIn post about AI code review challenges</li>
+      <li>Clicks through to a blog post on the company site</li>
+      <li>Blog post has two CTAs: "Start trial" and "Get our 5-day course on evaluating AI code review tools"</li>
+      <li>User picks the course (lower friction, just an email)</li>
+      <li>Days 1–5: learns the problem space, develops trust, understands what good looks like</li>
+      <li>Day 5 CTA: "Ready to try it yourself? Start your trial with this setup guide"</li>
+      <li>User starts trial pre-educated, activates faster, converts at higher rates</li>
+    </ol>
+    <p class="mt-3"><strong>That's the pipeline node you're missing.</strong> The EEC isn't a separate funnel. It's a softer entry point into the same funnel, capturing visitors who would otherwise be lost entirely.</p>
+  </TextBlock>
+
   <!-- ===== AVAILABLE COURSES ===== -->
   <section class="section">
     <div class="container">
       <h2 class="mb-4 reveal">Available Courses</h2>
       <p class="mb-4" style="color: var(--text-muted);">Each course is hosted on its own page. Click through to learn more and sign up.</p>
-      <div class="grid-3 reveal-stagger">
+      <div class="grid-2 reveal-stagger">
         <LinkCard
           title="From Tool to Platform"
           description="5 days on what moves AI SaaS past the growth ceiling. Data architecture, trust economics, usage equations, category education, informational advantage."
@@ -131,11 +145,6 @@ const checkIcon = 'M5 12l5 5L20 7';
           description="The basics that quietly determine survival. Wider lens, sharper hooks."
           href="/eec/"
         />
-        <LinkCard
-          title="[Course 3]"
-          description="[Coming soon]"
-          href="/eec/"
-        />
       </div>
     </div>
   </section>
@@ -143,7 +152,7 @@ const checkIcon = 'M5 12l5 5L20 7';
   <!-- ===== CTA ===== -->
   <TextBlock heading="Want a Custom EEC for Your AI SaaS?" alt>
     <p>I build custom Educational Email Courses for AI SaaS companies. Free diagnostic first — 30 minutes to identify where your funnel loses the most visitors and how an EEC would catch them.</p>
-    <a href="https://calendly.com/YOURLINK" class="btn btn--primary mt-3">Book a Free Diagnostic →</a>
+    <a href="https://calendly.com/follow_action/30min" class="btn btn--primary mt-3">Book a Free Diagnostic →</a>
   </TextBlock>
 
   <Footer links={footerLinks} />
@@ -192,5 +201,37 @@ const checkIcon = 'M5 12l5 5L20 7';
 
   .eec-day p {
     font-size: 0.95rem;
+  }
+
+  .journey-list {
+    list-style: none;
+    counter-reset: journey;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .journey-list li {
+    counter-increment: journey;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .journey-list li::before {
+    content: counter(journey);
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
