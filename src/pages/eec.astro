@@ -11,35 +11,12 @@ const footerLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/andrew-malashenko/' },
 ];
 
-/*
-  EEC links — point to your Carrd-hosted landing pages.
-  Update href values with your actual Carrd URLs.
-*/
-const eecLinks = [
-  {
-    title: '[EEC Name 1]',
-    description: '[PLACEHOLDER] What this EEC covers and who it is for.',
-    href: 'https://YOURNAME.carrd.co/eec1',
-  },
-  {
-    title: '[EEC Name 2]',
-    description: '[PLACEHOLDER] What this EEC covers and who it is for.',
-    href: 'https://YOURNAME.carrd.co/eec2',
-  },
-  {
-    title: '[EEC Name 3]',
-    description: '[PLACEHOLDER] What this EEC covers and who it is for.',
-    href: 'https://YOURNAME.carrd.co/eec3',
-  },
-];
-
-/* Checkmark SVG path for reuse */
 const checkIcon = 'M5 12l5 5L20 7';
 ---
 
 <BaseLayout
   title="Educational Email Courses — First Action Fix"
-  description="[PLACEHOLDER] What EECs are and why AI SaaS companies need them."
+  description="Most AI SaaS companies have two states: stranger and trial user. Nothing in between. An EEC creates the middle state: educated subscriber."
   theme="eec"
   activePage="eec"
 >
@@ -47,24 +24,23 @@ const checkIcon = 'M5 12l5 5L20 7';
   <!-- ===== HERO ===== -->
   <Hero
     headline="Educational Email Courses for AI SaaS"
-    subheadline="[PLACEHOLDER] Most AI SaaS companies have two states: stranger and trial user. Nothing in between. EECs fill that gap."
+    subheadline="94% of visitors don&rsquo;t sign up for a trial. They&rsquo;re interested but not ready. An EEC captures them before they leave."
   />
 
-  <!-- ===== WHAT IS AN EEC — checkmark feature layout ===== -->
+  <!-- ===== THE PIPELINE GAP ===== -->
   <section class="section section--alt">
     <div class="container">
       <div class="split">
-        <!-- Left: text with checkmarks -->
         <div>
-          <h2 class="mb-4">What Is an EEC?</h2>
+          <h2 class="mb-4">The Pipeline Gap It Fills</h2>
 
           <div class="feature-item">
             <div class="feature-item__icon">
               <svg viewBox="0 0 24 24"><path d={checkIcon} /></svg>
             </div>
             <div class="feature-item__content">
-              <h3>Fills the Pipeline Gap</h3>
-              <p>[PLACEHOLDER] An EEC doesn't sit where onboarding emails sit. It sits before the trial even starts. It creates a middle state: educated subscriber.</p>
+              <h3>Creates a Middle State</h3>
+              <p>An EEC doesn't sit where onboarding emails sit. It sits before the trial even starts. It creates a new funnel state: educated subscriber. Lower commitment than a trial, higher value than a blog reader.</p>
             </div>
           </div>
 
@@ -74,7 +50,7 @@ const checkIcon = 'M5 12l5 5L20 7';
             </div>
             <div class="feature-item__content">
               <h3>Solves the Blank Canvas Problem</h3>
-              <p>[PLACEHOLDER] 60% of AI users never send a first message. The EEC teaches them what to DO with the product before they ever open it.</p>
+              <p>60% of AI users never send a first message. The EEC teaches them what to DO with the product before they ever open it. They arrive at the trial pre-educated with use cases, prompt patterns, and success criteria.</p>
             </div>
           </div>
 
@@ -84,51 +60,91 @@ const checkIcon = 'M5 12l5 5L20 7';
             </div>
             <div class="feature-item__content">
               <h3>Closes the Trust Gap</h3>
-              <p>[PLACEHOLDER] AI is new. Users are choosing their AI partner now. An EEC that teaches honest evaluation builds the exact trust AI products struggle to earn during trials.</p>
+              <p>AI is in the "partner selection" phase. An EEC that teaches honest evaluation — "how to tell if AI output is reliable" — builds the exact trust AI products struggle to earn during trials.</p>
             </div>
           </div>
         </div>
 
-        <!-- Right: visual placeholder card -->
+        <!-- Right: pipeline visual -->
         <div class="eec-visual">
           <div class="card">
-            <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; padding: 3rem 1rem;">
-              [PLACEHOLDER — visual: pipeline diagram, example email sequence preview, or illustration showing stranger → educated subscriber → trial user]
-            </p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">The funnel without an EEC:</p>
+            <p class="funnel-flow">Blog/ad → trial signup → onboarding → paid</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1.5rem; margin-bottom: 1rem;">With an EEC:</p>
+            <p class="funnel-flow funnel-flow--highlight">Blog/ad → <strong>EEC signup</strong> → 5–7 days education → trial CTA → onboarding → paid</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== HOW IT WORKS ===== -->
-  <TextBlock heading="How It Works">
-    <p>[PLACEHOLDER] The cascade logic. How an EEC takes a cold lead through a structured education sequence over 5-7 days. What happens at each stage.</p>
-    <p>[PLACEHOLDER] Behavioral triggers vs. timed sends — why behavioral works surprisingly well even when traditional sequences lose.</p>
+  <!-- ===== USER PERSPECTIVE ===== -->
+  <TextBlock heading="From the User's Perspective">
+    <p>"I'm curious about AI-powered [X] but not ready to commit to learning a new tool."</p>
+    <p class="mt-2">"A free 5-day course on 'how to evaluate AI writing tools' costs me nothing but an email address."</p>
+    <p class="mt-2">Over 5 days, they learn the problem space, develop a framework for thinking about it, and build trust with the company teaching them. By Day 5, they understand what good looks like. The trial CTA hits differently because they're no longer cold.</p>
   </TextBlock>
 
-  <!-- ===== AVAILABLE COURSES (links to Carrd) ===== -->
+  <!-- ===== CONCRETE EXAMPLE ===== -->
   <section class="section section--alt">
+    <div class="container reveal">
+      <h2 class="mb-4">Example: AI Code Review Tool</h2>
+      <div class="eec-day-list">
+        <div class="eec-day">
+          <span class="eec-day__label">Day 1</span>
+          <p>"The 3 types of code review that AI actually handles well" — sets realistic expectations</p>
+        </div>
+        <div class="eec-day">
+          <span class="eec-day__label">Day 2</span>
+          <p>"Why most teams waste their first week with AI code review" — prevents common mistakes</p>
+        </div>
+        <div class="eec-day">
+          <span class="eec-day__label">Day 3</span>
+          <p>"The verification workflow: how to trust AI suggestions without blindly accepting" — trust calibration</p>
+        </div>
+        <div class="eec-day">
+          <span class="eec-day__label">Day 4</span>
+          <p>"How [Company] customers reduced review cycles by 40%" — social proof + specific use case</p>
+        </div>
+        <div class="eec-day">
+          <span class="eec-day__label">Day 5</span>
+          <p>"Your first AI-assisted review: a step-by-step setup guide" — bridges to trial with a plan</p>
+        </div>
+      </div>
+      <p class="mt-3">The user who completes this course and then starts a trial has a specific use case in mind, knows what to expect, knows how to verify output, and trusts the company. Their activation rate will be dramatically higher.</p>
+    </div>
+  </section>
+
+  <!-- ===== AVAILABLE COURSES ===== -->
+  <section class="section">
     <div class="container">
-      <h2 class="mb-4">Available Courses</h2>
-      <p class="mb-4" style="color: var(--text-muted);">Each course is hosted on its own page. Click through to learn more and sign up.</p>
-      <div class="grid-3 reveal-stagger">
-        {eecLinks.map(eec => (
-          <LinkCard
-            title={eec.title}
-            description={eec.description}
-            href={eec.href}
-            external
-          />
-        ))}
+      <h2 class="mb-4 reveal">Available Courses</h2>
+      <div class="grid-2 reveal-stagger">
+        <div class="card reveal">
+          <h3>From Tool to Platform</h3>
+          <p class="mt-2" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">5 Days on What Moves AI SaaS Past the Growth Ceiling</p>
+          <div class="eec-day-list mt-3" style="font-size: 0.9rem;">
+            <p><strong>Day 1 —</strong> High-Signal Data Architecture. Building collection systems where data quality compounds product intelligence.</p>
+            <p class="mt-2"><strong>Day 2 —</strong> The Trust Window. Earning long-term user loyalty during the "partner selection" phase.</p>
+            <p class="mt-2"><strong>Day 3 —</strong> The Usage Equation. Solving the friction between token costs and user retention.</p>
+            <p class="mt-2"><strong>Day 4 —</strong> Category Education as a Moat. Whoever teaches the user how to evaluate AI output quality sets the criteria.</p>
+            <p class="mt-2"><strong>Day 5 —</strong> Informational Advantage. Turning behavioral signals into new revenue models and agent-led expansion.</p>
+          </div>
+          <p class="mt-3" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Coming soon</p>
+        </div>
+        <div class="card reveal">
+          <h3>Mistakes AI SaaS Make</h3>
+          <p class="mt-2">The basics that quietly determine survival. Wider lens, sharper hooks.</p>
+          <p class="mt-3" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Coming soon</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===== CTA ===== -->
-  <TextBlock heading="Want a Custom EEC for Your AI SaaS?">
-    <p>[PLACEHOLDER] Brief pitch — you build custom EECs for AI SaaS companies. What the outcome looks like.</p>
-    <a href="https://calendly.com/YOURLINK" class="btn btn--primary mt-3">Book a Call &rarr;</a>
+  <TextBlock heading="Want a Custom EEC for Your AI SaaS?" alt>
+    <p>I build custom Educational Email Courses for AI SaaS companies. Free diagnostic first — 30 minutes to identify where your funnel loses the most visitors and how an EEC would catch them.</p>
+    <a href="https://calendly.com/YOURLINK" class="btn btn--primary mt-3">Book a Free Diagnostic →</a>
   </TextBlock>
 
   <Footer links={footerLinks} />
@@ -140,5 +156,42 @@ const checkIcon = 'M5 12l5 5L20 7';
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .funnel-flow {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 0.25rem 0;
+  }
+
+  .funnel-flow--highlight {
+    color: var(--accent);
+  }
+
+  .eec-day-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .eec-day {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .eec-day__label {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    min-width: 50px;
+  }
+
+  .eec-day p {
+    font-size: 0.95rem;
   }
 </style>

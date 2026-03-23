@@ -6,76 +6,88 @@ import LinkCard from '../components/LinkCard.astro';
 import Footer from '../components/Footer.astro';
 
 const footerLinks = [
-  { label: 'Lead Magnet', href: '/eec/' },
+  { label: 'EEC', href: '/eec/' },
   { label: 'Behavioral Emails', href: '/behavioral-emails/' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/andrew-malashenko/' },
 ];
 ---
 
 <BaseLayout
-  title="First Action Fix — AI SaaS Consulting"
-  description="[PLACEHOLDER] One-line description of what you do for AI SaaS companies."
+  title="First Action Fix — Educational Email Courses for AI SaaS"
+  description="I build Educational Email Courses for AI SaaS companies. The step between stranger and trial user that most funnels don't have."
   theme="main"
   activePage="about"
 >
 
   <!-- ===== HERO ===== -->
   <Hero
-    headline="[Your Name] — Helping AI SaaS Convert Strangers Into Users"
-    subheadline="[PLACEHOLDER] 1-2 sentences. What you do, who you do it for, and why it matters."
-    ctaText="Book a Call"
+    headline="I build Educational Email Courses for AI SaaS companies."
+    subheadline="The step between &ldquo;stranger&rdquo; and &ldquo;trial user&rdquo; that most funnels don&rsquo;t have. I create it."
+    ctaText="Book a Free Diagnostic →"
     ctaLink="https://calendly.com/YOURLINK"
   />
 
-  <!-- ===== ABOUT / AUTHORITY ===== -->
-  <TextBlock heading="What I Do" alt>
-    <p>[PLACEHOLDER] Explain your positioning. You help AI SaaS companies bridge the gap between 'stranger' and 'trial user' using educational email courses and behavioral email sequences.</p>
-    <p>[PLACEHOLDER] Your qualification — what makes you the person to do this. Experience, results, unique perspective on the AI SaaS market.</p>
+  <!-- ===== WHAT AN EEC DOES ===== -->
+  <TextBlock heading="What an EEC Does" alt>
+    <p>Most AI SaaS companies have two states in their funnel: stranger and trial user. Nothing in between.</p>
+    <p>Their funnel looks like this:</p>
+    <p class="funnel-flow">Blog/ad → landing page → trial signup → onboarding emails → paid</p>
+    <p>That works for the small percentage of visitors ready to commit to a trial. The rest leave. They were interested, just not ready.</p>
+    <p>An Educational Email Course creates a middle state: <strong>educated subscriber</strong>.</p>
+    <p class="funnel-flow">Blog/ad → EEC signup (lower commitment) → 5–7 days of education → trial CTA → onboarding → paid</p>
+    <a href="/eec/" class="btn btn--outline mt-3">Learn more about EECs →</a>
   </TextBlock>
 
-  <!-- ===== OFFERINGS / LINKS ===== -->
-  <section class="section">
-    <div class="container">
-      <h2 class="mb-4">Explore</h2>
-      <div class="grid-2 reveal-stagger">
-        <LinkCard
-          title="Educational Email Courses (EEC)"
-          description="[PLACEHOLDER] What an EEC is and why it matters for AI SaaS. Links to the EEC page."
-          href="/eec/"
-        />
-        <LinkCard
-          title="Behavioral Email Sequences"
-          description="[PLACEHOLDER] What behavioral emails are and why they outperform traditional drip sequences."
-          href="/behavioral-emails/"
-        />
-      </div>
+  <!-- ===== WHO THIS IS FOR ===== -->
+  <TextBlock heading="Who This Is For">
+    <p>AI SaaS companies, Seed to Series A. Developer tools. API-first AI products. Vertical and agentic AI SaaS.</p>
+    <p>The common pattern: signups come in, but trial-to-paid conversion isn't where it needs to be. Most of the drop-off is silent. Users sign up, open the product once or twice, and disappear.</p>
+    <p>An EEC catches them before that happens.</p>
+    <h3 class="mt-4 mb-2">Traffic sources that feed it</h3>
+    <p>The EEC landing page gets traffic from the same sources as the trial page. LinkedIn posts by the founder link to it. Blog posts end with it. Paid ads can target it — lower CPA than trial signups because lower commitment. Conference talks mention it.</p>
+    <p>The difference: the EEC converts cold traffic that would otherwise bounce.</p>
+  </TextBlock>
+
+  <!-- ===== ALSO: BEHAVIORAL ===== -->
+  <section class="section section--alt">
+    <div class="container reveal">
+      <h2 class="mb-4">Also: Behavioral Email Sequences</h2>
+      <p>For companies that already have event tracking in place, I also build behavioral onboarding email sequences — emails triggered by what users actually do during a trial, not by what day it is.</p>
+      <p class="mt-2">This is the heavier service. It requires infrastructure (Mixpanel, Amplitude, or similar) and a product with enough user data to build triggers from.</p>
+      <a href="/behavioral-emails/" class="btn btn--outline mt-3">Learn about behavioral emails →</a>
     </div>
   </section>
 
-  <!-- ===== ARTICLES / LINKEDIN ===== -->
-  <TextBlock heading="Articles" alt>
-    <div class="grid-2 reveal-stagger">
-      <LinkCard
-        title="How AI SaaS Differs from Traditional SaaS"
-        description="[PLACEHOLDER] Unique challenges, known solutions on the market."
-        href="https://linkedin.com/pulse/YOURARTICLE1"
-        external
-      />
-      <LinkCard
-        title="The Reality of AI SaaS"
-        description="[PLACEHOLDER] Processing power, hierarchy, consumer preferences, agentic AI shift."
-        href="https://linkedin.com/pulse/YOURARTICLE2"
-        external
-      />
+  <!-- ===== AVAILABLE EEC COURSES ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-4 reveal">Available EEC Courses</h2>
+      <div class="grid-2 reveal-stagger">
+        <LinkCard
+          title="From Tool to Platform: 5 Days on What Moves AI SaaS Past the Growth Ceiling"
+          description="For founders past product-market fit. Data architecture, trust economics, usage equations, category education, and informational advantage."
+          href="/eec/"
+        />
+        <LinkCard
+          title="Mistakes AI SaaS Make"
+          description="The basics that quietly determine survival. Wider lens, sharper hooks."
+          href="/eec/"
+        />
+      </div>
+      <p class="mt-3" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Coming soon</p>
     </div>
-  </TextBlock>
-
-  <!-- ===== NEWSLETTER ===== -->
-  <TextBlock heading="Newsletter">
-    <p>[PLACEHOLDER] Your AI SaaS newsletter premise. What subscribers get, how often (twice a week), and why it's worth reading.</p>
-    <a href="https://YOURNEWSLETTERLINK" class="btn btn--primary mt-3">Subscribe</a>
-  </TextBlock>
+  </section>
 
   <Footer links={footerLinks} />
 
 </BaseLayout>
+
+<style>
+  .funnel-flow {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--accent);
+    padding: 0.75rem 0;
+    max-width: 100%;
+  }
+</style>
