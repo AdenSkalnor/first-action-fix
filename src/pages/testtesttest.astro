@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Font Comparison — Test Page"
+  description="Internal font comparison test"
+  theme="main"
+  activePage="about"
+>
+
+  <section class="section">
+    <div class="container">
+      <h1 style="margin-bottom: 2rem;">Font Comparison</h1>
+      <p style="margin-bottom: 3rem; color: var(--text-muted);">Each section below renders the same sample text in a different font. Compare readability, weight, and character at body size.</p>
+
+      <!-- ===== FONT 1: Inter (current) ===== -->
+      <div class="font-sample" style="font-family: 'Inter', sans-serif;">
+        <h2 class="font-sample__name">1. Inter <span class="font-sample__tag">Current</span></h2>
+        <div class="font-sample__card card">
+          <h3 style="margin-bottom: 0.75rem;">Explore</h3>
+          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Educational Email Courses (EEC)</h4>
+          <p>The step between 'stranger' and 'trial user.' A 5-7 day course that turns cold traffic into educated subscribers ready for a trial.</p>
+        </div>
+        <div class="font-sample__body mt-3">
+          <h3 style="margin-bottom: 0.75rem;">What an EEC Does</h3>
+          <p>Most AI SaaS companies have two states in their funnel: stranger and trial user. Nothing in between.</p>
+          <p class="mt-2">Their funnel looks like this:</p>
+          <p class="mt-2" style="font-family: monospace; color: var(--accent);">Blog/ad → landing page → trial signup → onboarding emails → paid</p>
+          <p class="mt-2">That works for the small percentage of visitors ready to commit to a trial. The rest leave. They were interested, just not ready.</p>
+          <p class="mt-2">An Educational Email Course creates a middle state: <strong>educated subscriber</strong>.</p>
+        </div>
+      </div>
+
+      <!-- ===== FONT 2: DM Sans ===== -->
+      <div class="font-sample" style="font-family: 'DM Sans', sans-serif;">
+        <h2 class="font-sample__name">2. DM Sans</h2>
+        <div class="font-sample__card card">
+          <h3 style="margin-bottom: 0.75rem;">Explore</h3>
+          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Educational Email Courses (EEC)</h4>
+          <p>The step between 'stranger' and 'trial user.' A 5-7 day course that turns cold traffic into educated subscribers ready for a trial.</p>
+        </div>
+        <div class="font-sample__body mt-3">
+          <h3 style="margin-bottom: 0.75rem;">What an EEC Does</h3>
+          <p>Most AI SaaS companies have two states in their funnel: stranger and trial user. Nothing in between.</p>
+          <p class="mt-2">Their funnel looks like this:</p>
+          <p class="mt-2" style="font-family: monospace; color: var(--accent);">Blog/ad → landing page → trial signup → onboarding emails → paid</p>
+          <p class="mt-2">That works for the small percentage of visitors ready to commit to a trial. The rest leave. They were interested, just not ready.</p>
+          <p class="mt-2">An Educational Email Course creates a middle state: <strong>educated subscriber</strong>.</p>
+        </div>
+      </div>
+
+      <!-- ===== FONT 3: Outfit ===== -->
+      <div class="font-sample" style="font-family: 'Outfit', sans-serif;">
+        <h2 class="font-sample__name">3. Outfit</h2>
+        <div class="font-sample__card card">
+          <h3 style="margin-bottom: 0.75rem;">Explore</h3>
+          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Educational Email Courses (EEC)</h4>
+          <p>The step between 'stranger' and 'trial user.' A 5-7 day course that turns cold traffic into educated subscribers ready for a trial.</p>
+        </div>
+        <div class="font-sample__body mt-3">
+          <h3 style="margin-bottom: 0.75rem;">What an EEC Does</h3>
+          <p>Most AI SaaS companies have two states in their funnel: stranger and trial user. Nothing in between.</p>
+          <p class="mt-2">Their funnel looks like this:</p>
+          <p class="mt-2" style="font-family: monospace; color: var(--accent);">Blog/ad → landing page → trial signup → onboarding emails → paid</p>
+          <p class="mt-2">That works for the small percentage of visitors ready to commit to a trial. The rest leave. They were interested, just not ready.</p>
+          <p class="mt-2">An Educational Email Course creates a middle state: <strong>educated subscriber</strong>.</p>
+        </div>
+      </div>
+
+      <!-- ===== FONT 4: Plus Jakarta Sans ===== -->
+      <div class="font-sample" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+        <h2 class="font-sample__name">4. Plus Jakarta Sans</h2>
+        <div class="font-sample__card card">
+          <h3 style="margin-bottom: 0.75rem;">Explore</h3>
+          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Educational Email Courses (EEC)</h4>
+          <p>The step between 'stranger' and 'trial user.' A 5-7 day course that turns cold traffic into educated subscribers ready for a trial.</p>
+        </div>
+        <div class="font-sample__body mt-3">
+          <h3 style="margin-bottom: 0.75rem;">What an EEC Does</h3>
+          <p>Most AI SaaS companies have two states in their funnel: stranger and trial user. Nothing in between.</p>
+          <p class="mt-2">Their funnel looks like this:</p>
+          <p class="mt-2" style="font-family: monospace; color: var(--accent);">Blog/ad → landing page → trial signup → onboarding emails → paid</p>
+          <p class="mt-2">That works for the small percentage of visitors ready to commit to a trial. The rest leave. They were interested, just not ready.</p>
+          <p class="mt-2">An Educational Email Course creates a middle state: <strong>educated subscriber</strong>.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+  .font-sample {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .font-sample:last-child {
+    border-bottom: none;
+  }
+
+  .font-sample__name {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .font-sample__tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+  }
+
+  .font-sample__card {
+    max-width: 500px;
+  }
+
+  .font-sample__card h3,
+  .font-sample__card h4,
+  .font-sample__card p {
+    font-family: inherit;
+  }
+
+  .font-sample__body {
+    max-width: 720px;
+  }
+
+  .font-sample__body h3,
+  .font-sample__body p {
+    font-family: inherit;
+  }
+
+  .font-sample__body p {
+    color: var(--text-muted);
+  }
+</style>
