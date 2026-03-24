@@ -70,9 +70,9 @@ const { activePage = 'about' } = Astro.props;
     vertical-align: middle;
   }
 
-  /* On desktop, keep Lead Magnet first visually via order */
-  @media (min-width: 769px) {
-    .nav__link--mobile-first { order: 2; }
+  /* About link: slightly bolder to stand out */
+  .nav__link--mobile-first {
+    color: var(--text);
   }
 
   /* On mobile, badge goes below text */

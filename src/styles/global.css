@@ -17,7 +17,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 17px;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
@@ -41,7 +41,7 @@ ul, ol { list-style: none; }
   --bg-alt:      #F5F4F0;
   --bg-nav:      #FFFFFF;
   --text:        #1A1A1A;
-  --text-muted:  #5A5A5A;
+  --text-muted:  #3D3D3D;
   --accent:      #E8732A;
   --accent-hover:#D4621E;
   --accent-soft: rgba(232, 115, 42, 0.1);
@@ -58,7 +58,7 @@ ul, ol { list-style: none; }
   --bg-alt:      #FFF3E8;
   --bg-nav:      #FFFFFF;
   --text:        #1A1A1A;
-  --text-muted:  #6B6B6B;
+  --text-muted:  #404040;
   --accent:      #F28C38;
   --accent-hover:#E07820;
   --accent-soft: rgba(242, 140, 56, 0.1);
@@ -76,7 +76,7 @@ ul, ol { list-style: none; }
   --bg-alt:      #1E2228;
   --bg-nav:      rgba(24, 27, 32, 0.9);
   --text:        #F0F0F0;
-  --text-muted:  #94A3B8;
+  --text-muted:  #C8D0DC;
   --accent:      #6C72E8;
   --accent-hover:#5A5FD6;
   --accent-soft: rgba(108, 114, 232, 0.15);
