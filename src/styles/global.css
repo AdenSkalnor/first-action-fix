@@ -38,7 +38,7 @@ ul, ol { list-style: none; }
    ===================== */
 [data-theme="main"] {
   --bg:          #FAFAFA;
-  --bg-alt:      #F0EFEB;
+  --bg-alt:      #F5F4F0;
   --bg-nav:      #FFFFFF;
   --text:        #1A1A1A;
   --text-muted:  #5A5A5A;

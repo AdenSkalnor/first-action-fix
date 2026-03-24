@@ -60,18 +60,37 @@ const checkIcon = 'M5 12l5 5L20 7';
             </div>
             <div class="feature-item__content">
               <h3>Closes the Trust Gap</h3>
-              <p>AI is in the "partner selection" phase. An EEC that teaches honest evaluation — "how to tell if AI output is reliable" — builds the exact trust AI products struggle to earn during trials.</p>
+              <p>AI is in the "partner selection" phase. An EEC that teaches honest evaluation — <span class="inline-badge">how to tell if AI output is reliable</span> — builds the exact trust AI products struggle to earn during trials.</p>
             </div>
           </div>
         </div>
 
         <!-- Right: pipeline visual -->
         <div class="eec-visual">
-          <div class="card">
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">The funnel without an EEC:</p>
-            <p class="funnel-flow">Blog/ad → trial signup → onboarding → paid</p>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1.5rem; margin-bottom: 1rem;">With an EEC:</p>
-            <p class="funnel-flow funnel-flow--highlight">Blog/ad → <strong>EEC signup</strong> → 5–7 days education → trial CTA → onboarding → paid</p>
+          <div class="card pipeline-card">
+            <p class="pipeline-card__label">Without an EEC</p>
+            <div class="pipeline-steps">
+              <span class="pipeline-step">Blog / Ad</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-step">Trial signup</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-step">Onboarding</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-step">Paid</span>
+            </div>
+
+            <p class="pipeline-card__label mt-3">With an EEC</p>
+            <div class="pipeline-steps pipeline-steps--highlight">
+              <span class="pipeline-step">Blog / Ad</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-step pipeline-step--accent"><strong>EEC signup</strong></span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-step">5-7 days education</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-step">Trial CTA</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-step">Paid</span>
+            </div>
           </div>
         </div>
       </div>
@@ -122,7 +141,7 @@ const checkIcon = 'M5 12l5 5L20 7';
       <li>Clicks through to a blog post on the company site</li>
       <li>Blog post has two CTAs: "Start trial" and "Get our 5-day course on evaluating AI code review tools"</li>
       <li>User picks the course (lower friction, just an email)</li>
-      <li>Days 1–5: learns the problem space, develops trust, understands what good looks like</li>
+      <li>Days 1-5: learns the problem space, develops trust, understands what good looks like</li>
       <li>Day 5 CTA: "Ready to try it yourself? Start your trial with this setup guide"</li>
       <li>User starts trial pre-educated, activates faster, converts at higher rates</li>
     </ol>
@@ -139,19 +158,23 @@ const checkIcon = 'M5 12l5 5L20 7';
           title="From Tool to Platform"
           description="5 days on what moves AI SaaS past the growth ceiling. Data architecture, trust economics, usage equations, category education, informational advantage."
           href="/eec/"
+          badge="Coming Soon"
         />
         <LinkCard
           title="Mistakes AI SaaS Make"
           description="The basics that quietly determine survival. Wider lens, sharper hooks."
           href="/eec/"
+          badge="Coming Soon"
         />
       </div>
     </div>
   </section>
 
   <!-- ===== CTA ===== -->
-  <TextBlock heading="Want a Custom EEC for Your AI SaaS?" alt>
-    <p>I build custom Educational Email Courses for AI SaaS companies. Free diagnostic first — 30 minutes to identify where your funnel loses the most visitors and how an EEC would catch them.</p>
+  <TextBlock heading="Automate Your 'Aha!' Moment" alt>
+    <p>Every AI SaaS has a moment where the user gets it — where the product clicks. The problem is most users never reach it.</p>
+    <p class="mt-2">An EEC engineers that moment before the trial even starts. By the time they sign up, they already know what to do, what to expect, and why it matters.</p>
+    <p class="mt-2">Free diagnostic first. 30 minutes. I'll identify where your funnel loses the most visitors and how an EEC would catch them.</p>
     <a href="https://calendly.com/follow_action/30min" class="btn btn--primary mt-3">Book a Free Diagnostic →</a>
   </TextBlock>
 
@@ -166,15 +189,53 @@ const checkIcon = 'M5 12l5 5L20 7';
     justify-content: center;
   }
 
-  .funnel-flow {
-    font-family: monospace;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    padding: 0.25rem 0;
+  .pipeline-card {
+    padding: 1.75rem;
   }
 
-  .funnel-flow--highlight {
+  .pipeline-card__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .pipeline-steps {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .pipeline-step {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .pipeline-arrow {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  .pipeline-steps--highlight .pipeline-step {
+    color: var(--text);
+  }
+
+  .pipeline-steps--highlight .pipeline-arrow {
     color: var(--accent);
+    opacity: 1;
+  }
+
+  .pipeline-step--accent {
+    background: var(--accent-soft);
+    color: var(--accent) !important;
   }
 
   .eec-day-list {
@@ -218,6 +279,17 @@ const checkIcon = 'M5 12l5 5L20 7';
     align-items: baseline;
     font-size: 0.95rem;
     color: var(--text-muted);
+  }
+
+  .inline-badge {
+    display: inline;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
   }
 
   .journey-list li::before {

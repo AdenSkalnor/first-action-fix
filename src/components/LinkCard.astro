@@ -13,9 +13,10 @@ interface Props {
   description?: string;
   href: string;
   external?: boolean;
+  badge?: string;
 }
 
-const { title, description = '', href, external = false } = Astro.props;
+const { title, description = '', href, external = false, badge = '' } = Astro.props;
 const target = external ? '_blank' : '_self';
 const rel = external ? 'noopener noreferrer' : undefined;
 ---
@@ -23,6 +24,7 @@ const rel = external ? 'noopener noreferrer' : undefined;
 <a href={href} target={target} rel={rel} class="link-card card reveal">
   <h3>{title}</h3>
   {description && <p class="mt-1">{description}</p>}
+  {badge && <span class="link-card__badge">{badge}</span>}
   <span class="link-card__arrow">&rarr;</span>
 </a>
 
@@ -46,5 +48,17 @@ const rel = external ? 'noopener noreferrer' : undefined;
   }
   .link-card:hover .link-card__arrow {
     transform: translateX(4px);
+  }
+  .link-card__badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    margin-top: 0.75rem;
   }
 </style>

@@ -22,14 +22,15 @@ const { activePage = 'about' } = Astro.props;
     </button>
 
     <div class="nav__links" id="nav-links">
+      <a href="/" class={`nav__link nav__link--mobile-first ${activePage === 'about' ? 'nav__link--active' : ''}`}>
+        About
+      </a>
       <a href="/eec/" class={`nav__link ${activePage === 'eec' ? 'nav__link--active' : ''}`}>
         Lead Magnet
       </a>
-      <a href="/" class={`nav__link ${activePage === 'about' ? 'nav__link--active' : ''}`}>
-        About
-      </a>
-      <a href="/behavioral-emails/" class={`nav__link ${activePage === 'behavioral' ? 'nav__link--active' : ''}`}>
-        Behavioral Emails <span class="nav__badge">In Development</span>
+      <a href="/behavioral-emails/" class={`nav__link nav__link--with-badge ${activePage === 'behavioral' ? 'nav__link--active' : ''}`}>
+        Behavioral Emails
+        <span class="nav__badge">In Development</span>
       </a>
       <a href="https://calendly.com/follow_action/30min" class="nav__cta" target="_blank" rel="noopener noreferrer">
         Book a Call &rarr;
@@ -67,5 +68,23 @@ const { activePage = 'about' } = Astro.props;
     border-radius: 4px;
     margin-left: 0.35rem;
     vertical-align: middle;
+  }
+
+  /* On desktop, keep Lead Magnet first visually via order */
+  @media (min-width: 769px) {
+    .nav__link--mobile-first { order: 2; }
+  }
+
+  /* On mobile, badge goes below text */
+  @media (max-width: 768px) {
+    .nav__link--with-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+    .nav__link--with-badge .nav__badge {
+      margin-left: 0;
+    }
   }
 </style>
