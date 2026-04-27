@@ -1,0 +1,13 @@
+# Normalize line endings on commit. Windows checkouts can keep CRLF locally;
+# the repo always stores LF. This stops phantom "modified" diffs on Windows.
+* text=auto eol=lf
+
+# Binary files — leave alone.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text
+*.woff binary
+*.woff2 binary

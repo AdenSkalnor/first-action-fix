@@ -1,0 +1,129 @@
+---
+/*
+  NewView — landing page review (v3 logic-chain).
+  Four sections, one question each:
+    1. Am I in the right place?      — Hero
+    2. What does this person do?     — What I Do
+    3. Why does this work?           — Why Email
+    4. What do I do next?            — Next Step (calendar)
+
+  Design rule for this page: if a section answers more than one question, it gets cut.
+  Hosted at /newview/ so the original / stays untouched.
+*/
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TextBlock from '../components/TextBlock.astro';
+import Footer from '../components/Footer.astro';
+
+const footerLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'EEC', href: '/eec/' },
+  { label: 'Behavioral Emails', href: '/behavioral-emails/' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/andrew-malashenko/' },
+];
+
+const calendlyURL = 'https://calendly.com/follow_action/30min';
+---
+
+<BaseLayout
+  title="First Action Fix — Sales SaaS trial users quit before they activate"
+  description="I build the email systems that tell trial users what to do next. Educational Email Courses and Behavioral Emails for Sales SaaS."
+  theme="main"
+  activePage="about"
+>
+
+  <!-- ===== SECTION 1 — HERO =====
+       Question: Am I in the right place?
+       The headline names the situation. The sub-line names the cause.
+       No CTA above the fold. -->
+  <Hero
+    headline="Sales SaaS trial users quit before they activate."
+    subheadline="They quit because the next step inside the product is unclear."
+  />
+
+  <!-- ===== SECTION 2 — WHAT I DO =====
+       Question: What does this person do?
+       Two named offers. Plain language. No category labels. -->
+  <TextBlock heading="What I Do" alt>
+    <p>I build the email systems that tell trial users what to do next.</p>
+    <p class="mt-3"><strong>Two kinds:</strong></p>
+    <ul class="offer-list mt-2">
+      <li>
+        <span class="offer-list__title">Educational Email Course</span>
+        — a sequence sent during the trial that teaches users how to reach value.
+      </li>
+      <li>
+        <span class="offer-list__title">Behavioral Emails</span>
+        — triggered by what users do or fail to do inside the trial.
+      </li>
+    </ul>
+  </TextBlock>
+
+  <!-- ===== SECTION 3 — WHY EMAIL =====
+       Question: Why does this work?
+       Mechanical, verifiable from the reader's own behavior. -->
+  <TextBlock heading="Why Email">
+    <p>When a trial user stalls, they leave the product.</p>
+    <p class="mt-3">Email is the channel that reaches them where they actually are.</p>
+  </TextBlock>
+
+  <!-- ===== SECTION 4 — NEXT STEP =====
+       Question: What do I do next?
+       Single decision. Calendar embed inline — the reader who reached here is ready. -->
+  <section class="section section--alt">
+    <div class="container reveal">
+      <h2 class="mb-2">Next Step</h2>
+      <p>30-minute diagnostic call.</p>
+      <p class="mt-2">We look at where your trial breaks down.</p>
+
+      <!-- Calendly inline embed. Falls back to a button link if the script is blocked. -->
+      <div
+        class="calendly-inline-widget mt-4"
+        data-url={calendlyURL}
+        style="min-width:320px;height:680px;"
+      >
+        <noscript>
+          <a href={calendlyURL} class="btn btn--primary mt-3" target="_blank" rel="noopener noreferrer">
+            Book a Free Diagnostic &rarr;
+          </a>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <Footer links={footerLinks} />
+
+</BaseLayout>
+
+<!-- Calendly widget script. Loaded async, doesn't block render. -->
+<script is:inline async src="https://assets.calendly.com/assets/external/widget.js"></script>
+
+<style>
+  .offer-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: 720px;
+  }
+
+  .offer-list li {
+    color: var(--text-muted);
+    padding: 0.6rem 0 0.6rem 1rem;
+    border-left: 2px solid var(--accent);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .offer-list__title {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Keep the embed tidy on mobile. */
+  .calendly-inline-widget {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+</style>
