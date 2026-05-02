@@ -1,0 +1,850 @@
+---
+/*
+  ============================================================
+  SUBSTANCE — publication-quiet variant
+  Route: /variants/substance/
+  ============================================================
+
+  Posture: a writer's portal, not a brochure. This is the front
+  page of a small publication. The work is the proof; the offer
+  is whispered.
+
+  Reference operators: Jane Portman / UI Breakfast (podcast as
+  hub), Corey Haines / corey.co (multi-venture portal,
+  content-first), Val Geisler (weekly teardowns as authority
+  signal).
+
+  ----- Layout choice -----
+  BaseLayout is SKIPPED on purpose.
+
+  Reasons:
+   1. BaseLayout pulls in <Nav>, which is hard-coded to the
+      "About / Lead Magnet / Behavioral Emails / Book a Call"
+      structure and a Calendly CTA. The Substance page wants a
+      publication nav: "Teardowns · Writing · Method · Work ·
+      About" — five items, no CTA pill, no badge.
+   2. BaseLayout imports global.css which loads Inter and sets
+      `font-size: 19px` plus a sans-serif body. A publication
+      front needs a serif body and quieter base size. Loading
+      global.css would force an override war.
+   3. We need our own font links in <head> (Source Serif 4 +
+      Inter), and our own theme tokens, scoped to the page.
+   4. The brief says "you may use BaseLayout or skip it";
+      everything we'd keep from it (favicon, meta tags, the
+      reveal observer) is small enough to inline cleanly.
+
+  Constraint check: scoped styles only — handled by writing all
+  page CSS inside <style> in this file. No edits to /src/styles
+  or any sibling component.
+  ============================================================
+*/
+
+const pageTitle = 'First Action Fix — Teardowns and writing on trial-to-paid for sales-tech SaaS.';
+const pageDescription = 'Trial-to-paid teardowns for sales-tech SaaS founders. One per Tuesday. Public. Named. Free.';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+    {/*
+      ----- Font pairing -----
+      BODY: Source Serif 4 — a contemporary literary serif with
+      true italics and a calm rhythm at long-form widths. It
+      reads as "magazine essay" without the dryness of a textbook
+      serif. Picked over Lora (too rounded for a teardown's clinical
+      voice), Newsreader (slightly too display-flavoured for body),
+      and Spectral (great but heavier vertical color).
+
+      META / NAV: Inter — already familiar to the codebase, used
+      tightly here at small sizes for dates, word counts, nav
+      labels. Inter at 0.78–0.92rem reads as "publication chrome"
+      not "marketing UI" once we drop the bold weights.
+
+      Together: serif body anchors the page as content-forward;
+      Inter handles the chrome. Two voices, one reading mode.
+    */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    {/*
+      ============================================================
+      HEADER — publication style
+      Full nav visible. No CTA pill. Wordmark + five quiet links.
+      A thin rule under the nav, the way a masthead gets a hairline.
+      ============================================================
+    */}
+    <header class="masthead">
+      <div class="masthead__inner">
+        <a href="/variants/substance/" class="masthead__wordmark">First Action Fix</a>
+        <nav class="masthead__nav" aria-label="Publication">
+          <a href="#teardowns">Teardowns</a>
+          <a href="#writing">Writing</a>
+          <a href="#method">Method</a>
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      {/*
+        ============================================================
+        HERO — title and tagline only.
+        A publication doesn't shout. The H1 is medium weight, set in
+        the serif at a size below the article-title cap. The tagline
+        is a single line, slightly muted. No buttons here.
+        ============================================================
+      */}
+      <section class="hero">
+        <div class="container container--prose">
+          <h1 class="hero__title">Trial-to-paid teardowns for sales-tech SaaS founders.</h1>
+          <p class="hero__tagline">One per Tuesday. Public. Named. Free.</p>
+          <p class="hero__cadence">
+            <span class="dot" aria-hidden="true"></span>
+            Teardowns published every Tuesday, starting May&nbsp;5,&nbsp;2026.
+          </p>
+        </div>
+      </section>
+
+      <hr class="rule" />
+
+      {/*
+        ============================================================
+        LATEST TEARDOWN — featured card #1
+        Featured cards are wider, breathe more, and use the serif
+        for the article title at a real "headline" size. The dek
+        sits below in a slightly smaller serif italic-eligible
+        weight; the body excerpt is a normal paragraph.
+        ============================================================
+      */}
+      <section id="teardowns" class="featured reveal">
+        <div class="container container--prose">
+          <p class="kicker">Latest teardown</p>
+          <p class="meta">Tuesday, May 5, 2026 <span class="meta-sep">·</span> 3,200 words</p>
+          <h2 class="article-title">
+            <a href="#">
+              <span class="article-title__subject">[Smartlead]</span>
+              <span class="article-title__sep">·</span>
+              Where the trial flow loses 60% of qualified signups before they send their first sequence.
+            </a>
+          </h2>
+          <p class="article-dek">
+            The activation event for any cold email tool is "first sequence sent." Smartlead's trial requires
+            deliverability configuration, list import, and template setup before that event can fire — three
+            setup tasks that lose users at predictable points.
+          </p>
+          {/* eventual destination: /teardowns/smartlead/ */}
+          <a href="#" class="read-more">Read the teardown <span class="arrow">&rarr;</span></a>
+        </div>
+      </section>
+
+      <hr class="rule rule--soft" />
+
+      {/*
+        ============================================================
+        LATEST ESSAY — featured card #2
+        Same pattern as the teardown card so the page reads as a
+        repeated form. Keeps the rhythm. Distinguishing this from
+        the teardown card visually would weaken the "publication
+        index" feel — both are publication items, treat them the
+        same.
+        ============================================================
+      */}
+      <section id="writing" class="featured reveal">
+        <div class="container container--prose">
+          <p class="kicker">Latest essay</p>
+          <p class="meta">April 28, 2026 <span class="meta-sep">·</span> 1,800 words</p>
+          <h2 class="article-title">
+            <a href="#">
+              Why "increase trial-to-paid conversion" is the wrong goal for any SaaS measuring activation correctly.
+            </a>
+          </h2>
+          <p class="article-dek">
+            Trial-to-paid is a lagging indicator with too few events to move reliably on small traffic.
+            Activation-by-day-7 has 3–5x the event volume and responds to interventions faster.
+          </p>
+          {/* eventual destination: /writing/wrong-number-to-chase/ */}
+          <a href="#" class="read-more">Read the essay <span class="arrow">&rarr;</span></a>
+        </div>
+      </section>
+
+      <hr class="rule rule--soft" />
+
+      {/*
+        ============================================================
+        THE METHOD — third card variant.
+        Distinguished from the publication items because it is a
+        standalone resource, not an issue. Visual treatment:
+         · framed by a quiet inset panel (warm tinted bg, subtle
+           border) instead of being flush like an essay.
+         · kicker label reads "Free resource" not a date.
+         · the link is a button-like link (still text, just bolder
+           and wrapped) rather than the inline arrow used by
+           publication items.
+        Same content posture though — calm, no exclamation.
+        ============================================================
+      */}
+      <section id="method" class="method reveal">
+        <div class="container container--prose">
+          <div class="method__panel">
+            <p class="kicker kicker--muted">Free resource</p>
+            <h2 class="method__title">The Method</h2>
+            <p class="method__lede">
+              A free 6-email course on installing trial-to-paid systems in sales-tech SaaS.
+            </p>
+            <p class="method__body">
+              Covers the activation gap, the displacement principle, and the orchestration layer
+              that pairs structured education with behavioral triggers.
+            </p>
+            <p class="method__body method__body--quiet">
+              For founders who've already read enough teardowns to know the next move is system-shaped.
+            </p>
+            {/* eventual destination: /eec/ or /method/ */}
+            <a href="#" class="method__cta">Start the course <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rule" />
+
+      {/*
+        ============================================================
+        ARCHIVE — two stacked lists with date dot-leaders.
+        No card chrome, no hover lift. Tight line-height. This is
+        the "what else have you written" list a returning reader
+        scans. Density is the point. Stays still on scroll — no
+        reveal class on archive items.
+        ============================================================
+      */}
+      <section class="archive">
+        <div class="container container--prose">
+          <div class="archive__group">
+            <h3 class="archive__heading">Recent teardowns</h3>
+            <ul class="archive__list">
+              <li><span class="archive__name">Apollo</span><span class="archive__leader" aria-hidden="true"></span><span class="archive__date">April 28</span></li>
+              <li><span class="archive__name">Lemlist</span><span class="archive__leader" aria-hidden="true"></span><span class="archive__date">April 21</span></li>
+              <li><span class="archive__name">Instantly</span><span class="archive__leader" aria-hidden="true"></span><span class="archive__date">April 14</span></li>
+              <li><span class="archive__name">Heyreach</span><span class="archive__leader" aria-hidden="true"></span><span class="archive__date">April 7</span></li>
+            </ul>
+            {/* eventual destination: /teardowns/ */}
+            <a href="#" class="archive__more">All teardowns <span class="arrow">&rarr;</span></a>
+          </div>
+
+          <div class="archive__group">
+            <h3 class="archive__heading">Recent writing</h3>
+            <ul class="archive__list">
+              <li><span class="archive__name">The wrong number to chase</span><span class="archive__leader" aria-hidden="true"></span><span class="archive__date">April 14</span></li>
+              <li><span class="archive__name">Activation requires displacement, not addition</span><span class="archive__leader" aria-hidden="true"></span><span class="archive__date">March 31</span></li>
+              <li><span class="archive__name">Why behavioral triggers and structured education compound only when paired</span><span class="archive__leader" aria-hidden="true"></span><span class="archive__date">March 17</span></li>
+            </ul>
+            {/* eventual destination: /writing/ */}
+            <a href="#" class="archive__more">All writing <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </section>
+
+      {/*
+        ============================================================
+        QUIET FOOTER
+        Service link is a single soft sentence, then the colophon.
+        No big CTA. The reader who wants to hire scrolls down to
+        find the link; the reader who came to read isn't shouted at.
+        ============================================================
+      */}
+      <footer id="work" class="colophon">
+        <div class="container container--prose">
+          <p class="colophon__work">
+            Looking to work together? See <a href="#" class="colophon__service-link">services <span class="arrow">&rarr;</span></a>
+          </p>
+          <p class="colophon__line" id="about">
+            First Action Fix <span class="meta-sep">·</span>
+            By Andrew Z. <span class="meta-sep">·</span>
+            Poznań <span class="meta-sep">·</span>
+            <a href="mailto:adennagleng@gmail.com" class="colophon__contact">Contact</a>
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    {/*
+      ============================================================
+      Scroll-reveal observer.
+      Inlined here because we skipped BaseLayout. Only the two
+      featured cards (.reveal) animate in. Archive list, method
+      panel, footer — all static. The voice is calm; over-animating
+      this page would betray the posture.
+      ============================================================
+    */}
+    <script>
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        reveals.forEach((el) => obs.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add('is-revealed'));
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  /*
+    ============================================================
+    PALETTE — paper-quiet
+    ----- Why this set reads as editorial -----
+    --paper:  #F7F4EC  warm off-white, slight cream cast. Not
+                       white. White feels like a SaaS dashboard;
+                       cream feels like uncoated stock.
+    --ink:    #1C1A17  warm dark, not pure black. Pairs with the
+                       cream the way printed text sits on a page.
+    --ink-2:  #4A453E  body and dek — softened ink for paragraphs.
+    --ink-3:  #8A8278  meta info (dates, word counts, leaders).
+                       Low contrast on purpose; metadata should
+                       defer to titles.
+    --rule:   #DAD3C4  hairline rules — visible but not a divider
+                       wall.
+    --accent: #8A4B2C  burnt sienna. Restrained. Used only on
+                       links and the cadence dot. Never on a
+                       background, never on a button.
+    --panel:  #EFEADF   Method panel tint — same family as paper,
+                       one step warmer/darker, so the panel reads
+                       as a quoted block, not a card.
+
+    The page never uses pure white or pure black. That's the
+    discipline that makes it read as a publication rather than
+    a marketing site.
+    ============================================================
+  */
+  :global(html) {
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :global(body) {
+    margin: 0;
+    background: #F7F4EC;
+    color: #1C1A17;
+    font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Iowan Old Style', serif;
+    font-feature-settings: "kern", "liga", "onum";
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  :global(*, *::before, *::after) {
+    box-sizing: border-box;
+  }
+
+  :global(a) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :global(ul) {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  :global(p) {
+    margin: 0;
+  }
+
+  :global(img) {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* Local CSS variables, scoped to the page tree we render. */
+  main, header, footer {
+    --paper: #F7F4EC;
+    --ink: #1C1A17;
+    --ink-2: #4A453E;
+    --ink-3: #8A8278;
+    --rule: #DAD3C4;
+    --rule-soft: #E6DFCD;
+    --accent: #8A4B2C;
+    --accent-hover: #6E3B22;
+    --panel: #EFEADF;
+    --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --serif: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Iowan Old Style', serif;
+  }
+
+  /* ----- Layout containers ----- */
+  .container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .container--prose {
+    max-width: 720px;
+  }
+
+  /* ============================================================
+     MASTHEAD
+     A publication header. Wordmark left, nav right. Hairline
+     under it. Full width but never wider than the container.
+     ============================================================ */
+  .masthead {
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 1.4rem 1.5rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .masthead__wordmark {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .masthead__nav {
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+  }
+  .masthead__nav a {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    color: var(--ink-2);
+    transition: color 160ms ease;
+  }
+  .masthead__nav a:hover {
+    color: var(--accent);
+  }
+
+  /* ============================================================
+     HERO
+     H1 sits at clamp(1.7rem, 3.2vw, 2.4rem) — small for a hero.
+     A publication doesn't shout. Article titles get more weight
+     than this. Tagline is one line, slightly muted, sans.
+     ============================================================ */
+  .hero {
+    padding: 5.5rem 0 3rem;
+  }
+  .hero__title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+    line-height: 1.18;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    max-width: 22ch;
+    margin: 0 0 1.1rem;
+  }
+  .hero__tagline {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink-2);
+    margin: 0 0 1.5rem;
+  }
+  .hero__cadence {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--ink-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .hero__cadence .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  /* ============================================================
+     RULES
+     Two weights — one full hairline, one softer between sibling
+     publication items.
+     ============================================================ */
+  .rule {
+    border: 0;
+    height: 1px;
+    background: var(--rule);
+    max-width: 1080px;
+    margin: 1rem auto;
+  }
+  .rule--soft {
+    background: var(--rule-soft);
+  }
+
+  /* ============================================================
+     FEATURED CARDS — teardown + essay
+     No box, no border, no background. The "card" is white space
+     plus typography. Wider vertical padding than the archive.
+     The article title is the visual anchor.
+     ============================================================ */
+  .featured {
+    padding: 3rem 0;
+  }
+
+  .kicker {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.65rem;
+  }
+  .kicker--muted {
+    color: var(--ink-3);
+  }
+
+  .meta {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--ink-3);
+    margin: 0 0 0.9rem;
+    font-feature-settings: "tnum";
+  }
+  .meta-sep {
+    margin: 0 0.4rem;
+    color: var(--ink-3);
+  }
+
+  .article-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0 0 1rem;
+  }
+  .article-title a {
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0 1px;
+    background-repeat: no-repeat;
+    background-position: 0 95%;
+    transition: background-size 240ms ease, color 160ms ease;
+  }
+  .article-title a:hover {
+    background-size: 100% 1px;
+    color: var(--accent);
+  }
+  .article-title__subject {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 600;
+  }
+  .article-title__sep {
+    color: var(--ink-3);
+    margin: 0 0.25rem;
+    font-weight: 400;
+  }
+
+  .article-dek {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0 0 1.2rem;
+    max-width: 62ch;
+  }
+
+  .read-more {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--accent);
+    border-bottom: 1px solid transparent;
+    transition: border-color 160ms ease, color 160ms ease;
+    padding-bottom: 1px;
+  }
+  .read-more:hover {
+    color: var(--accent-hover);
+    border-bottom-color: var(--accent-hover);
+  }
+  .arrow {
+    display: inline-block;
+    transition: transform 200ms ease;
+  }
+  .read-more:hover .arrow {
+    transform: translateX(2px);
+  }
+
+  /* ============================================================
+     METHOD PANEL
+     Inset panel, warmer tint than the page. Reads as a quoted
+     block — distinct from publication items. The CTA here is a
+     bolder text link with a top hairline above it, like a pull-
+     quote attribution.
+     ============================================================ */
+  .method {
+    padding: 3rem 0;
+  }
+  .method__panel {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 2px;  /* very square — feels like print, not UI */
+    padding: 2.4rem 2rem 2.2rem;
+  }
+  .method__title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.6rem, 2.6vw, 2rem);
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 0.9rem;
+  }
+  .method__lede {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin: 0 0 0.85rem;
+    max-width: 56ch;
+  }
+  .method__body {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--ink-2);
+    margin: 0 0 0.7rem;
+    max-width: 60ch;
+  }
+  .method__body--quiet {
+    font-style: italic;
+    color: var(--ink-3);
+    margin-bottom: 1.4rem;
+  }
+  .method__cta {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+    border-top: 1px solid var(--rule);
+    padding-top: 0.9rem;
+    margin-top: 0.4rem;
+    transition: color 160ms ease;
+  }
+  .method__cta:hover {
+    color: var(--accent);
+  }
+  .method__cta:hover .arrow {
+    transform: translateX(2px);
+  }
+  .method__cta .arrow {
+    transition: transform 200ms ease;
+  }
+
+  /* ============================================================
+     ARCHIVE
+     Two stacked groups, each a tight list with dot-leaders.
+     No card. No hover lift. Density on purpose.
+     The dot-leader is a flex item with a dotted bottom border.
+     ============================================================ */
+  .archive {
+    padding: 3.5rem 0 4rem;
+  }
+  .archive__group {
+    margin-bottom: 2.6rem;
+  }
+  .archive__group:last-child {
+    margin-bottom: 0;
+  }
+  .archive__heading {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 1rem;
+  }
+  .archive__list {
+    margin: 0 0 0.9rem;
+  }
+  .archive__list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .archive__list li:last-child {
+    border-bottom: 0;
+  }
+  .archive__name {
+    color: var(--ink);
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .archive__leader {
+    flex: 1 1 auto;
+    border-bottom: 1px dotted var(--ink-3);
+    transform: translateY(-3px);
+    margin: 0 0.2rem;
+    min-width: 1.5rem;
+  }
+  .archive__date {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--ink-3);
+    flex-shrink: 0;
+    font-feature-settings: "tnum";
+  }
+  .archive__more {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--accent);
+    margin-top: 0.4rem;
+    transition: color 160ms ease;
+  }
+  .archive__more:hover {
+    color: var(--accent-hover);
+  }
+  .archive__more:hover .arrow {
+    transform: translateX(2px);
+  }
+  .archive__more .arrow {
+    transition: transform 200ms ease;
+  }
+
+  /* ============================================================
+     COLOPHON / quiet footer
+     One soft sentence about working together, then the masthead-
+     style line of credits. No big CTA. The page closes the way it
+     opened.
+     ============================================================ */
+  .colophon {
+    border-top: 1px solid var(--rule);
+    padding: 2.5rem 0 4rem;
+    background: var(--paper);
+  }
+  .colophon__work {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--ink-2);
+    margin: 0 0 1.6rem;
+  }
+  .colophon__service-link {
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: border-color 160ms ease, color 160ms ease;
+  }
+  .colophon__service-link:hover {
+    color: var(--accent-hover);
+    border-bottom-color: var(--accent-hover);
+  }
+  .colophon__line {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    margin: 0;
+  }
+  .colophon__contact {
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--rule);
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+  .colophon__contact:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ============================================================
+     SCROLL REVEAL
+     Featured cards only. Soft fade + 12px lift. Archive, method,
+     hero, footer all stay still. Minimum animation = the calm
+     posture we agreed on.
+     ============================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* ============================================================
+     MOBILE
+     Collapse the masthead nav under the wordmark. Reduce hero
+     padding. Archive items wrap their leader gracefully.
+     ============================================================ */
+  @media (max-width: 640px) {
+    .masthead__inner {
+      gap: 0.8rem;
+      padding: 1.1rem 1.25rem;
+    }
+    .masthead__nav {
+      gap: 1rem;
+      width: 100%;
+    }
+    .masthead__nav a {
+      font-size: 0.78rem;
+    }
+    .hero {
+      padding: 3.5rem 0 2rem;
+    }
+    .hero__title {
+      max-width: none;
+    }
+    .featured, .method, .archive {
+      padding-top: 2.4rem;
+      padding-bottom: 2.4rem;
+    }
+    .method__panel {
+      padding: 1.8rem 1.4rem 1.6rem;
+    }
+    .archive__list li {
+      flex-wrap: wrap;
+    }
+    .archive__leader {
+      min-width: 1rem;
+    }
+  }
+</style>

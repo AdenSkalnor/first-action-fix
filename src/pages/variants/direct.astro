@@ -1,0 +1,1204 @@
+---
+/*
+  ============================================================
+  DIRECT VARIANT — /variants/direct/
+  ============================================================
+  Positioning vs the parallel agents:
+    - Substance lean: publication-quiet, essay-shaped.
+    - Polariser lean: sharp-contrarian, opinionated.
+    - This page (Direct):  clean, structured, deliverable-forward.
+      Reads like an SOW landing page. Specificity over poetry.
+
+  Design decisions documented inline:
+
+  FONT:
+    Heads + numerals: 'IBM Plex Sans' — geometric, structured,
+      reads as engineering / spec rather than marketing. Slightly
+      narrower than Inter, gives a documents-and-deliverables feel.
+    Body:             'Inter' (already in global.css) — familiar,
+      readable at the long-form pricing/about sections.
+    Mono accent:      'IBM Plex Mono' for week labels and price
+      numerals — anchors the page in deliverable-spec territory.
+    Loaded via a <link> tag injected directly in this page;
+      Astro hoists <link rel> from anywhere in the template into
+      <head>, so this is safe and stays scoped to /variants/direct/.
+
+  COLOR:
+    Stay on the 'main' theme tokens (warm orange accent on near-
+    white) so we inherit nav + footer treatments cleanly, but
+    locally override --accent to a flatter ink-blue (#1F4ED8) and
+    --bg to a slightly cooler off-white (#F7F7F5). Reasoning:
+      - Substance will likely sit on the warm/neutral palette;
+        Polariser will likely use high-contrast / black.
+      - Direct sits in between with a structured ink-blue accent
+        that reads engineering/contract, not lifestyle.
+    All overrides are scoped to .direct-variant via is:global so
+    they never leak to other pages.
+
+  ANIMATION:
+    Reused .reveal from BaseLayout's IntersectionObserver. Added
+    a single page-local IntersectionObserver to count up the week
+    numbers in the timeline (W1, W2... animate from 0 -> n once).
+    No parallax, no fancy easing — Direct is meant to feel like
+    you can read it fast. Reduced-motion users see no counter
+    animation; numbers render in their final state.
+
+  CTA MECHANIC:
+    The primary CTA ("free 5-page teardown") is a 3-field inline
+    form posting to a mailto: handler — no JS submission, no
+    third-party widget. Reasoning:
+      - The newview/ page already embeds Calendly. Doing it again
+        here would just be the same pattern. Direct says "give me
+        five business days, I'll send a real artifact" — that's
+        an asynchronous request, not a meeting.
+      - The secondary CTA ("Book a scope call") IS a Calendly
+        link-out (button, not embed). Embeds are heavy; we use one
+        only where it's truly the next step. The scope call is for
+        users who already chose the paid path.
+    Form falls back to mailto on submit so the page works without
+    a backend (this is a static GitHub Pages build).
+
+  BASE LAYOUT: USED.
+    BaseLayout gives us nav, IntersectionObserver, footer-friendly
+    body padding, and theme switching. Skipping it would mean
+    rebuilding the nav. Worth keeping.
+
+  COPY:
+    Used the mockup verbatim. Replaced ASCII button markers with
+    real <a>/<button>. Bracketed placeholders ("[Brief origin...]"
+    "[Once first case study lands...]") preserved as visible
+    italic placeholders so the user can fill them in later.
+    Removed nothing.
+  ============================================================
+*/
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+
+const calendlyURL = 'https://calendly.com/follow_action/30min';
+const teardownEmail = 'andrew@firstactionfix.com';
+
+const footerLinks = [
+  { label: 'Teardowns', href: '#proof' },
+  { label: 'Writing',   href: '#proof' },
+  { label: 'About',     href: '#about' },
+  { label: 'Contact',   href: `mailto:${teardownEmail}` },
+];
+
+// Week-by-week timeline data
+const weeks = [
+  {
+    label: 'W1–2',
+    title: 'Audit',
+    body: "Trial flow walkthrough. Signup-to-stall observation across real user cohorts. Instrumentation review. Gap analysis.",
+    deliverable: '30-page diagnostic with prioritised recommendations.',
+  },
+  {
+    label: 'W3–4',
+    title: 'Build',
+    body: "Educational Email Course (6 emails, ~12,000 words of structured curriculum specific to your category and your buyer's stage of awareness). Behavioral trigger sequence (8–12 triggers mapped to your activation-stall moments, defined in week 2's audit).",
+    deliverable: 'Two paired email systems, drafted and reviewed.',
+  },
+  {
+    label: 'W5',
+    title: 'Implementation',
+    body: 'Embedded with your team in your ESP and analytics stack. Pairing sessions twice a week. Live deployment.',
+    deliverable: 'Both systems running against real trial signups.',
+  },
+  {
+    label: 'W6',
+    title: 'Handoff',
+    body: 'Documentation. Dashboards. Trigger logic explained for the team that will own it after I leave. One follow-up call 30 days post-handoff.',
+    deliverable: 'Full ownership transferred. 30-day follow-up call booked.',
+  },
+];
+
+const goodFit = [
+  'Sales engagement / cold email tooling',
+  'Prospecting and lead enrichment',
+  'CRM-adjacent automation',
+  'Email deliverability infrastructure',
+];
+
+const wrongFit = [
+  'Pre-product-market-fit',
+  'Enterprise sales motion (no real PLG trial)',
+  'Already have a competent in-house lifecycle email team',
+  'Under 100 monthly trial signups (the EEC-only tier suits better)',
+];
+---
+
+<BaseLayout
+  title="Direct — Trial-to-paid systems for AI-enhanced sales SaaS"
+  description="Six weeks. Two paired email systems sitting between trial signup and your conversion event. Built once. Documented. Handed off."
+  theme="main"
+  activePage="about"
+>
+  <!-- Page-specific font load. Astro hoists <link rel="..."> into <head>. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+  />
+
+  <div class="direct-variant">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="d-hero">
+      <div class="container">
+        <div class="d-eyebrow">
+          <span class="d-eyebrow__dot"></span>
+          Trial-to-paid · Seed to Series A · Sales SaaS
+        </div>
+        <h1 class="d-hero__h1">
+          Trial-to-paid systems for AI-enhanced sales SaaS at Seed-A.
+        </h1>
+        <p class="d-hero__sub">
+          Six weeks. Built once. Documented. Handed off.
+        </p>
+        <p class="d-hero__body">
+          Two paired email systems sitting between your trial signup and your conversion event:
+          a structured Educational Email Course closing the knowledge gaps, and a behavioral
+          trigger sequence responding to the specific moments your users stall. Implemented
+          in your ESP. Owned by you. Measured against the baseline you sign before work begins.
+        </p>
+        <div class="d-hero__ctas">
+          <a href="#teardown" class="d-btn d-btn--primary">
+            Start with a free 5-page teardown
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="#pricing" class="d-btn d-btn--ghost">See pricing</a>
+        </div>
+
+        <!-- Quick spec strip — sets the deliverable-forward tone immediately -->
+        <dl class="d-spec">
+          <div class="d-spec__cell">
+            <dt>Engagement</dt>
+            <dd>6 weeks</dd>
+          </div>
+          <div class="d-spec__cell">
+            <dt>Output</dt>
+            <dd>EEC + behavioral triggers</dd>
+          </div>
+          <div class="d-spec__cell">
+            <dt>Handoff</dt>
+            <dd>Documented + dashboards</dd>
+          </div>
+          <div class="d-spec__cell">
+            <dt>Pricing</dt>
+            <dd>$15k–$30k milestone-gated</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROBLEM FRAMING
+         ============================================================ -->
+    <section class="d-section d-section--alt" id="problem">
+      <div class="container reveal">
+        <h2 class="d-section__h2">The lever isn't inside the product.</h2>
+        <div class="d-prose">
+          <p>Your trial-to-paid number stalled three months ago.</p>
+          <p>You shipped two product fixes. The number didn't move.</p>
+          <p>Your team is debating positioning, onboarding, pricing.</p>
+          <p>None of those is the lever.</p>
+          <p>
+            The lever is sitting outside the product, in the inbox of users who arrived at
+            full attentional capacity and have nothing left to give your in-app tour, your
+            tooltips, or your day-3 welcome email.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WEEK-BY-WEEK TIMELINE
+         ============================================================ -->
+    <section class="d-section" id="ships">
+      <div class="container">
+        <header class="d-section__head reveal">
+          <p class="d-kicker">01 / What ships</p>
+          <h2 class="d-section__h2">Week by week.</h2>
+          <p class="d-section__lede">
+            One six-week engagement. Milestone-gated. Every week has a defined output and a defined exit point.
+          </p>
+        </header>
+
+        <ol class="d-timeline reveal-stagger">
+          {weeks.map((w, i) => (
+            <li class="d-timeline__row reveal">
+              <div class="d-timeline__week">
+                <span class="d-timeline__num" data-count={i + 1}>{i + 1}</span>
+                <span class="d-timeline__label">{w.label}</span>
+              </div>
+              <div class="d-timeline__body">
+                <h3 class="d-timeline__title">{w.title}</h3>
+                <p>{w.body}</p>
+                <p class="d-timeline__deliverable">
+                  <span class="d-tag">Deliverable</span>
+                  {w.deliverable}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHO THIS IS FOR
+         ============================================================ -->
+    <section class="d-section d-section--alt" id="fit">
+      <div class="container">
+        <header class="d-section__head reveal">
+          <p class="d-kicker">02 / Fit</p>
+          <h2 class="d-section__h2">Who this is for.</h2>
+          <p class="d-section__lede">
+            Founders of Seed to early Series A SaaS running PLG or opt-in trial distribution,
+            generating 200+ qualified monthly trial signups, with trial conversion that's
+            stalled, declining, or never been instrumented properly.
+          </p>
+        </header>
+
+        <div class="d-fit-grid">
+          <div class="d-fit-col d-fit-col--good reveal">
+            <div class="d-fit-col__head">
+              <span class="d-fit-col__mark" aria-hidden="true">+</span>
+              <h3>Right fit · categories</h3>
+            </div>
+            <ul class="d-list">
+              {goodFit.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <div class="d-fit-col d-fit-col--bad reveal">
+            <div class="d-fit-col__head">
+              <span class="d-fit-col__mark" aria-hidden="true">&minus;</span>
+              <h3>Wrong fit</h3>
+            </div>
+            <ul class="d-list">
+              {wrongFit.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         METHOD
+         ============================================================ -->
+    <section class="d-section" id="method">
+      <div class="container">
+        <header class="d-section__head reveal">
+          <p class="d-kicker">03 / Method</p>
+          <h2 class="d-section__h2">Two systems. One trial window.</h2>
+        </header>
+
+        <div class="d-method-grid">
+          <article class="d-method-card reveal">
+            <header class="d-method-card__head">
+              <span class="d-method-card__index">A</span>
+              <h3>Educational Email Course</h3>
+            </header>
+            <p>
+              Closes the knowledge gaps that block users from reaching activation. Sequenced
+              rather than dripped. Specific to your category and your buyer's actual state of
+              awareness. Short enough to get read.
+            </p>
+          </article>
+
+          <article class="d-method-card reveal">
+            <header class="d-method-card__head">
+              <span class="d-method-card__index">B</span>
+              <h3>Behavioral trigger sequence</h3>
+            </header>
+            <p>
+              Responds to specific stall moments inside your trial — the ones your product
+              team can see in your analytics and your customer success team can name from
+              interviews. Triggers fire when education isn't enough on its own; education
+              provides context triggers can't reach by themselves.
+            </p>
+          </article>
+        </div>
+
+        <p class="d-method-note reveal">
+          Together they reach trial users at the moments they're actually deciding whether
+          to keep going. Apart, they don't work — behavioral triggers alone feel
+          surveillance-shaped, educational sequences alone move too slowly to catch the
+          stall moments that matter.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PRICING
+         ============================================================ -->
+    <section class="d-section d-section--alt" id="pricing">
+      <div class="container">
+        <header class="d-section__head reveal">
+          <p class="d-kicker">04 / Pricing</p>
+          <h2 class="d-section__h2">Three tiers. Transparent.</h2>
+        </header>
+
+        <div class="d-tiers">
+          <article class="d-tier reveal">
+            <div class="d-tier__head">
+              <span class="d-tier__rank">Tier 0</span>
+              <h3 class="d-tier__name">Free 5-page teardown</h3>
+              <div class="d-tier__price">
+                <span class="d-tier__amount">Free</span>
+                <span class="d-tier__unit">5 business days</span>
+              </div>
+            </div>
+            <p class="d-tier__body">
+              Of your trial flow. No commitment. Real artifact, freely given. Functions as
+              the qualification conversation; you'll know inside 30 minutes whether the
+              paid work is right.
+            </p>
+            <a href="#teardown" class="d-btn d-btn--primary d-btn--block">Request the teardown &rarr;</a>
+          </article>
+
+          <article class="d-tier d-tier--mid reveal">
+            <div class="d-tier__head">
+              <span class="d-tier__rank">Tier 1</span>
+              <h3 class="d-tier__name">Paid audit</h3>
+              <div class="d-tier__price">
+                <span class="d-tier__amount">$4,000</span>
+                <span class="d-tier__unit">2 weeks · stand-alone</span>
+              </div>
+            </div>
+            <p class="d-tier__body">
+              Deliverable: 30-page diagnostic with prioritised recommendations,
+              instrumentation gaps, and scope for the build. Many engagements stop here.
+            </p>
+            <a href={calendlyURL} target="_blank" rel="noopener noreferrer" class="d-btn d-btn--outline d-btn--block">
+              Book a scope call &rarr;
+            </a>
+          </article>
+
+          <article class="d-tier d-tier--full reveal">
+            <div class="d-tier__head">
+              <span class="d-tier__rank">Tier 2 · most-chosen path</span>
+              <h3 class="d-tier__name">Full build</h3>
+              <div class="d-tier__price">
+                <span class="d-tier__amount">$15k–$30k</span>
+                <span class="d-tier__unit">6 weeks · milestone-gated</span>
+              </div>
+            </div>
+            <p class="d-tier__body">
+              Deliverable: implemented EEC + trigger sequence, documentation, dashboards,
+              handoff, one follow-up call 30 days post-handoff. Pricing depends on ESP
+              complexity and integration scope, settled in the audit.
+            </p>
+            <a href={calendlyURL} target="_blank" rel="noopener noreferrer" class="d-btn d-btn--primary d-btn--block">
+              Book a scope call &rarr;
+            </a>
+          </article>
+        </div>
+
+        <p class="d-pricing-note reveal">
+          No guarantee. Pricing reflects the work, not a recourse promise. If the
+          engagement isn't fitting after week 2, full refund of unspent fees and clean exit.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROOF
+         ============================================================ -->
+    <section class="d-section" id="proof">
+      <div class="container">
+        <header class="d-section__head reveal">
+          <p class="d-kicker">05 / Proof</p>
+          <h2 class="d-section__h2">Public work.</h2>
+        </header>
+
+        <ul class="d-proof-list reveal-stagger">
+          <li class="d-proof-item reveal">
+            <h3>Teardowns</h3>
+            <p>Public teardowns of named SaaS products published weekly.</p>
+            <a href="#" class="d-link">Read the teardowns &rarr;</a>
+          </li>
+          <li class="d-proof-item reveal">
+            <h3>Writing</h3>
+            <p>Long-form thinking on activation, trial-to-paid mechanics, and SaaS positioning at Seed-A.</p>
+            <a href="#" class="d-link">Read the writing &rarr;</a>
+          </li>
+          <li class="d-proof-item d-proof-item--placeholder reveal">
+            <h3>Case study</h3>
+            <p><em>Once first case study lands, replace this section with the named case study, with linked dashboards and specific delta.</em></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+         ============================================================ -->
+    <section class="d-section d-section--alt" id="about">
+      <div class="container">
+        <header class="d-section__head reveal">
+          <p class="d-kicker">06 / About</p>
+          <h2 class="d-section__h2">Andrew Z.</h2>
+        </header>
+        <div class="d-about reveal">
+          <p>Independent consultant, Pozna&#324;-based.</p>
+          <p class="d-about__placeholder">
+            <em>[Brief origin: how Andrew arrived at this specific work. 2&ndash;3 sentences. Personal detail at the end.]</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         REPEATED CTA — TEARDOWN FORM
+         3-field inline form. mailto: fallback so the static
+         GitHub Pages build needs no backend.
+         ============================================================ -->
+    <section class="d-section d-section--cta" id="teardown">
+      <div class="container">
+        <div class="d-cta-card reveal">
+          <div class="d-cta-card__copy">
+            <p class="d-kicker d-kicker--invert">Free teardown</p>
+            <h2 class="d-section__h2 d-section__h2--invert">
+              Start with a free 5-page teardown of your trial flow.
+            </h2>
+            <p class="d-cta-card__body">
+              Five business days. No commitment. Real artifact. Three fields below; press send.
+            </p>
+          </div>
+
+          <form
+            class="d-form"
+            id="teardown-form"
+            method="post"
+            action={`mailto:${teardownEmail}`}
+            enctype="text/plain"
+          >
+            <label class="d-form__field">
+              <span>Your name</span>
+              <input type="text" name="name" required autocomplete="name" />
+            </label>
+            <label class="d-form__field">
+              <span>Work email</span>
+              <input type="email" name="email" required autocomplete="email" />
+            </label>
+            <label class="d-form__field">
+              <span>Trial flow URL or signup link</span>
+              <input type="url" name="trial_url" required placeholder="https://" />
+            </label>
+            <button type="submit" class="d-btn d-btn--primary d-btn--block">
+              Request the teardown &rarr;
+            </button>
+            <p class="d-form__note">Submission opens your mail client to <span class="d-mono">{teardownEmail}</span>.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <Footer links={footerLinks} />
+  </div>
+
+  <!-- ============================================================
+       Page-local script: count-up animation for week numbers.
+       Reuses the global IntersectionObserver pattern but watches
+       only .d-timeline__num. Reduced-motion users get final value.
+       ============================================================ -->
+  <script is:inline>
+    (() => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const nums = document.querySelectorAll('.d-timeline__num');
+      if (!nums.length) return;
+
+      if (reduceMotion) {
+        nums.forEach((el) => {
+          const t = el.getAttribute('data-count') || el.textContent || '0';
+          el.textContent = t;
+        });
+        return;
+      }
+
+      const animate = (el) => {
+        const target = parseInt(el.getAttribute('data-count') || '0', 10);
+        const duration = 600;
+        const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / duration);
+          // ease-out cubic
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = String(Math.round(target * eased));
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = String(target);
+        };
+        requestAnimationFrame(tick);
+      };
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      nums.forEach((el) => {
+        el.textContent = '0';
+        obs.observe(el);
+      });
+    })();
+  </script>
+
+</BaseLayout>
+
+<!-- ============================================================
+     STYLES
+     All scoped under .direct-variant with is:global so we can
+     override CSS variables for THIS PAGE ONLY without leaking.
+     ============================================================ -->
+<style is:global>
+  /* Local theme override — applies only inside .direct-variant */
+  .direct-variant {
+    --d-bg:        #F7F7F5;
+    --d-bg-alt:    #FFFFFF;
+    --d-bg-deep:   #0F1115;
+    --d-ink:       #14161A;
+    --d-ink-soft:  #4B5260;
+    --d-rule:      #E2E2DD;
+    --d-accent:    #1F4ED8;
+    --d-accent-2:  #0B2A8A;
+    --d-warn:      #B85C00;
+    --d-mono:      'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --d-sans:      'IBM Plex Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    --d-body:      'Inter', system-ui, -apple-system, sans-serif;
+
+    background: var(--d-bg);
+    color: var(--d-ink);
+    font-family: var(--d-body);
+  }
+
+  .direct-variant h1,
+  .direct-variant h2,
+  .direct-variant h3 {
+    font-family: var(--d-sans);
+    color: var(--d-ink);
+    letter-spacing: -0.018em;
+  }
+
+  /* ---- Layout primitives ---- */
+  .direct-variant .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .direct-variant .d-section {
+    padding: 5.5rem 0;
+    border-top: 1px solid var(--d-rule);
+  }
+  .direct-variant .d-section--alt {
+    background: var(--d-bg-alt);
+  }
+  .direct-variant .d-section--cta {
+    background: var(--d-bg-deep);
+    color: #F2F3F5;
+    border-top: 1px solid #1A1D24;
+  }
+
+  .direct-variant .d-section__head {
+    margin-bottom: 2.5rem;
+  }
+
+  .direct-variant .d-section__h2 {
+    font-size: clamp(1.6rem, 3.3vw, 2.2rem);
+    line-height: 1.18;
+    max-width: 760px;
+    margin: 0.35rem 0 0.65rem;
+  }
+  .direct-variant .d-section__h2--invert { color: #FFFFFF; }
+
+  .direct-variant .d-section__lede {
+    color: var(--d-ink-soft);
+    max-width: 64ch;
+    font-size: 1.02rem;
+  }
+
+  .direct-variant .d-kicker {
+    font-family: var(--d-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--d-accent);
+  }
+  .direct-variant .d-kicker--invert { color: #8FA8FF; }
+
+  /* ---- HERO ---- */
+  .direct-variant .d-hero {
+    padding: 5rem 0 4rem;
+    border-top: none;
+  }
+  .direct-variant .d-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--d-mono);
+    font-size: 0.78rem;
+    color: var(--d-ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--d-rule);
+    border-radius: 999px;
+    background: var(--d-bg-alt);
+    margin-bottom: 1.5rem;
+  }
+  .direct-variant .d-eyebrow__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--d-accent);
+    box-shadow: 0 0 0 3px rgba(31, 78, 216, 0.18);
+  }
+
+  .direct-variant .d-hero__h1 {
+    font-size: clamp(2.1rem, 4.6vw, 3.3rem);
+    line-height: 1.08;
+    max-width: 880px;
+    margin: 0;
+  }
+  .direct-variant .d-hero__sub {
+    font-family: var(--d-mono);
+    font-size: 1rem;
+    color: var(--d-ink);
+    margin-top: 1.1rem;
+    letter-spacing: 0;
+  }
+  .direct-variant .d-hero__body {
+    margin-top: 1.5rem;
+    color: var(--d-ink-soft);
+    font-size: 1.05rem;
+    max-width: 64ch;
+    line-height: 1.6;
+  }
+
+  .direct-variant .d-hero__ctas {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .direct-variant .d-spec {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--d-rule);
+    border-left: 1px solid var(--d-rule);
+  }
+  .direct-variant .d-spec__cell {
+    border-right: 1px solid var(--d-rule);
+    border-bottom: 1px solid var(--d-rule);
+    padding: 1.1rem 1.2rem;
+    background: var(--d-bg-alt);
+  }
+  .direct-variant .d-spec dt {
+    font-family: var(--d-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--d-ink-soft);
+    margin-bottom: 0.3rem;
+  }
+  .direct-variant .d-spec dd {
+    font-family: var(--d-sans);
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--d-ink);
+    margin: 0;
+  }
+  @media (min-width: 720px) {
+    .direct-variant .d-spec { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* ---- BUTTONS ---- */
+  .direct-variant .d-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.3rem;
+    border-radius: 4px;
+    font-family: var(--d-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease, border-color 0.18s ease;
+    text-decoration: none;
+  }
+  .direct-variant .d-btn--block { width: 100%; }
+  .direct-variant .d-btn--primary {
+    background: var(--d-accent);
+    color: #FFFFFF;
+  }
+  .direct-variant .d-btn--primary:hover {
+    background: var(--d-accent-2);
+    transform: translateY(-1px);
+  }
+  .direct-variant .d-btn--outline {
+    background: transparent;
+    color: var(--d-accent);
+    border-color: var(--d-accent);
+  }
+  .direct-variant .d-btn--outline:hover {
+    background: var(--d-accent);
+    color: #FFFFFF;
+  }
+  .direct-variant .d-btn--ghost {
+    background: transparent;
+    color: var(--d-ink);
+    border-color: var(--d-rule);
+  }
+  .direct-variant .d-btn--ghost:hover {
+    border-color: var(--d-ink);
+  }
+
+  /* ---- PROBLEM PROSE ---- */
+  .direct-variant .d-prose {
+    max-width: 640px;
+    border-left: 2px solid var(--d-accent);
+    padding-left: 1.5rem;
+  }
+  .direct-variant .d-prose p {
+    color: var(--d-ink-soft);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin: 0 0 0.85rem;
+  }
+  .direct-variant .d-prose p:last-child { margin-bottom: 0; }
+
+  /* ---- TIMELINE ---- */
+  .direct-variant .d-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--d-rule);
+  }
+  .direct-variant .d-timeline__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--d-rule);
+  }
+  @media (min-width: 760px) {
+    .direct-variant .d-timeline__row {
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+    }
+  }
+  .direct-variant .d-timeline__week {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+  .direct-variant .d-timeline__num {
+    font-family: var(--d-mono);
+    font-size: 2.6rem;
+    font-weight: 500;
+    color: var(--d-accent);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    min-width: 2.4ch;
+  }
+  .direct-variant .d-timeline__label {
+    font-family: var(--d-mono);
+    font-size: 0.85rem;
+    color: var(--d-ink-soft);
+    letter-spacing: 0.04em;
+  }
+  .direct-variant .d-timeline__title {
+    font-size: 1.25rem;
+    margin: 0 0 0.6rem;
+  }
+  .direct-variant .d-timeline__body p {
+    color: var(--d-ink-soft);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 0.8rem;
+    max-width: 60ch;
+  }
+  .direct-variant .d-timeline__deliverable {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--d-ink) !important;
+    font-weight: 500;
+    background: rgba(31, 78, 216, 0.05);
+    padding: 0.7rem 0.9rem;
+    border-radius: 4px;
+    border-left: 2px solid var(--d-accent);
+  }
+  .direct-variant .d-tag {
+    font-family: var(--d-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--d-accent);
+    color: #FFFFFF;
+    padding: 0.18rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  /* ---- FIT GRID ---- */
+  .direct-variant .d-fit-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 760px) {
+    .direct-variant .d-fit-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  .direct-variant .d-fit-col {
+    background: var(--d-bg);
+    border: 1px solid var(--d-rule);
+    border-radius: 6px;
+    padding: 1.75rem;
+  }
+  .direct-variant .d-fit-col__head {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--d-rule);
+  }
+  .direct-variant .d-fit-col__head h3 {
+    font-size: 1rem;
+    margin: 0;
+    font-family: var(--d-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--d-ink-soft);
+    font-weight: 500;
+  }
+  .direct-variant .d-fit-col__mark {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: var(--d-mono);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .direct-variant .d-fit-col--good .d-fit-col__mark {
+    background: rgba(31, 78, 216, 0.12);
+    color: var(--d-accent);
+  }
+  .direct-variant .d-fit-col--bad .d-fit-col__mark {
+    background: rgba(184, 92, 0, 0.12);
+    color: var(--d-warn);
+  }
+  .direct-variant .d-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .direct-variant .d-list li {
+    color: var(--d-ink);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .direct-variant .d-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 6px;
+    height: 1px;
+    background: var(--d-ink-soft);
+  }
+
+  /* ---- METHOD ---- */
+  .direct-variant .d-method-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 760px) {
+    .direct-variant .d-method-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  }
+  .direct-variant .d-method-card {
+    background: var(--d-bg-alt);
+    border: 1px solid var(--d-rule);
+    border-radius: 6px;
+    padding: 1.75rem;
+  }
+  .direct-variant .d-method-card__head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .direct-variant .d-method-card__index {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--d-ink);
+    color: #FFFFFF;
+    font-family: var(--d-mono);
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: 4px;
+  }
+  .direct-variant .d-method-card h3 {
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .direct-variant .d-method-card p {
+    color: var(--d-ink-soft);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .direct-variant .d-method-note {
+    margin-top: 2rem;
+    color: var(--d-ink-soft);
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 64ch;
+  }
+
+  /* ---- PRICING TIERS ---- */
+  .direct-variant .d-tiers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 880px) {
+    .direct-variant .d-tiers { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+  }
+  .direct-variant .d-tier {
+    background: var(--d-bg);
+    border: 1px solid var(--d-rule);
+    border-radius: 6px;
+    padding: 1.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    transition: border-color 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .direct-variant .d-tier:hover {
+    border-color: var(--d-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(15, 17, 21, 0.06);
+  }
+  .direct-variant .d-tier--full {
+    background: var(--d-ink);
+    color: #F2F3F5;
+    border-color: var(--d-ink);
+  }
+  .direct-variant .d-tier--full:hover { border-color: var(--d-accent); }
+  .direct-variant .d-tier--full .d-tier__rank,
+  .direct-variant .d-tier--full .d-tier__unit { color: #8FA8FF; }
+  .direct-variant .d-tier--full .d-tier__name,
+  .direct-variant .d-tier--full .d-tier__amount { color: #FFFFFF; }
+  .direct-variant .d-tier--full .d-tier__body { color: #C8CCD4; }
+  .direct-variant .d-tier--full .d-btn--primary { background: #FFFFFF; color: var(--d-ink); }
+  .direct-variant .d-tier--full .d-btn--primary:hover { background: var(--d-accent); color: #FFFFFF; }
+
+  .direct-variant .d-tier__rank {
+    font-family: var(--d-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--d-ink-soft);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .direct-variant .d-tier__name {
+    font-size: 1.2rem;
+    margin: 0 0 0.85rem;
+  }
+  .direct-variant .d-tier__price { display: flex; flex-direction: column; gap: 0.1rem; }
+  .direct-variant .d-tier__amount {
+    font-family: var(--d-mono);
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--d-ink);
+    letter-spacing: -0.01em;
+  }
+  .direct-variant .d-tier__unit {
+    font-family: var(--d-mono);
+    font-size: 0.8rem;
+    color: var(--d-ink-soft);
+  }
+  .direct-variant .d-tier__body {
+    color: var(--d-ink-soft);
+    font-size: 0.97rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin: 0;
+  }
+  .direct-variant .d-pricing-note {
+    margin-top: 1.75rem;
+    font-family: var(--d-mono);
+    font-size: 0.85rem;
+    color: var(--d-ink-soft);
+    max-width: 64ch;
+    padding: 1rem 1.1rem;
+    border-left: 2px solid var(--d-rule);
+  }
+
+  /* ---- PROOF ---- */
+  .direct-variant .d-proof-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 760px) {
+    .direct-variant .d-proof-list { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  }
+  .direct-variant .d-proof-item {
+    background: var(--d-bg-alt);
+    border: 1px solid var(--d-rule);
+    border-radius: 6px;
+    padding: 1.5rem;
+  }
+  .direct-variant .d-proof-item h3 {
+    font-size: 1rem;
+    font-family: var(--d-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--d-ink-soft);
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+  }
+  .direct-variant .d-proof-item p {
+    color: var(--d-ink);
+    font-size: 0.98rem;
+    margin: 0 0 0.85rem;
+    line-height: 1.55;
+  }
+  .direct-variant .d-proof-item--placeholder {
+    background: transparent;
+    border-style: dashed;
+  }
+  .direct-variant .d-proof-item--placeholder p {
+    color: var(--d-ink-soft);
+  }
+  .direct-variant .d-link {
+    color: var(--d-accent);
+    font-weight: 500;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+  }
+  .direct-variant .d-link:hover { color: var(--d-accent-2); }
+
+  /* ---- ABOUT ---- */
+  .direct-variant .d-about p {
+    color: var(--d-ink);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    max-width: 60ch;
+    margin: 0 0 0.85rem;
+  }
+  .direct-variant .d-about__placeholder { color: var(--d-ink-soft); }
+
+  /* ---- CTA / FORM ---- */
+  .direct-variant .d-cta-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  @media (min-width: 880px) {
+    .direct-variant .d-cta-card {
+      grid-template-columns: 1.05fr 1fr;
+      gap: 4rem;
+    }
+  }
+  .direct-variant .d-cta-card__copy h2 { color: #FFFFFF; }
+  .direct-variant .d-cta-card__body {
+    color: #C8CCD4;
+    font-size: 1.02rem;
+    margin-top: 0.85rem;
+    max-width: 50ch;
+  }
+
+  .direct-variant .d-form {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .direct-variant .d-form__field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .direct-variant .d-form__field span {
+    font-family: var(--d-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #8FA8FF;
+  }
+  .direct-variant .d-form__field input {
+    font-family: var(--d-body);
+    font-size: 0.98rem;
+    padding: 0.75rem 0.9rem;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 4px;
+    color: #FFFFFF;
+    transition: border-color 0.18s ease, background 0.18s ease;
+  }
+  .direct-variant .d-form__field input:focus {
+    outline: none;
+    border-color: #8FA8FF;
+    background: rgba(0, 0, 0, 0.35);
+  }
+  .direct-variant .d-form .d-btn--primary {
+    background: #FFFFFF;
+    color: var(--d-ink);
+    margin-top: 0.4rem;
+  }
+  .direct-variant .d-form .d-btn--primary:hover {
+    background: var(--d-accent);
+    color: #FFFFFF;
+  }
+  .direct-variant .d-form__note {
+    font-family: var(--d-mono);
+    font-size: 0.78rem;
+    color: #8FA8FF;
+    margin: 0;
+  }
+  .direct-variant .d-mono { font-family: var(--d-mono); }
+
+  /* Hero CTAs ghost button visibility against light bg already handled.
+     CTA-section footer rules so footer reads on dark bg if it ends up nested. */
+
+  /* Reduced motion: kill the hover-translate */
+  @media (prefers-reduced-motion: reduce) {
+    .direct-variant .d-tier:hover,
+    .direct-variant .d-btn:hover { transform: none; }
+  }
+</style>

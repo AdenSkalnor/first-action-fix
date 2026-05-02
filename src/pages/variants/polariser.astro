@@ -1,0 +1,606 @@
+---
+/*
+  POLARISER — /variants/polariser/
+  ================================
+  This is the "sharp, opinionated, contrarian" variant.
+  Direct will be clean+structured, Substance will be quiet+publication-style.
+  Polariser sits between them tonally but visually does what neither does:
+  hard contrast, aggressive scale, one accent that does not blend.
+
+  Design decisions (why):
+
+  - LAYOUT / LAYOUT-LAYER:
+    BaseLayout is intentionally NOT used. The mockup specifies a custom
+    HEADER with its own link set ("The wrong diagnosis · Method · Work ·
+    Teardown") that doesn't match the shared Nav. Importing BaseLayout
+    would force the shared Nav on top, which would dilute the page's
+    posture. We render the full <html> shell here instead, so the
+    Polariser is fully self-contained. (Constraint #2 explicitly allows this.)
+
+  - FONTS:
+    Body / nav / UI: "Inter Tight" — same family as the rest of the repo
+    in spirit, but the "Tight" cut is denser, slightly more confrontational,
+    and reads like trade-press editorial.
+    Display H1 + key statements: "Fraunces" — a contrasty serif with high
+    optical weight at large sizes. Polariser writing benefits from a serif
+    that "states" rather than "presents." Using a serif for the diagnostic
+    H1 + a sans for the body argument is the visual equivalent of
+    a named author signing the opinion.
+    Mono accent (numbers, the "35%"): "JetBrains Mono" — keeps the
+    operational definitions visually distinct from rhetoric.
+
+  - PALETTE:
+    Near-black on warm bone (#F4F1EA), with a single hot red accent
+    (#D7301F). The bone-not-white background reads editorial, not blog.
+    Red is used exactly twice: the H1 underline, and the single CTA.
+    Nothing else gets the accent. That's the contrast budget.
+
+  - MOTION:
+    Subtle. Body / sections fade up on scroll via a local
+    IntersectionObserver (we don't use the global one because we skipped
+    BaseLayout). The H1 gets one deliberate flourish: the red underline
+    sweeps left-to-right after the headline lands, like a redline edit.
+    Honors prefers-reduced-motion.
+
+  - COLUMN WIDTH:
+    Body argument: 38rem (~ 640px) — tight reading column.
+    H1: wider (max 18ch on desktop) so the statement breaks where it should.
+    Header / footer: full width, no max-width chrome — feels like masthead, not card.
+
+  - BLOCKS:
+    1. Custom header (masthead bar, monospace nav)
+    2. Hero (the diagnostic H1 + activation paragraph)
+    3. Filter (the rejection paragraph — visually demoted, low-contrast)
+    4. The Turn (the argument — left-rule like a pull-quote)
+    5. Single CTA — large, red, alone on the page
+    6. Quiet footer — single line, mono, no nav links beyond what the mockup gave
+
+  - COPY:
+    All mockup copy preserved verbatim. Nothing cut. Nothing added besides
+    the inline parenthetical the mockup already authorized.
+*/
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The wrong diagnosis — First Action Fix</title>
+    <meta
+      name="description"
+      content="Activation-by-day-7, not trial-to-paid. The diagnostic for sales-tech SaaS founders at Seed to early Series A."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts: Fraunces (display serif), Inter Tight (UI sans), JetBrains Mono (numbers) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+
+    <!-- ============================================================
+         HEADER — custom masthead bar.
+         The link set is the one given in the mockup, not the shared
+         Nav. Mono type to read like a section header in a journal.
+         "The wrong diagnosis" is treated as the active item because
+         this page IS the entry point to that essay.
+         ============================================================ -->
+    <header class="masthead">
+      <div class="masthead__inner">
+        <a href="/" class="masthead__brand">First Action Fix</a>
+        <nav class="masthead__nav" aria-label="Primary">
+          <a href="#" class="masthead__link masthead__link--active">The wrong diagnosis</a>
+          <a href="#" class="masthead__link">Method</a>
+          <a href="#" class="masthead__link">Work</a>
+          <a href="#" class="masthead__link">Teardown</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ============================================================
+           HERO — the diagnostic statement.
+           H1 is the load-bearing sentence. The red underline is the
+           one piece of "marketing" on the whole page; everything else
+           is reading.
+           ============================================================ -->
+      <section class="hero">
+        <div class="col">
+          <h1 class="hero__h1">
+            <span class="hero__h1-text">Your trial-to-paid number isn't the metric.</span>
+            <span class="hero__h1-rule" aria-hidden="true"></span>
+          </h1>
+          <div class="hero__body">
+            <p>
+              <strong class="lede">Activation-by-day-7</strong> is. The percentage of
+              trial users who hit your defined activation event within their first
+              week.
+            </p>
+            <p>
+              For sales engagement tools, that's <em>"first sequence sent."</em>
+              For prospecting tools, <em>"first verified list built."</em>
+              For lead enrichment, <em>"first enrichment job completed."</em>
+            </p>
+            <p>
+              If yours is below <span class="num">35%</span>, the trial-to-paid
+              conversation is downstream of a different problem.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           FILTER — qualification by rejection.
+           Visually demoted: smaller type, muted color, left-aligned
+           rule. The reader who isn't the audience is told so plainly
+           and the visual weight tells them too.
+           ============================================================ -->
+      <section class="filter reveal">
+        <div class="col">
+          <div class="filter__inner">
+            <p class="filter__label">Who this is for</p>
+            <p>
+              This site is for founders of <strong>sales-tech SaaS at Seed to
+              early Series A</strong> who've already noticed that fixing
+              activation looks different from fixing conversion.
+            </p>
+            <p>
+              If you're still debating onboarding email subject lines, you're
+              working on the wrong layer of the problem. The work here won't
+              help.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           THE TURN — the argument.
+           This is the longest block. Body type bumps slightly larger
+           than the filter section to mark that we are now reading.
+           ============================================================ -->
+      <section class="turn reveal">
+        <div class="col">
+          <p class="turn__marker">The mechanism</p>
+          <div class="turn__body">
+            <p>
+              Most Seed-A founders staring at trial-to-paid dashboards reach for
+              <strong>product changes</strong>. New onboarding tour. New pricing
+              page. New welcome video.
+            </p>
+            <p>
+              None of it works, because none of it touches the actual mechanism.
+            </p>
+            <p>
+              The actual mechanism is that trial users arrive at full attentional
+              capacity. They have nothing to give. Every additional thing the
+              product asks of them — every tooltip, every walkthrough, every
+              <em>"tip of the day"</em> email — pushes them further from
+              activation, not closer.
+            </p>
+            <p>
+              The intervention that works <strong>displaces existing behavior</strong>
+              rather than adding new behavior. It runs outside the product, in
+              their inbox, where they have time to engage at their own pace. It
+              teaches them what they need to know before they need to know it.
+              Then it responds when they hit the moments they were taught to
+              expect.
+            </p>
+            <p class="turn__close">
+              That's the entire mechanism. Two paired email systems doing the
+              work the product alone can't reach.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SINGLE CTA — the only red thing past the H1 underline.
+           Generous space above and below. The supporting line is mono
+           and small, like a footnote, so it doesn't compete with the
+           button.
+           NOTE: destination is /the-wrong-diagnosis/ once that page is
+           written. Placeholder href="#" for now per brief.
+           ============================================================ -->
+      <section class="cta reveal">
+        <div class="col col--center">
+          <!-- TODO: change href to "/the-wrong-diagnosis/" when essay ships -->
+          <a href="#" class="cta__button">
+            <span>Read the full diagnosis</span>
+            <span class="cta__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <p class="cta__meta">
+            2,400 words. Worth the time if you're reading this far.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           QUIET FOOTER — single line, monospace.
+           No icons, no social row, no newsletter signup. The mockup
+           gave four items separated by middle dots; we honor that.
+           ============================================================ -->
+      <footer class="quiet">
+        <div class="quiet__inner">
+          <span>First Action Fix</span>
+          <span class="quiet__sep" aria-hidden="true">&middot;</span>
+          <span>By Andrew Z.</span>
+          <span class="quiet__sep" aria-hidden="true">&middot;</span>
+          <span>Poznań</span>
+          <span class="quiet__sep" aria-hidden="true">&middot;</span>
+          <a href="#" class="quiet__link">Contact</a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- Scoped IntersectionObserver — local so we don't depend on BaseLayout's. -->
+    <script>
+      (function () {
+        const items = document.querySelectorAll('.reveal');
+        if (!items.length) return;
+
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          items.forEach((el) => el.classList.add('revealed'));
+          return;
+        }
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.18 }
+        );
+
+        items.forEach((el) => io.observe(el));
+      })();
+    </script>
+
+  </body>
+</html>
+
+<style is:global>
+  /* ============================================================
+     POLARISER — scoped global styles.
+     We're not using BaseLayout, so there's no shared CSS bleeding
+     in here. is:global is used because we're styling raw <html>,
+     <body>, and structural classes that wouldn't get hashed
+     usefully anyway.
+     ============================================================ */
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bone:       #F4F1EA;   /* warm off-white background */
+    --bone-2:     #ECE7DC;   /* slightly deeper for the filter band */
+    --ink:        #131211;   /* near-black, warm */
+    --ink-soft:   #3A3733;
+    --ink-mute:   #6E6862;
+    --rule:       #1B1A18;
+    --hairline:   rgba(19, 18, 17, 0.12);
+    --red:        #D7301F;   /* the one accent */
+    --red-deep:   #B42514;
+  }
+
+  html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--bone);
+    color: var(--ink);
+    font-family: 'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::selection {
+    background: var(--red);
+    color: var(--bone);
+  }
+
+  /* ----- Reading column ------------------------------------- */
+  .col {
+    width: 100%;
+    max-width: 40rem;          /* ~ 640px reading column */
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .col--center { text-align: center; }
+
+  /* ============================================================
+     HEADER / MASTHEAD
+     Mono type, hairline rule, no logo mark, just a wordmark.
+     ============================================================ */
+  .masthead {
+    border-bottom: 1px solid var(--hairline);
+    background: var(--bone);
+  }
+  .masthead__inner {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .masthead__brand {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 900;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .masthead__nav {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .masthead__link {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.18s, border-color 0.18s;
+  }
+  .masthead__link:hover { color: var(--ink); }
+  .masthead__link--active {
+    color: var(--ink);
+    border-bottom-color: var(--red);
+  }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    padding: 6rem 0 4rem;
+  }
+  .hero__h1 {
+    position: relative;
+    display: inline-block;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 900;
+    font-size: clamp(2.4rem, 6.2vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 18ch;
+  }
+  .hero__h1-text { display: inline; }
+
+  /* The redline sweep — one deliberate animated detail. */
+  .hero__h1-rule {
+    display: block;
+    height: 6px;
+    background: var(--red);
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    margin-top: 0.6rem;
+    animation: rule-sweep 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  }
+
+  @keyframes rule-sweep {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .hero__body {
+    margin-top: 2.25rem;
+    max-width: 36rem;
+  }
+  .hero__body p {
+    font-size: 1.12rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .hero__body p + p { margin-top: 1rem; }
+
+  .lede { color: var(--ink); font-weight: 700; }
+  .num {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 700;
+    color: var(--ink);
+    background: linear-gradient(transparent 60%, rgba(215, 48, 31, 0.22) 60%);
+    padding: 0 0.15em;
+  }
+
+  /* ============================================================
+     FILTER — visually demoted band
+     ============================================================ */
+  .filter {
+    background: var(--bone-2);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: 3rem 0;
+    margin-top: 3rem;
+  }
+  .filter__inner {
+    border-left: 2px solid var(--ink);
+    padding-left: 1.25rem;
+  }
+  .filter__label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 0.6rem;
+  }
+  .filter p {
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .filter p + p { margin-top: 0.85rem; }
+  .filter strong { color: var(--ink); font-weight: 700; }
+
+  /* ============================================================
+     THE TURN — the argument block
+     ============================================================ */
+  .turn {
+    padding: 5rem 0 4rem;
+  }
+  .turn__marker {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+  .turn__body p {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.18rem;
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .turn__body p + p { margin-top: 1.1rem; }
+  .turn__body strong {
+    font-weight: 700;
+    background: linear-gradient(transparent 65%, rgba(215, 48, 31, 0.18) 65%);
+    padding: 0 0.05em;
+  }
+  .turn__body em { font-style: italic; color: var(--ink-soft); }
+  .turn__close {
+    border-top: 1px solid var(--hairline);
+    padding-top: 1.25rem;
+    margin-top: 1.5rem !important;
+  }
+
+  /* ============================================================
+     CTA
+     ============================================================ */
+  .cta {
+    padding: 5rem 0 6rem;
+  }
+  .cta__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.2rem 2.2rem;
+    background: var(--red);
+    color: var(--bone);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    border: 2px solid var(--red);
+    border-radius: 2px;             /* squared, not pill — Polariser is not friendly */
+    transition: background 0.18s, color 0.18s, transform 0.18s;
+  }
+  .cta__button:hover {
+    background: transparent;
+    color: var(--red);
+    transform: translateY(-1px);
+  }
+  .cta__arrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 700;
+    transition: transform 0.18s;
+  }
+  .cta__button:hover .cta__arrow { transform: translateX(3px); }
+  .cta__meta {
+    margin-top: 1.25rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.01em;
+  }
+
+  /* ============================================================
+     QUIET FOOTER
+     ============================================================ */
+  .quiet {
+    border-top: 1px solid var(--hairline);
+    padding: 2rem 1.5rem;
+  }
+  .quiet__inner {
+    max-width: 64rem;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.02em;
+  }
+  .quiet__sep { color: var(--hairline); }
+  .quiet__link { color: var(--ink-mute); transition: color 0.18s; border-bottom: 1px solid transparent; }
+  .quiet__link:hover { color: var(--red); border-bottom-color: var(--red); }
+
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============================================================
+     REDUCED MOTION
+     ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal.revealed {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .hero__h1-rule {
+      animation: none;
+      transform: scaleX(1);
+    }
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 640px) {
+    .masthead__inner {
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+    }
+    .masthead__nav { gap: 1rem; }
+    .masthead__link { font-size: 0.7rem; }
+
+    .hero { padding: 4rem 0 3rem; }
+    .hero__h1 { max-width: 100%; }
+    .hero__body p { font-size: 1.05rem; }
+    .turn { padding: 3.5rem 0 3rem; }
+    .turn__body p { font-size: 1.08rem; }
+    .cta { padding: 3.5rem 0 4.5rem; }
+    .cta__button { padding: 1rem 1.6rem; font-size: 1rem; }
+  }
+</style>
