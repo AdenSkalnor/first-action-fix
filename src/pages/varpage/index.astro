@@ -1,0 +1,391 @@
+---
+// PAGE 1 — Landing — Variant: Auditor's Notes (faithful)
+// Standalone shell. No BaseLayout. No Nav. No global.css.
+const title = 'First Action Fix — Activation has a structure';
+const description = 'Trial-to-paid conversion in Sales SaaS runs on five to seven circuits. Educational Email Courses and behavioral trigger sequences install the system that runs them on purpose.';
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500&display=swap" rel="stylesheet" />
+
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #FBFAF6;
+        --text: #1a1a1a;
+        --muted: #6B6B6B;
+        --accent: #2D5F4A;
+        --accent-hover: #244c3b;
+        --rule: #E5E1D6;
+      }
+
+      html {
+        font-size: 18px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: 'Spectral', Georgia, 'Times New Roman', serif;
+        font-weight: 400;
+        line-height: 1.6;
+        background-color: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .page {
+        max-width: 65ch;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* --- Top bar: logo left, optional contact right --- */
+      .topbar {
+        max-width: 65ch;
+        margin: 0 auto;
+        padding: 1.75rem 1.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      .logo {
+        font-family: 'Spectral', serif;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--text);
+      }
+      .logo:hover { text-decoration: none; }
+
+      .topbar__contact {
+        font-size: 0.95rem;
+        color: var(--accent);
+      }
+
+      /* --- Hero --- */
+      .hero {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem 0 5rem;
+      }
+
+      .eyebrow {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        margin-bottom: 1.75rem;
+        font-weight: 400;
+      }
+
+      h1 {
+        font-family: 'Spectral', serif;
+        font-weight: 500;
+        font-size: clamp(2.375rem, 5.2vw, 3.5rem);
+        line-height: 1.15;
+        letter-spacing: -0.005em;
+        color: var(--text);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero__sub {
+        font-size: 1.125rem;
+        line-height: 1.6;
+        color: var(--text);
+        margin-bottom: 1.25rem;
+      }
+
+      .hero__cta {
+        font-size: 1rem;
+        color: var(--accent);
+        display: inline-block;
+        margin-top: 0.75rem;
+      }
+
+      /* --- Sections --- */
+      section {
+        padding: 5rem 0;
+      }
+
+      section + section {
+        padding-top: 0;
+      }
+
+      h2 {
+        font-family: 'Spectral', serif;
+        font-weight: 500;
+        font-size: 1.75rem;
+        line-height: 1.25;
+        margin-bottom: 1.75rem;
+        color: var(--text);
+      }
+
+      p {
+        margin-bottom: 1.25rem;
+        font-size: 1rem;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* --- Block C numbered list --- */
+      .circuit-list {
+        list-style: none;
+        counter-reset: circuit;
+        margin: 1.75rem 0 2rem;
+        padding: 0;
+      }
+
+      .circuit-list li {
+        counter-increment: circuit;
+        margin-bottom: 1.25rem;
+        line-height: 1.7;
+        padding-left: 1.75rem;
+        position: relative;
+      }
+
+      .circuit-list li::before {
+        content: counter(circuit) ".";
+        position: absolute;
+        left: 0;
+        font-weight: 400;
+        color: var(--text);
+      }
+
+      .circuit-list li strong {
+        font-weight: 500;
+      }
+
+      /* --- Block D / F bold-lead paragraphs --- */
+      .lead-para strong {
+        font-weight: 500;
+      }
+
+      /* --- Block E cost anchor --- */
+      .cost-anchor {
+        margin: 2.5rem 0;
+      }
+
+      /* --- Block G: links + CTA --- */
+      .depth-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .depth-links a {
+        font-size: 1rem;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: var(--accent);
+        color: #ffffff;
+        padding: 16px 32px;
+        font-size: 1.0625rem;
+        font-family: 'Spectral', serif;
+        font-weight: 400;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        text-decoration: none;
+      }
+
+      .cta-button:hover {
+        background-color: var(--accent-hover);
+        text-decoration: none;
+        color: #ffffff;
+      }
+
+      /* --- Footer --- */
+      footer {
+        max-width: 65ch;
+        margin: 4rem auto 0;
+        padding: 2rem 1.5rem 2.5rem;
+        border-top: 1px solid var(--rule);
+        font-size: 0.875rem;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      footer .foot-left { font-weight: 400; }
+      footer .foot-right {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      footer a { color: var(--muted); }
+      footer a:hover { color: var(--accent); }
+
+      /* --- Scroll reveal --- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 600ms ease, transform 600ms ease;
+        will-change: opacity, transform;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      /* --- Mobile --- */
+      @media (max-width: 640px) {
+        html { font-size: 17px; }
+        h1 { font-size: 2.375rem; }
+        .hero { min-height: 75vh; padding: 2.5rem 0 4rem; }
+        section { padding: 3.5rem 0; }
+        footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <a href="/varpage/" class="logo">First Action Fix</a>
+      <a href="mailto:adennagleng@gmail.com" class="topbar__contact">Contact</a>
+    </header>
+
+    <main class="page">
+
+      <!-- Block A — Hero -->
+      <section class="hero reveal" aria-labelledby="hero-heading">
+        <div class="eyebrow">For Sales SaaS with self-serve trials.</div>
+        <h1 id="hero-heading">Activation has a structure.</h1>
+        <p class="hero__sub">Five to seven circuits run between signup and the buying decision. Each one either fires or stays dark.</p>
+        <a class="hero__cta" href="/varpage/teardown/">Get a teardown of yours &rarr;</a>
+      </section>
+
+      <!-- Block B — Macro Intro -->
+      <section class="reveal">
+        <p>Sales SaaS in 2026 operates inside three pressures. CAC payback periods are stretching. NDR is softening as expansion deals get harder to win. AI raises the feature bar without raising what users will pay.</p>
+        <p>Trial-to-paid conversion compounds against all three. Better activation lowers payback. Better-activated users retain longer, which holds NDR. A higher conversion rate raises the value of every dollar spent on acquisition.</p>
+        <p>So conversion gets prioritized. What gets prioritized inside it determines the result.</p>
+      </section>
+
+      <!-- Block C — The Activation Circuit -->
+      <section class="reveal">
+        <h2>The Activation Circuit</h2>
+        <p>Activation runs as a sequence of circuits. Each one is an event the user either completes or fails to reach.</p>
+        <ol class="circuit-list">
+          <li><strong>Setup.</strong> The user finishes configuration, or stops partway.</li>
+          <li><strong>First action.</strong> The user performs the thing the product does, or stalls before getting there.</li>
+          <li><strong>Result.</strong> The action produces a visible outcome the user can read, or it produces nothing legible.</li>
+          <li><strong>Return.</strong> The user comes back the next day, or the tab stays closed.</li>
+          <li><strong>Adoption.</strong> The user works the product into their week, or treats it as a one-off.</li>
+        </ol>
+        <p>Some products add a sixth and seventh: integration with the existing stack, and invitation of a teammate.</p>
+        <p>The conversion rate is the joint probability of every circuit firing in sequence.</p>
+      </section>
+
+      <!-- Block D — Common Responses -->
+      <section class="reveal">
+        <p>Three common responses when this number is low.</p>
+        <p class="lead-para"><strong>Rewrite the welcome sequence.</strong> This sharpens the message. The circuits stay where they were.</p>
+        <p class="lead-para"><strong>Add a new onboarding flow.</strong> This installs one circuit. The system has five to seven.</p>
+        <p class="lead-para"><strong>Put a salesperson on the trial.</strong> This works for the slice of users where the bottleneck is permission. The other circuits keep doing what they were already doing.</p>
+        <p>Each is a partial answer.</p>
+      </section>
+
+      <!-- Block E — Open Questions + Cost -->
+      <section class="reveal">
+        <p>Three questions the partial answers leave standing.</p>
+        <p>Why does the same cohort that converted at one rate in March convert at half that rate in June, with no product changes?</p>
+        <p>Why does the user who opens three of nine emails convert at twice the rate of the user who opens all nine?</p>
+        <p>Why does every converting user touch the same combination of three things, and why does that combination appear nowhere in the welcome sequence the team wrote?</p>
+        <p class="cost-anchor">At a thousand monthly trials and a typical Sales SaaS ACV, a two-point shift in trial-to-paid is six figures of annual pipeline.</p>
+        <p>These questions are visible from one place: the layer that connects the email tool, the product analytics, and the CRM.</p>
+        <p>That layer has a name. Most teams have no one sitting in it.</p>
+      </section>
+
+      <!-- Block F — Two Installations -->
+      <section class="reveal">
+        <p>Two installations run the Activation Circuit on purpose.</p>
+        <p class="lead-para"><strong>Educational Email Course.</strong> Closes the knowledge gap before and during the trial. One signup event becomes eight to twelve distributed touchpoints. Each touchpoint moves the user closer to firing the next circuit.</p>
+        <p class="lead-para"><strong>Behavioral Trigger Sequence.</strong> Listens to which circuit fired and which stayed dark. Sends the appropriate message to the appropriate user state at the appropriate time. The system responds to user state instead of broadcasting on a calendar.</p>
+        <p>Run together, they close the orchestration gap. Trial-to-paid conversion lifts. The lift is measurable at day 40.</p>
+      </section>
+
+      <!-- Block G — Links + Final CTA -->
+      <section class="reveal" aria-label="Further reading and request">
+        <div class="depth-links">
+          <a href="/varpage/eec/">How the EEC works &rarr;</a>
+          <a href="/varpage/behavioral-triggers/">How behavioral triggers work &rarr;</a>
+        </div>
+        <a class="cta-button" href="/varpage/teardown/">Request a free teardown &rarr;</a>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="foot-left">First Action Fix</div>
+      <div class="foot-right">
+        <span>2026</span>
+        <a href="mailto:adennagleng@gmail.com">adennagleng@gmail.com</a>
+        <a href="/varpage/terms/">Terms</a>
+        <a href="/varpage/privacy/">Privacy</a>
+      </div>
+    </footer>
+
+    <script>
+      const els = document.querySelectorAll('.reveal');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        els.forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,328 @@
+---
+// /varpage/eec/ — Lab Notebook treatment
+// Page 2: How the EEC Works
+// Sans-serif (IBM Plex Sans), single weight, hairline rules, clinical.
+const title = "How an Educational Email Course works — First Action Fix";
+const description = "An EEC closes the knowledge gap that blocks trial users from firing the next activation circuit.";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ---------- Lab Notebook treatment ----------
+         Palette:
+           ink         #111827  (body)
+           accent ink  #1E40AF  (links, CTA)
+           hairline    #E5E7EB  (rules, borders)
+           muted       #6B7280  (eyebrow, footer)
+           paper       #FFFFFF  (background)
+      */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+      body {
+        font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 1.55;
+        color: #111827;
+        background: #FFFFFF;
+      }
+      a { color: inherit; text-decoration: none; }
+
+      /* Top bar */
+      .top {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 1.75rem 1.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .logo {
+        font-size: 15px;
+        font-weight: 400;
+        color: #111827;
+        letter-spacing: 0;
+      }
+      .top-link {
+        font-size: 15px;
+        color: #1E40AF;
+      }
+      .top-link:hover { text-decoration: underline; }
+
+      /* Reading column */
+      .col {
+        max-width: 62ch;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Block scaffolding */
+      .block {
+        padding: 4rem 0;
+        border-top: 1px solid #E5E7EB;
+      }
+      .block:first-of-type { border-top: 0; }
+
+      /* Hero */
+      .hero {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+      .eyebrow {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #6B7280;
+        margin-bottom: 2rem;
+      }
+      h1 {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 400;
+        font-size: 52px;
+        line-height: 1.12;
+        letter-spacing: -0.01em;
+        color: #111827;
+        margin-bottom: 1.5rem;
+      }
+      .subhead {
+        font-size: 17px;
+        color: #111827;
+        margin-bottom: 2rem;
+      }
+      .arrow-link {
+        display: inline-block;
+        font-size: 17px;
+        color: #1E40AF;
+      }
+      .arrow-link:hover { text-decoration: underline; }
+
+      /* Body prose */
+      p {
+        font-size: 17px;
+        line-height: 1.55;
+        color: #111827;
+        margin-bottom: 1.25rem;
+      }
+      p:last-child { margin-bottom: 0; }
+
+      /* H2 — plain Plex Sans 400 */
+      h2 {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 1.25;
+        letter-spacing: 0;
+        color: #111827;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Block D — Day list (Plex Mono) */
+      .day-list {
+        list-style: none;
+        margin: 0 0 1.5rem 0;
+        padding: 0;
+      }
+      .day-list li {
+        font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 1.9;
+        color: #111827;
+      }
+
+      /* Block G */
+      .links-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+      .cta-button {
+        display: inline-block;
+        background: #1E40AF;
+        color: #FFFFFF;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 16px 32px;
+        border-radius: 4px;
+        border: 0;
+        cursor: pointer;
+      }
+      .cta-button:hover { background: #1c3a9e; }
+
+      /* Footer */
+      footer {
+        margin-top: 4rem;
+        padding: 2rem 1.5rem 3rem;
+        border-top: 1px solid #E5E7EB;
+      }
+      .foot-inner {
+        max-width: 880px;
+        margin: 0 auto;
+        font-size: 13px;
+        color: #6B7280;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .foot-inner a { color: #6B7280; }
+      .foot-inner a:hover { color: #1E40AF; }
+      .foot-right { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+      /* Reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 500ms ease, transform 500ms ease;
+        will-change: opacity, transform;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Mobile */
+      @media (max-width: 640px) {
+        h1 { font-size: 36px; }
+        .hero { padding-top: 3rem; padding-bottom: 3rem; }
+        .block { padding: 3rem 0; }
+        .top { padding: 1.25rem 1.25rem 0.5rem; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <span class="logo">First Action Fix</span>
+      <a class="top-link" href="mailto:adennagleng@gmail.com">Contact</a>
+    </header>
+
+    <main>
+      <!-- Block A — Hero -->
+      <section class="block hero reveal">
+        <div class="col">
+          <div class="eyebrow">Mechanism explainer.</div>
+          <h1>An Educational Email Course closes the knowledge gap during the trial.</h1>
+          <p class="subhead">Eight to twelve emails. Sequenced over the trial window. Each one supports a specific circuit in the Activation Circuit.</p>
+          <a class="arrow-link" href="/varpage/teardown/">Get a teardown &rarr;</a>
+        </div>
+      </section>
+
+      <!-- Block B — What it is -->
+      <section class="block reveal">
+        <div class="col">
+          <p>A structured course delivered over email. The user opts in (often before signup, sometimes during onboarding), and the course runs across the trial period.</p>
+          <p>Each email teaches the specific thing the user needs to know to fire the next circuit. The order is determined by where users typically stall, not by what is easiest to write about.</p>
+          <p>The course replaces the welcome sequence. It does the welcome sequence's job (orientation, expectation-setting) and adds three things the welcome sequence cannot do.</p>
+          <p>It distributes one signup event across many touchpoints, raising total exposure.</p>
+          <p>It builds credibility through repeated useful contact, reducing skepticism at the moment of the buying decision.</p>
+          <p>It bypasses the user's tendency to discount future rewards by delivering small immediate ones (a piece of working knowledge) at each step.</p>
+        </div>
+      </section>
+
+      <!-- Block C — What it does to the funnel -->
+      <section class="block reveal">
+        <div class="col">
+          <p>Before the EEC, the user receives one onboarding email and is then expected to figure out the rest from inside the product.</p>
+          <p>After the EEC, the user receives one orienting message, then a structured curriculum delivered to inbox, with each lesson mapped to a circuit point in the Activation Circuit.</p>
+          <p>The user who completes the course converts at a higher rate than the user who only sees the welcome sequence. Specific lift varies by product category, signup intent, and current circuit health, and is one of the things the teardown measures.</p>
+        </div>
+      </section>
+
+      <!-- Block D — Example structure -->
+      <section class="block reveal">
+        <div class="col">
+          <h2>Example: 14-day trial, Sales SaaS</h2>
+          <ul class="day-list">
+            <li>Day 0 &mdash; Setup primer</li>
+            <li>Day 1 &mdash; First-action walkthrough</li>
+            <li>Day 2 &mdash; Reading the result</li>
+            <li>Day 4 &mdash; Common stall point and the fix</li>
+            <li>Day 5 &mdash; Integration moment</li>
+            <li>Day 7 &mdash; Mid-trial calibration</li>
+            <li>Day 9 &mdash; Advanced workflow</li>
+            <li>Day 11 &mdash; Team-invite sequence</li>
+            <li>Day 13 &mdash; Conversion offer</li>
+          </ul>
+          <p>Nine emails. Each one supports a specific circuit. The exact sequence is determined by the product's own activation map.</p>
+        </div>
+      </section>
+
+      <!-- Block E — What it does not do -->
+      <section class="block reveal">
+        <div class="col">
+          <p>The EEC does not replace in-product onboarding. The two run in parallel and reinforce each other.</p>
+          <p>The EEC does not handle behavioral response. A user who stalls at circuit three needs a different message than the day-three lesson the EEC was going to send. That job belongs to the behavioral trigger sequence.</p>
+          <p>The EEC does not generate sales conversations on its own. It produces the educated user state that makes a sales conversation efficient when one is needed.</p>
+        </div>
+      </section>
+
+      <!-- Block G — Links + Final CTA -->
+      <section class="block reveal">
+        <div class="col">
+          <div class="links-stack">
+            <a class="arrow-link" href="/varpage/behavioral-triggers/">How behavioral triggers work &rarr;</a>
+          </div>
+          <a class="cta-button" href="/varpage/teardown/">Request a free teardown &rarr;</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="foot-inner">
+        <span>First Action Fix &middot; 2026</span>
+        <span class="foot-right">
+          <a href="mailto:adennagleng@gmail.com">adennagleng@gmail.com</a>
+          <a href="/terms/">Terms</a>
+          <a href="/privacy/">Privacy</a>
+        </span>
+      </div>
+    </footer>
+
+    <script>
+      // Scroll-reveal: fade up 6px, 500ms.
+      (function () {
+        if (typeof window === 'undefined') return;
+        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const targets = document.querySelectorAll('.reveal');
+        if (prefersReduce || !('IntersectionObserver' in window)) {
+          targets.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        );
+        targets.forEach((el) => io.observe(el));
+      })();
+    </script>
+  </body>
+</html>

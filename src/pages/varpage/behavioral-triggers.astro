@@ -1,0 +1,416 @@
+---
+// Page 3 — How Behavioral Triggers Work
+// Treatment: Magazine Essay (literary serif, drop-cap, indented body, warm paper)
+// No BaseLayout. Self-contained static HTML.
+const pageTitle = "How behavioral trigger sequences work — First Action Fix";
+const pageDescription = "Behavioral triggers send the right message to the right user state at the right time, based on what the user did or stopped doing.";
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;1,400&family=Inter:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+         Magazine Essay treatment — Page 3 / Behavioral Triggers
+         Palette
+           --paper:    #F4EFE7   (warm paper background)
+           --ink:      #1B1A17   (body ink)
+           --ochre:    #B45309   (single accent / link)
+           --rule:     #D6CFBE   (hairline rule)
+           --muted:    #6B6359   (footer muted)
+         ========================================================= */
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --paper: #F4EFE7;
+        --ink: #1B1A17;
+        --ochre: #B45309;
+        --rule: #D6CFBE;
+        --muted: #6B6359;
+
+        --serif: "Source Serif 4", "Spectral", "Iowan Old Style", "Hoefler Text", Georgia, serif;
+        --sans: "Inter", system-ui, -apple-system, sans-serif;
+      }
+
+      html {
+        font-size: 18px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-weight: 400;
+        line-height: 1.7;
+        min-height: 100vh;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      /* ---- Page top: text logo + contact ---- */
+      .topbar {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 1.75rem 1.5rem 0;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+
+      .topbar__logo {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 16px;
+        color: var(--ink);
+      }
+
+      .topbar__contact {
+        font-family: var(--sans);
+        font-size: 14px;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+
+      .topbar__contact:hover { color: var(--ochre); }
+
+      /* ---- Main reading column ---- */
+      main {
+        max-width: 75ch;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 6rem;
+
+        animation: page-fade 300ms ease-out both;
+      }
+
+      @keyframes page-fade {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+
+      section { margin-bottom: 5rem; }
+      section:last-of-type { margin-bottom: 0; }
+
+      /* ---- Hero (Block A) ---- */
+      .hero { margin-bottom: 5rem; }
+
+      .eyebrow {
+        font-family: var(--sans);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ochre);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero h1 {
+        font-family: var(--serif);
+        font-weight: 500;
+        font-size: clamp(36px, 5.2vw, 52px);
+        line-height: 1.12;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero__bridge {
+        font-style: italic;
+        font-size: 19px;
+        line-height: 1.55;
+        color: var(--ink);
+        max-width: 60ch;
+        margin-bottom: 1.75rem;
+      }
+
+      .hero__cta {
+        font-family: var(--serif);
+        font-size: 18px;
+        color: var(--ochre);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+      .hero__cta:hover { border-bottom-color: var(--ochre); }
+
+      /* ---- Section H2 ---- */
+      h2 {
+        font-family: var(--serif);
+        font-weight: 500;
+        font-size: 28px;
+        letter-spacing: -0.005em;
+        color: var(--ink);
+        margin-bottom: 1.75rem;
+      }
+
+      /* ---- Body prose: indented essay style ----
+         First paragraph in a section is flush.
+         Subsequent paragraphs in the same section get a 1.5em first-line indent.
+         Applied to Blocks B, D, E via .essay class. */
+      .essay p { margin: 0; }
+      .essay p + p { text-indent: 1.5em; margin-top: 0; }
+
+      /* Block C: scenarios — same indent rule for paragraphs 2–4 */
+      .scenarios p { margin: 0; }
+      .scenarios p + p { text-indent: 1.5em; }
+
+      /* ---- Drop cap (Block B opener) ---- */
+      .dropcap-para::first-letter {
+        font-family: var(--serif);
+        font-weight: 500;
+        color: var(--ochre);
+        float: left;
+        font-size: 4.6em;
+        line-height: 0.85;
+        padding-top: 0.08em;
+        padding-right: 0.08em;
+        padding-bottom: 0;
+      }
+
+      /* ---- Block G: links + CTA ---- */
+      .links-cta {
+        margin-top: 4rem;
+      }
+
+      .text-link {
+        display: inline-block;
+        font-family: var(--serif);
+        font-size: 18px;
+        color: var(--ochre);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+      .text-link:hover { border-bottom-color: var(--ochre); }
+
+      .links-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        background: var(--ochre);
+        color: var(--paper);
+        font-family: var(--serif);
+        font-size: 16px;
+        font-weight: 500;
+        padding: 16px 32px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.15s;
+      }
+      .btn-primary:hover {
+        background: #8F4108;
+        transform: translateY(-1px);
+      }
+
+      /* ---- Footer ---- */
+      footer {
+        max-width: 75ch;
+        margin: 0 auto;
+        padding: 0 1.5rem 3rem;
+      }
+
+      .footer-rule {
+        height: 1px;
+        background: var(--rule);
+        border: none;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .footer-name {
+        font-family: var(--serif);
+        font-size: 15px;
+        color: var(--ink);
+      }
+
+      .footer-meta {
+        font-family: var(--sans);
+        font-size: 13px;
+        color: var(--muted);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+      }
+
+      .footer-meta a { transition: color 0.2s; }
+      .footer-meta a:hover { color: var(--ochre); }
+
+      /* ---- Mobile ---- */
+      @media (max-width: 600px) {
+        html { font-size: 17px; }
+
+        main { padding: 2.5rem 1.25rem 4rem; }
+
+        .topbar { padding: 1.25rem 1.25rem 0; }
+
+        .hero h1 { font-size: 36px; }
+        .hero__bridge { font-size: 17px; }
+
+        h2 { font-size: 24px; }
+
+        .dropcap-para::first-letter {
+          font-size: 4em;
+        }
+
+        section { margin-bottom: 3.5rem; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        main { animation: none; }
+        .btn-primary { transition: none; }
+        .btn-primary:hover { transform: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <a href="/" class="topbar__logo">First Action Fix</a>
+      <a href="mailto:adennagleng@gmail.com" class="topbar__contact">Contact</a>
+    </header>
+
+    <main>
+      <!-- Block A — Hero -->
+      <section class="hero">
+        <div class="eyebrow">Mechanism explainer.</div>
+        <h1>Behavioral triggers respond to what the user did, or stopped doing.</h1>
+        <p class="hero__bridge">
+          The system listens for circuit events. When one fires, or one stays
+          dark longer than expected, a sequence runs.
+        </p>
+        <a href="/varpage/teardown/" class="hero__cta">Get a teardown &rarr;</a>
+      </section>
+
+      <!-- Block B — What it is -->
+      <section class="essay">
+        <p class="dropcap-para">
+          A behavioral trigger sequence is a set of conditional flows. Each
+          flow has a trigger condition (an event in the product, or the absence
+          of an event for a defined window), and a response sequence (one or
+          more messages, sometimes paired with an in-product nudge).
+        </p>
+        <p>
+          The system is event-driven. The welcome sequence sends email three
+          on day three regardless of what the user did. The trigger sequence
+          sends a specific message because the user did, or did not do, a
+          specific thing.
+        </p>
+      </section>
+
+      <!-- Block C — Examples -->
+      <section class="scenarios">
+        <h2>Examples</h2>
+        <p>
+          A trial user finishes setup but does not perform the first action
+          within 48 hours. The trigger sends a short message naming the most
+          common reason for that gap and offering one specific path forward.
+        </p>
+        <p>
+          A trial user completes the first action but the result fails to
+          render correctly. The trigger sends a message acknowledging the
+          failure mode and pointing to the fix.
+        </p>
+        <p>
+          A trial user goes silent for five days mid-trial. The trigger sends
+          a message calibrating expectations and offering a single re-entry
+          point.
+        </p>
+        <p>
+          A trial user converts. The trigger stops the activation sequence and
+          starts the post-conversion sequence.
+        </p>
+      </section>
+
+      <!-- Block D — What feeds it -->
+      <section class="essay">
+        <p>The trigger sequence requires:</p>
+        <p>
+          Event tracking inside the product, with each circuit-relevant event
+          firing a webhook or appearing in an integration the trigger system
+          can read.
+        </p>
+        <p>
+          A user state model that maps event combinations to states
+          (setup-incomplete, action-stalled, result-broken, silent, etc.).
+        </p>
+        <p>
+          Message library with one or more messages mapped to each state
+          transition.
+        </p>
+        <p>
+          The setup work is one-time. The system runs continuously after.
+        </p>
+      </section>
+
+      <!-- Block E — What it does not do -->
+      <section class="essay">
+        <p>
+          The trigger sequence does not handle pre-trial education. That job
+          belongs to the EEC.
+        </p>
+        <p>
+          The trigger sequence does not replace human sales touch. It surfaces
+          the moments where human touch matters and reduces wasted touches on
+          users who are not ready.
+        </p>
+        <p>
+          The trigger sequence does not work without integration. A product
+          that cannot emit reliable circuit events cannot be triggered
+          against. The audit determines whether the integration foundation is
+          in place before any build begins.
+        </p>
+      </section>
+
+      <!-- Block G — Links + Final CTA -->
+      <section class="links-cta">
+        <div class="links-stack">
+          <a href="/varpage/eec/" class="text-link">How the EEC works &rarr;</a>
+        </div>
+        <a href="/varpage/teardown/" class="btn-primary">Request a free teardown &rarr;</a>
+      </section>
+    </main>
+
+    <footer>
+      <hr class="footer-rule" />
+      <div class="footer-row">
+        <div class="footer-name">First Action Fix</div>
+        <div class="footer-meta">
+          <span>&copy; {year}</span>
+          <a href="mailto:adennagleng@gmail.com">adennagleng@gmail.com</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
