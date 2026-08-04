@@ -1,0 +1,426 @@
+---
+/*
+  /lab/custom-2/ — iteration 2, a SECOND custom surface. Identity: a
+  techno / screen / business type register built from ONLY Andrew's nine
+  favored in-notes fonts — no category-fill families are introduced.
+
+  Favored nine (all featured on this page):
+    Space Mono · Cuprum · Ubuntu Condensed · Roboto Flex · Iceland ·
+    Electrolize · Geo · Oxanium · Nova Square.
+
+  Bodies use the readable technos; the squared/display faces carry headings;
+  Space Mono carries stat figures and the doc-excerpt. Roboto Flex appears on
+  exactly ONE block (B6, the Business/Variable exemplar) — never the default.
+  Every body element declares its own explicit favored font-family (the fix
+  for the earlier "looks like just two fonts" failure).
+
+  Body faces, per block (readable technos):
+    B1 body        → Electrolize    (even screen sans)
+    B2 list        → Cuprum         (narrow humanist)
+    B3 list        → Ubuntu Condensed
+    B4 stat text   → Oxanium        · figures → Space Mono
+    B5 body        → Electrolize    · doc-excerpt → Space Mono
+    B6 body        → Roboto Flex    (the one Business/Variable block)
+    B7 body        → Cuprum
+
+  Headings alternate the squared/display faces, no consecutive repeat:
+    B1 Nova Square · B2 Ubuntu Condensed · B3 Geo · B4 Iceland ·
+    B5 Nova Square · B6 Cuprum · B7 Geo.
+
+  §4 catalog used: solid-inside/gradient-outside (B1, B4), double-outline (B2),
+  accent-tint color band (B3), carved bare frame (B5), sidenote card (B6),
+  inverse near-black block (B7). Card vs full-bleed band alternated. Gradients
+  live on the GROUND outside any lined/carded block; interiors stay solid.
+  Surface: a cool "screen"-tinted near-white base suited to the techno register.
+
+  Own shell — no BaseLayout. Static. Content verbatim (§5). B3 CTA → /varpage/teardown/.
+*/
+import LabMenu from '../../components/LabMenu.astro';
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>/lab/custom-2 — favored fonts only (techno/business)</title>
+  <meta
+    name="description"
+    content="Iteration 2 surface-choice page in a techno/screen/business register using only Andrew's nine favored fonts: Space Mono, Cuprum, Ubuntu Condensed, Roboto Flex, Iceland, Electrolize, Geo, Oxanium, Nova Square. Cool screen-tinted grounds, one strong hue per block, §4 block catalog."
+  />
+
+  <!-- Fonts via Google Fonts. One link, every family referenced on the page —
+       bodies AND headings — all nine favored: Cuprum, Electrolize, Geo,
+       Iceland, Nova Square, Oxanium, Roboto Flex, Space Mono, Ubuntu
+       Condensed. No non-favored family is loaded. LabMenu uses Space Mono. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400;0,700;1,400&family=Electrolize&family=Geo:ital@0;1&family=Iceland&family=Nova+Square&family=Oxanium:wght@400;600;700&family=Roboto+Flex:opsz,wght@8..144,300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Ubuntu+Condensed&display=swap"
+    rel="stylesheet"
+  />
+
+  <style is:global>
+    :root {
+      /* Base — cool "screen"-tinted near-white; alternated tint grounds. */
+      --screen: #FAFBFD;        /* cool screen near-white — base surface */
+      --screen-lift: #FDFEFF;   /* lighter cool end of a recede gradient */
+      --screen-warm: #F8F9FC;   /* flat cool near-white variant */
+      --blue-tint: #EAF0FE;     /* soft blue tint — cool gradient end */
+      --teal-tint: #E6F3EF;     /* soft teal tint — cool gradient end */
+      --clay-wash: #F6ECE6;     /* soft clay wash — accent-tint band */
+      --clay-wash-deep: #EEDACE;
+
+      /* Inks — cool near-black, no gray flatness. */
+      --ink: #14161B;
+      --ink-soft: rgba(20, 22, 27, 0.66);
+      --ink-mute: rgba(20, 22, 27, 0.54);
+
+      /* Inverse ground (near-black screen block). */
+      --dark: #101319;
+      --dark-deep: #0A0C11;
+      --paper: #EDF1F5;
+      --paper-soft: rgba(237, 241, 245, 0.68);
+
+      /* Accents — real hues, one strong per block. */
+      --orange: #D2691E;      --orange-deep: #B4571A;
+      --blue: #2F5FE0;        --blue-deep: #2249B8;
+      --clay: #CC785C;        --clay-deep: #B15F44;
+      --teal: #0E7C66;        --teal-deep: #0A6352;
+
+      /* Rules — cool. */
+      --rule: #E4E6EC;
+      --rule-cool: #E1E5EC;
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--screen);
+      color: var(--ink);
+      /* No single default body face — every block sets its own favored font. */
+      font-size: 20px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page { display: block; }
+
+    /* One block = one editing treatment. Wide, airy grounds. */
+    .blk { padding: 5.5rem 1.5rem; }
+
+    /* Gradient grounds — outside any lined/carded block; interiors stay solid. */
+    .g-blue  { background: linear-gradient(178deg, var(--screen) 0%, var(--blue-tint) 100%); }
+    .g-teal  { background: linear-gradient(178deg, var(--screen) 0%, var(--teal-tint) 100%); }
+    .g-flat  { background: var(--screen-warm); }
+    .g-cool  { background: var(--screen); }
+
+    /* Wide measures — no skinny columns (74–84ch). */
+    .col   { max-width: 76ch; margin-inline: auto; }
+    .col-w { max-width: 82ch; margin-inline: auto; }
+    .wrap-w{ max-width: 84ch; margin-inline: auto; }
+
+    /* Captions: italic, muted, 16, set in the block's own BODY font. */
+    .cap { font-size: 16px; line-height: 1.5; color: var(--ink-mute); margin-top: 1.9rem; }
+    .cap em { font-style: italic; }
+    .note { font-size: 16px; color: var(--ink-soft); }
+
+    a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: var(--blue-deep); }
+
+    /* ---------- B1 — premise (prose) — Stripe Press ----------
+       Solid-inside / gradient-outside: solid white carved card on a
+       screen↔soft-blue gradient ground. Nova Square head + ELECTROLIZE body.
+       Blue accent. */
+    .b1-card {
+      background: #FFFFFF;
+      box-shadow: inset 0 0 0 1px var(--rule);
+      border-radius: 10px;
+      padding: 2.6rem 2.4rem;
+    }
+    .b1-eyebrow {
+      font-family: 'Electrolize', sans-serif;
+      font-weight: 400; font-size: 15px;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--blue); margin: 0 0 1rem;
+    }
+    .b1-head {
+      font-family: 'Nova Square', system-ui, sans-serif;
+      font-size: 38px; line-height: 1.16;
+      letter-spacing: -0.005em; color: var(--blue-deep); margin: 0 0 1.4rem;
+    }
+    .b1-body { font-family: 'Electrolize', sans-serif; font-size: 20px; line-height: 1.6; margin: 0; }
+
+    /* ---------- B2 — palette + surface (rhythm list) — Linear ----------
+       DOUBLE-OUTLINE: two thin borders 3px apart, solid white inside. Heading
+       takes the teal accent. Ubuntu Condensed head + CUPRUM items. */
+    .b2-card {
+      background: #FFFFFF;
+      border: 1px solid var(--teal);
+      box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 4px var(--teal);
+      border-radius: 6px;
+      padding: 1.4rem 2rem;
+    }
+    .b2-eyebrow {
+      font-family: 'Cuprum', sans-serif;
+      font-weight: 700; font-size: 14px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--teal); margin: 0 0 0.9rem;
+    }
+    .b2-head {
+      font-family: 'Ubuntu Condensed', sans-serif;
+      font-size: 44px; line-height: 1.08; letter-spacing: -0.02em;
+      color: var(--teal-deep); margin: 0 0 1.9rem;
+    }
+    .b2-list { list-style: none; padding: 0; margin: 0; }
+    .b2-list li {
+      font-family: 'Cuprum', sans-serif;
+      font-size: 21px; line-height: 1.55;
+      padding-block: 1.05rem; border-top: 1px solid var(--rule-cool);
+    }
+    .b2-list li:first-child { border-top: none; }
+    .b2-list li b { font-weight: 700; color: var(--teal-deep); }
+
+    /* ---------- B3 — long-text handling (list) + CTA — 37signals ----------
+       ACCENT-TINT COLOR BLOCK, full-bleed BAND: soft-clay wash with contrasting
+       dark text (a band, not a lined card, so a soft gradient is allowed here).
+       Geo head + UBUNTU CONDENSED reading. Clay accent. */
+    .band-clay {
+      background: linear-gradient(160deg, var(--clay-wash) 0%, var(--clay-wash-deep) 100%);
+      color: #2A1810;
+    }
+    .b3-head {
+      font-family: 'Geo', system-ui, sans-serif;
+      font-weight: 400; font-size: 34px; line-height: 1.16;
+      letter-spacing: 0.01em; color: var(--clay-deep); margin: 0 0 1.5rem;
+    }
+    .b3-list { list-style: none; padding: 0; margin: 0 0 2.2rem; font-family: 'Ubuntu Condensed', sans-serif; }
+    .b3-list li { font-size: 21px; line-height: 1.55; margin: 0 0 1.2rem; }
+    .b3-list b { font-weight: 400; color: var(--clay-deep); }
+    .b3-cta { margin-top: 0.4rem; }
+    .btn {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 19px; font-weight: 700; letter-spacing: 0.01em;
+      background: var(--ink); color: var(--clay-wash);
+      padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none;
+    }
+    .btn:hover { background: #000; color: var(--clay-wash); }
+
+    /* ---------- B4 — block rhythm (stat-dense) — Stripe ----------
+       Solid-inside / gradient-outside: solid white carved stat cards on a
+       screen↔soft-teal gradient ground. Iceland head + OXANIUM stat text,
+       SPACE MONO figures. Orange accent. */
+    .b4-eyebrow {
+      font-family: 'Oxanium', system-ui, sans-serif;
+      font-weight: 600; font-size: 15px; letter-spacing: 0.03em;
+      text-transform: uppercase; color: var(--orange-deep); margin: 0 0 0.4rem;
+    }
+    .b4-head {
+      font-family: 'Iceland', system-ui, sans-serif;
+      font-weight: 400; font-size: 40px; line-height: 1.08;
+      letter-spacing: 0.01em; color: var(--orange-deep); margin: 0 0 1.6rem;
+    }
+    .b4-grid { display: grid; gap: 1.15rem; }
+    .b4-stat {
+      background: #FFFFFF;
+      box-shadow: inset 0 0 0 1px var(--rule-cool);
+      border-radius: 8px; padding: 1.5rem 1.7rem;
+    }
+    .b4-fig {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 30px; line-height: 1.15; font-weight: 700;
+      color: var(--orange); margin: 0 0 0.55rem;
+    }
+    .b4-src { font-family: 'Oxanium', system-ui, sans-serif; font-size: 20px; line-height: 1.55; margin: 0; }
+
+    /* ---------- B5 — bare imagery (bare frame / doc-excerpt) ----------
+       Carved single frame on cool screen near-white; no images — the monospace
+       document IS the image. Nova Square head + ELECTROLIZE body +
+       SPACE MONO doc-excerpt. Orange accent. */
+    .b5-head {
+      font-family: 'Nova Square', system-ui, sans-serif;
+      font-size: 34px; line-height: 1.16;
+      letter-spacing: -0.005em; color: var(--orange-deep); margin: 0 0 1.3rem;
+    }
+    .b5-body { font-family: 'Electrolize', sans-serif; font-size: 20px; line-height: 1.6; margin: 0 0 1.9rem; }
+    .bare { margin: 0; }
+    .doc-excerpt {
+      box-shadow: inset 0 0 0 1px var(--rule);
+      border-radius: 8px; padding: 1.6rem;
+      background: #FFFFFF;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 16px; line-height: 1.7; color: var(--ink-soft);
+      white-space: pre-wrap; overflow-x: auto;
+    }
+    .doc-excerpt .anno { color: var(--orange); }
+    figcaption { margin-top: 1rem; }
+
+    /* ---------- B6 — the 2026 warning (sidenote) — Works in Progress ----------
+       Flat cool near-white ground; blue accent. Cuprum head + ROBOTO FLEX body
+       (the one Business/Variable exception block), blue margin note. */
+    .b6-head {
+      font-family: 'Cuprum', sans-serif;
+      font-weight: 700; font-size: 42px; line-height: 1.1;
+      letter-spacing: 0.005em; color: var(--blue-deep); margin: 0 0 1.6rem;
+    }
+    .b6-wrap { display: grid; grid-template-columns: minmax(0, 70ch) 16rem; gap: 2.6rem; align-items: start; }
+    .b6-body { font-family: 'Roboto Flex', system-ui, sans-serif; font-size: 21px; line-height: 1.6; margin: 0; }
+    .b6-side {
+      font-family: 'Roboto Flex', system-ui, sans-serif;
+      font-size: 18px; line-height: 1.5; color: var(--blue);
+      padding-top: 0.35rem; border-left: 3px solid var(--blue); padding-left: 1rem;
+    }
+    @media (max-width: 860px) { .b6-wrap { grid-template-columns: 1fr; } }
+
+    /* ---------- B7 — harvest close (statement) ----------
+       INVERSE BLOCK: near-black full-bleed screen band dropped into the light
+       page, whisper focal gradient toward darker. Orange headline. Geo head +
+       CUPRUM body, paper text. */
+    .band-dark {
+      background: linear-gradient(180deg, var(--dark) 0%, var(--dark-deep) 100%);
+      color: var(--paper);
+    }
+    .b7-head {
+      font-family: 'Geo', system-ui, sans-serif;
+      font-weight: 400; font-size: 46px; line-height: 1.08;
+      letter-spacing: 0.01em; color: var(--orange); margin: 0 0 1.4rem;
+    }
+    .b7-body { font-family: 'Cuprum', sans-serif; font-size: 21px; line-height: 1.6; color: var(--paper); margin: 0; }
+    .b7-body + .b7-body { margin-top: 1.1rem; }
+    .band-dark .cap { color: var(--paper-soft); }
+
+    /* Per-block caption fonts — each caption set in its block's own BODY font. */
+    .b1-cap { font-family: 'Electrolize', sans-serif; }
+    .b2-cap { font-family: 'Cuprum', sans-serif; }
+    .b3-cap { font-family: 'Ubuntu Condensed', sans-serif; color: rgba(42, 24, 16, 0.62); }
+    .b4-cap { font-family: 'Oxanium', system-ui, sans-serif; }
+    .b5-cap { font-family: 'Electrolize', sans-serif; }
+    .b6-cap { font-family: 'Roboto Flex', system-ui, sans-serif; }
+    .b7-cap { font-family: 'Cuprum', sans-serif; }
+  </style>
+</head>
+
+<body>
+  <LabMenu active="custom-2" />
+  <main class="page">
+
+    <!-- ============ B1 — premise (prose) ============ -->
+    <!-- template: prose · treatment: Stripe Press (solid card, gradient-outside ground) -->
+    <section class="blk g-blue">
+      <div class="col">
+        <div class="b1-card">
+          <p class="b1-eyebrow">Premise</p>
+          <h1 class="b1-head">A live site is a better template source than a marketplace.</h1>
+          <p class="b1-body">Your premise holds. A live site is a better template source than a template marketplace, because you can read the decisions rather than inherit someone's content model. And the reskin is only about six variables: neutral ramp, one accent, radius scale, spacing scale, text measure, border weight. Fix those six and any layout you admire becomes yours.</p>
+        </div>
+        <p class="cap b1-cap"><em>Feel: even, screen-sans, machined-calm. Electrolize 20/1.6 body + Nova Square 38 head · 76ch · solid white carved card on a screen↔soft-blue gradient ground · blue accent — similar to Stripe Press.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B2 — palette + surface (rhythm list) ============ -->
+    <!-- template: rhythm-list · treatment: Linear (double-outline card) -->
+    <section class="blk g-flat">
+      <div class="col-w">
+        <p class="b2-eyebrow">Palette + surface</p>
+        <h2 class="b2-head">The white-main systems worth copying wholesale</h2>
+        <div class="b2-card">
+          <ul class="b2-list">
+            <li><b>Mercury</b> — the reference for premium-restrained off-white. Near-invisible borders, almost no shadow, one accent used sparingly. Serious without being cold, which is your construction-buyer problem exactly.</li>
+            <li><b>Anthropic</b> — warm ivory ground, serif headings, very low saturation. Closest live example of your §1 brief: calm enough to read as a default rather than a pitch.</li>
+            <li><b>Attio</b> — white, precise, tight grid. Shows how far a single accent goes when everything else is neutral.</li>
+            <li><b>Notion</b> — the smoothed-edges reference. Radius scale, soft card fills, warm white. Study it for where rounding stops; over-rounding is what makes a premium site read as a toy.</li>
+          </ul>
+        </div>
+        <p class="cap b2-cap"><em>Feel: crisp, narrow-humanist, structural. Cuprum 21/1.55 items + Ubuntu Condensed 44 teal head · 82ch · double-outline card (2×1px, 3px apart), solid white inside on flat cool near-white · teal accent — similar to Linear.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B3 — long-text handling (list) + CTA ============ -->
+    <!-- template: prose-list + plain-cta · treatment: 37signals/Basecamp (accent-tint color band) -->
+    <section class="blk band-clay">
+      <div class="col-w">
+        <h2 class="b3-head">Long-text handling</h2>
+        <ul class="b3-list">
+          <li><b>Stripe Press</b> — book typography on the web. Measure control, no chrome, headings that hold their own without decoration.</li>
+          <li><b>Works in Progress</b> — sidenotes, footnotes, sustained reading. Relevant to your Notion-docs layer and the sample teardowns.</li>
+          <li><b>37signals / Basecamp</b> — plain speech, opinionated blocks, one CTA, active refusal of decoration. The nearest ethos match to your §6 and §9.</li>
+        </ul>
+        <div class="b3-cta">
+          <a class="btn" href="/varpage/teardown/">Request a free teardown &rarr;</a>
+        </div>
+        <p class="cap b3-cap"><em>Feel: dense-condensed, plain, one clear ask. Ubuntu Condensed 21/1.55 reading + Geo 34 head, one ink CTA · 82ch · full-bleed soft-clay wash band (contrasting dark text), no lined card · clay accent — similar to 37signals / Basecamp.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B4 — block rhythm and sequencing (stat-dense) ============ -->
+    <!-- template: stat-dense · treatment: Stripe (solid cards, gradient-outside ground) -->
+    <section class="blk g-teal">
+      <div class="col-w">
+        <p class="b4-eyebrow">Big SaaS</p>
+        <h2 class="b4-head">Block rhythm and sequencing</h2>
+        <div class="b4-grid">
+          <div class="b4-stat">
+            <div class="b4-fig">Linear</div>
+            <p class="b4-src">take the spacing rhythm and the restraint, invert the palette. The lesson is vertical rhythm, and whitespace used structurally.</p>
+          </div>
+          <div class="b4-stat">
+            <div class="b4-fig">Stripe</div>
+            <p class="b4-src">how to sequence dense information so density stops feeling heavy. Useful for your §5, where you have a statistic plus a source plus a caveat in one block.</p>
+          </div>
+        </div>
+        <p class="cap b4-cap"><em>Feel: rounded-techno, calm-dense, sequenced. Oxanium 20/1.55 stat text + Space Mono 30 figures, Iceland 40 head · 82ch · solid white carved cards on a screen↔soft-teal gradient ground · orange accent — similar to Stripe.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B5 — bare imagery (bare frame / doc-excerpt) ============ -->
+    <!-- template: bare-frame · treatment: Stripe (carved frame, no image) -->
+    <section class="blk g-cool">
+      <div class="col-w">
+        <h2 class="b5-head">Bare imagery</h2>
+        <p class="b5-body">Mercury, Ramp, and Arc all show images without device frames, drop shadows, or perspective tilt. That is the current premium signal, and it happens to be the only image treatment that fits you.</p>
+        <figure class="bare">
+          <div class="doc-excerpt"><span class="anno"># teardown — annotation layer</span>
+&gt; hero      no device frame · no shadow · no tilt
+&gt; measure   82ch
+&gt; radius    8px
+&gt; border    1px inner (carved)
+<span class="anno">&gt; note      the artifact IS the image</span></div>
+          <figcaption class="note">Bare frame stands in for the image: a monospace document excerpt, no chrome.</figcaption>
+        </figure>
+        <p class="cap b5-cap"><em>Feel: even screen-sans + true mono doc. Electrolize 20/1.6 body + Space Mono 16 doc-excerpt, Nova Square 34 head · 82ch · solid white carved frame on cool screen near-white · orange accent — similar to Stripe.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B6 — the 2026 warning (sidenote) ============ -->
+    <!-- template: sidenote · treatment: Works in Progress (flat ground, margin note) -->
+    <section class="blk g-flat">
+      <div class="wrap-w">
+        <h2 class="b6-head">One warning about the 2026 consensus</h2>
+        <div class="b6-wrap">
+          <div>
+            <p class="b6-body">Every roundup this year says the same three things: put the product in motion at the top, add micro-interactions, consider dark mode. Two of those are wrong for you. You have no product UI to demo, and dark mode fights the calm-default frame you decided to install. Your equivalent of the interactive product moment is a real teardown excerpt rendered as a document — styled like a page from the artifact the client would receive, monospace annotations and all. That is your hero image and your §7 proof in one object.</p>
+          </div>
+          <aside class="b6-side">That is your hero image and your §7 proof in one object.</aside>
+        </div>
+        <p class="cap b6-cap"><em>Feel: business-variable, the readable exception. Roboto Flex 21/1.6 body + Cuprum 42 blue head · 70ch main + 16rem blue margin note · flat cool near-white, no lined card · blue accent — similar to Works in Progress. (The one Roboto Flex / Business block on the page.)</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B7 — harvest close (statement) ============ -->
+    <!-- template: statement · treatment: Stripe Press (inverse near-black band, focal grad) -->
+    <section class="blk band-dark">
+      <div class="col">
+        <h2 class="b7-head">Five numbers and two fonts.</h2>
+        <p class="b7-body">Open each of these, then write down only: the radius value, the body measure in characters, the border color and weight, the ratio between section padding and paragraph spacing, the type pairing. Five numbers and two fonts.</p>
+        <p class="b7-body">That set, applied to any block library, gets you closer to a coherent site than any theme purchase will.</p>
+        <p class="cap b7-cap"><em>Feel: narrow-humanist body, squared close. Cuprum 21/1.6 body + Geo 46 orange head · 76ch · inverse near-black full-bleed screen band with a whisper focal gradient (toward darker), no lined card · orange accent — similar to Stripe Press.</em></p>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
