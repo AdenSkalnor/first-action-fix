@@ -6,6 +6,7 @@
   seven-block set, reordered per page. Spec lives in repo /04.08/:
   lab-editing-map.md, editing-choices-directory.md, technical-editing.md.
 */
+import LabMenu from '../../components/LabMenu.astro';
 const iter1 = [
   { href: '/lab/specimen/',  name: 'Specimen',  note: 'Your six fonts, one per block, each a different role. Where techno faces meet real paragraphs.' },
   { href: '/lab/mercury/',   name: 'Mercury',   note: 'Premium-restrained off-white. Hairline borders, cream tone-shift depth, one indigo CTA.' },
@@ -16,6 +17,7 @@ const iter1 = [
 const iter2 = [
   { href: '/lab/dark/',  name: 'Dark',  note: 'Near-black + dark-blue grounds, orange accent, inverse blocks, double-outline, solid-inside/gradient-outside. Bigger type, wider measure, no Roboto.' },
   { href: '/lab/white/', name: 'White (new mixes)', note: 'Alternating whites + gradient grounds, one real hue per block, inverse near-black close. Less gray, more voltage.' },
+  { href: '/lab/custom/', name: 'Custom (new body fonts)', note: 'Iteration-2 surface with visibly distinct body fonts — Lora, Work Sans, Bitter, Manrope, Frank Ruhl Libre, IBM Plex Mono. Shared top menu.' },
 ];
 ---
 
@@ -56,6 +58,7 @@ const iter2 = [
   </style>
 </head>
 <body>
+  <LabMenu active="index" />
   <main class="wrap">
     <p class="eyebrow">First Action Fix · /lab/</p>
     <h1>Surface &amp; specimen comparison</h1>

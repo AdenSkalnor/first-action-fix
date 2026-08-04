@@ -1,0 +1,55 @@
+---
+/*
+  LabMenu — shared surface navigation for the /lab/ set.
+  Self-contained: carries its own dark bar + high-contrast buttons so it
+  reads on any page background (light or dark). Sticky at top.
+  Usage: import LabMenu from '../../components/LabMenu.astro';  <LabMenu active="mercury" />
+*/
+const { active = '' } = Astro.props;
+const links = [
+  { key: 'index',     href: '/lab/',            label: 'Home' },
+  { key: 'specimen',  href: '/lab/specimen/',   label: 'Specimen' },
+  { key: 'mercury',   href: '/lab/mercury/',    label: 'Mercury' },
+  { key: 'anthropic', href: '/lab/anthropic/',  label: 'Anthropic' },
+  { key: 'attio',     href: '/lab/attio/',      label: 'Attio' },
+  { key: 'notion',    href: '/lab/notion/',     label: 'Notion' },
+  { key: 'dark',      href: '/lab/dark/',       label: 'Dark' },
+  { key: 'white',     href: '/lab/white/',      label: 'White' },
+  { key: 'custom',    href: '/lab/custom/',     label: 'Custom' },
+];
+---
+<nav class="labmenu" aria-label="Surface navigation">
+  <div class="labmenu__inner">
+    <span class="labmenu__brand">First Action Fix &middot; /lab/</span>
+    <div class="labmenu__links">
+      {links.map((l) => (
+        <a href={l.href} class:list={['labmenu__btn', { 'is-active': l.key === active }]} aria-current={l.key === active ? 'page' : undefined}>{l.label}</a>
+      ))}
+    </div>
+  </div>
+</nav>
+<style>
+  .labmenu{
+    position: sticky; top: 0; z-index: 100;
+    background: #141417; border-bottom: 1px solid #2C2C33;
+    font-family: 'Space Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+  .labmenu__inner{
+    max-width: 1200px; margin-inline: auto;
+    display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem;
+    padding: .65rem 1.2rem;
+  }
+  .labmenu__brand{ color: #E9E9EE; font-size: 13px; letter-spacing: .06em; margin-right: auto; }
+  .labmenu__links{ display: flex; flex-wrap: wrap; gap: .4rem; }
+  .labmenu__btn{
+    display: inline-block; padding: .5rem .85rem; border-radius: 8px;
+    font-size: 13px; line-height: 1; text-decoration: none; letter-spacing: .02em;
+    color: #E9E9EE; background: #25252B; border: 1px solid #3B3B44;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .labmenu__btn:hover, .labmenu__btn:focus-visible{ background: #3B3B44; color: #FFFFFF; outline: none; }
+  .labmenu__btn.is-active{
+    background: #E4632A; color: #141417; border-color: #E4632A; font-weight: 700;
+  }
+  @media (max-width: 640px){ .labmenu__brand{ width: 100%; margin-bottom: .3rem; } }
+</style>
