@@ -1,0 +1,361 @@
+---
+/*
+  /lab/anthropic/ — the Anthropic surface in the palette comparison set.
+
+  One surface (warm ivory, low-saturation warm ink, clay accent), seven fixed
+  blocks (K1–K7 from lab-editing-map.md §6), painted in Anthropic's tokens and
+  sequenced in Anthropic's order: K7 K1 K6 K2 K5 K3 K4.
+
+  This is the surface where a serif belongs. K1/K3/K6 — the sustained-reading
+  blocks — take Newsreader as their reading face (adjacent-family latitude,
+  technical-editing.md §2) while keeping each block's assigned display font for
+  its heading. Named in each of those blocks' captions. This is the
+  serif-heading / serif-reading Anthropic signature.
+
+  Own shell — no BaseLayout. Static. Content verbatim from technical-editing.md §5.
+*/
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>/lab/anthropic — warm ivory surface</title>
+  <meta
+    name="description"
+    content="The Anthropic surface: warm ivory ground, low-saturation warm ink, clay accent, serif for sustained reading. Seven fixed editing blocks in Anthropic's order."
+  />
+
+  <!-- Fonts via Google Fonts. Six originals + Newsreader (serif reading face). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400;0,700;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nova+Square&family=Oxanium:wght@400;600;700&family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Ubuntu+Condensed&display=swap"
+    rel="stylesheet"
+  />
+
+  <style is:global>
+    :root {
+      /* Anthropic surface tokens (editing-choices-directory.md PART A) */
+      --surface: #FAF9F5;        /* warm ivory ground */
+      --surface-2: #F0EEE6;      /* secondary ground */
+      --surface-lift: #FEFDFB;   /* ~4% lighter — peripheral / receding */
+      --surface-deep: #ECE8DE;   /* ~7% toward clay-shadowed near-black — focal */
+      --surface-clay: #F6EFEA;   /* ivory with a clay tint (warm light end) */
+      --ink: #2B2824;            /* low-saturation warm ink */
+      --ink-soft: rgba(43, 40, 36, 0.62);
+      --ink-mute: rgba(43, 40, 36, 0.52);
+      --accent: #CC785C;         /* clay / terracotta */
+      --accent-deep: #B5644A;
+      --rule: rgba(43, 40, 36, 0.10); /* minimal border — separation is mostly by ground + space */
+    }
+
+    * { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: 'Roboto Flex', system-ui, sans-serif;
+      font-size: 18px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page { display: block; }
+
+    /* One block = one editing treatment. Separation by ground-tone + generous space. */
+    .blk {
+      padding: 5rem 1.5rem;
+    }
+    .blk--tint { background: var(--surface-clay); }
+    .blk--2 { background: var(--surface-2); }
+
+    .col { max-width: 62ch; margin-inline: auto; }
+
+    /* Soft focus-directing gradients (technical-editing.md §3), delta ≤ ~7% — a whisper. */
+    .grad-recede { background: linear-gradient(180deg, var(--surface) 0%, var(--surface-lift) 100%); }
+    .grad-focus  { background: linear-gradient(180deg, var(--surface-lift) 0%, var(--surface-deep) 100%); }
+
+    /* Shared reading face — Newsreader serif for the sustained-reading blocks. */
+    .serif { font-family: 'Newsreader', Georgia, serif; font-size: 19px; line-height: 1.7; }
+    .serif p { margin: 0 0 1.15rem; }
+
+    /* Captions: italic, muted, in the block's own font, ≤16. */
+    .cap { font-size: 15px; line-height: 1.5; color: var(--ink-mute); margin-top: 1.75rem; }
+    .cap em { font-style: italic; }
+
+    .note { font-size: 16px; color: var(--ink-soft); }
+
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: var(--accent-deep); }
+
+    /* Small restrained radius throughout. */
+    .r4 { border-radius: 4px; }
+    .r6 { border-radius: 6px; }
+
+    /* ---- K7 statement close (Nova Square + Roboto Flex) ---- */
+    .k7-head {
+      font-family: 'Nova Square', system-ui, sans-serif;
+      font-size: 36px;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin: 0 0 1.25rem;
+    }
+    .k7-body { font-size: 18px; line-height: 1.65; margin: 0; }
+    .k7-body + .k7-body { margin-top: 1rem; }
+
+    /* ---- K1 prose eyebrow (Roboto Flex display) ---- */
+    .k1-eyebrow {
+      font-family: 'Roboto Flex', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 0 0 1rem;
+    }
+
+    /* ---- K6 sidenote (Cuprum italic head + Newsreader body + margin note) ---- */
+    .k6-head {
+      font-family: 'Cuprum', sans-serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1.2;
+      margin: 0 0 1.5rem;
+    }
+    .k6-wrap { display: grid; grid-template-columns: minmax(0, 62ch) 15rem; gap: 2.5rem; align-items: start; }
+    .k6-side {
+      font-family: 'Cuprum', sans-serif;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      padding-top: 0.4rem;
+    }
+    @media (max-width: 820px) {
+      .k6-wrap { grid-template-columns: 1fr; }
+      .k6-side { border-left: 2px solid var(--rule); padding-left: 1rem; }
+    }
+
+    /* ---- K2 rhythm list (Ubuntu Condensed head + Roboto Flex items) — Linear ---- */
+    .k2-eyebrow {
+      font-family: 'Roboto Flex', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 0 0 0.75rem;
+    }
+    .k2-head {
+      font-family: 'Ubuntu Condensed', sans-serif;
+      font-size: 32px;
+      line-height: 1.15;
+      letter-spacing: -0.022em;
+      margin: 0 0 1.75rem;
+    }
+    .k2-list { list-style: none; padding: 0; margin: 0; }
+    .k2-list li {
+      font-family: 'Roboto Flex', sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      padding-block: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+    .k2-list li b { font-weight: 600; }
+
+    /* ---- K5 bare frame (Oxanium head + neutral body + mono doc-excerpt) — Stripe ---- */
+    .k5-head {
+      font-family: 'Oxanium', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 28px;
+      line-height: 1.2;
+      margin: 0 0 1.25rem;
+    }
+    .k5-body { font-size: 18px; line-height: 1.6; margin: 0 0 1.75rem; }
+    .bare { margin: 0; }
+    .doc-excerpt {
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.5rem;
+      background: var(--surface-lift);
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .doc-excerpt .anno { color: var(--accent-deep); }
+    figcaption { margin-top: 1rem; }
+
+    /* ---- K3 long-text list (Cuprum head + Newsreader reading) + plain CTA — 37signals ---- */
+    .k3-head {
+      font-family: 'Cuprum', sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 1.2;
+      margin: 0 0 1.5rem;
+    }
+    .k3-list { list-style: none; padding: 0; margin: 0 0 2rem; }
+    .k3-list li { margin: 0 0 1.15rem; }
+    .k3-list b { font-weight: 600; }
+    .cta { margin-top: 0.5rem; }
+    .btn {
+      display: inline-block;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 18px;
+      background: var(--accent);
+      color: #FBF7F4;
+      padding: 0.7rem 1.35rem;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+    .btn:hover { background: var(--accent-deep); color: #FBF7F4; }
+
+    /* ---- K4 stat-dense (Space Mono figure + source/caveat) — Stripe ---- */
+    .k4-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      color: var(--ink-soft);
+      margin: 0 0 1.5rem;
+    }
+    .stat { padding-block: 1.25rem; border-top: 1px solid var(--rule); }
+    .stat:first-of-type { border-top: none; }
+    .fig {
+      font-family: 'Space Mono', monospace;
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+    }
+    .src { font-family: 'Roboto Flex', sans-serif; font-size: 18px; line-height: 1.6; margin: 0; }
+    .k4-cap { font-family: 'Space Mono', monospace; }
+    .k1-cap, .k3-cap, .k6-cap { font-family: 'Newsreader', Georgia, serif; }
+    .k2-cap { font-family: 'Ubuntu Condensed', sans-serif; letter-spacing: 0.01em; }
+    .k5-cap { font-family: 'Oxanium', sans-serif; }
+    .k7-cap { font-family: 'Roboto Flex', sans-serif; }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <!-- ============ K7 — harvest close (statement) ============ -->
+    <!-- template: statement · treatment: Stripe Press -->
+    <section class="blk grad-focus">
+      <div class="col">
+        <h1 class="k7-head">Five numbers and two fonts.</h1>
+        <p class="k7-body">Open each of these, then write down only: the radius value, the body measure in characters, the border color and weight, the ratio between section padding and paragraph spacing, the type pairing. Five numbers and two fonts.</p>
+        <p class="k7-body">That set, applied to any block library, gets you closer to a coherent site than any theme purchase will.</p>
+        <p class="cap k7-cap"><em>Nova Square head 36 + Roboto Flex 18/1.65 · 62ch · left · no border · r4 · focal grad (≤7%) · 5rem:1rem — similar to Stripe Press.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ K1 — premise (prose) ============ -->
+    <!-- template: prose · treatment: Stripe Press -->
+    <section class="blk grad-recede">
+      <div class="col">
+        <p class="k1-eyebrow">Premise</p>
+        <div class="serif">
+          <p>Your premise holds. A live site is a better template source than a template marketplace, because you can read the decisions rather than inherit someone's content model. And the reskin is only about six variables: neutral ramp, one accent, radius scale, spacing scale, text measure, border weight. Fix those six and any layout you admire becomes yours.</p>
+        </div>
+        <p class="cap k1-cap"><em>Roboto Flex eyebrow + Newsreader serif reading 19/1.7 · 62ch · left · no border · r4 · recede grad · 5rem:1.15rem — similar to Stripe Press. Serif reading face: Newsreader.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ K6 — the 2026 warning (sidenote) ============ -->
+    <!-- template: sidenote · treatment: Works in Progress -->
+    <section class="blk blk--tint">
+      <div class="col" style="max-width: 82ch;">
+        <h2 class="k6-head">One warning about the 2026 consensus</h2>
+        <div class="k6-wrap">
+          <div class="serif">
+            <p>Every roundup this year says the same three things: put the product in motion at the top, add micro-interactions, consider dark mode. Two of those are wrong for you. You have no product UI to demo, and dark mode fights the calm-default frame you decided to install. Your equivalent of the interactive product moment is a real teardown excerpt rendered as a document — styled like a page from the artifact the client would receive, monospace annotations and all.</p>
+          </div>
+          <aside class="k6-side">That is your hero image and your §7 proof in one object.</aside>
+        </div>
+        <p class="cap k6-cap"><em>Cuprum italic head 28 + Newsreader serif reading 19/1.7 · 62ch main + 15rem margin note (Cuprum italic 16) · no border · r4 · 5rem:1.15rem — similar to Works in Progress. Serif reading face: Newsreader.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ K2 — palette + surface (rhythm list) ============ -->
+    <!-- template: rhythm-list · treatment: Linear -->
+    <section class="blk grad-recede">
+      <div class="col">
+        <p class="k2-eyebrow">Palette + surface</p>
+        <h2 class="k2-head">The white-main systems worth copying wholesale</h2>
+        <ul class="k2-list">
+          <li><b>Mercury</b> — the reference for premium-restrained off-white. Near-invisible borders, almost no shadow, one accent used sparingly. Serious without being cold, which is your construction-buyer problem exactly.</li>
+          <li><b>Anthropic</b> — warm ivory ground, serif headings, very low saturation. Closest live example of your §1 brief: calm enough to read as a default rather than a pitch.</li>
+          <li><b>Attio</b> — white, precise, tight grid. Shows how far a single accent goes when everything else is neutral.</li>
+          <li><b>Notion</b> — the smoothed-edges reference. Radius scale, soft card fills, warm white. Study it for where rounding stops; over-rounding is what makes a premium site read as a toy.</li>
+        </ul>
+        <p class="cap k2-cap"><em>Ubuntu Condensed head 32 (−.022em) + Roboto Flex items 18/1.6, tracked eyebrow +.4px · 62ch · left · 1px rule top per item · r4 · 5rem:1rem — similar to Linear.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ K5 — bare imagery (bare frame / doc-excerpt) ============ -->
+    <!-- template: bare-frame · treatment: Stripe -->
+    <section class="blk blk--2">
+      <div class="col">
+        <h2 class="k5-head">Bare imagery</h2>
+        <p class="k5-body">Mercury, Ramp, and Arc all show images without device frames, drop shadows, or perspective tilt. That is the current premium signal, and it happens to be the only image treatment that fits you.</p>
+        <figure class="bare">
+          <div class="doc-excerpt"><span class="anno"># teardown — annotation layer</span>
+&gt; hero      no device frame · no shadow · no tilt
+&gt; measure   62ch
+&gt; radius    4px
+&gt; border    1px hairline
+<span class="anno">&gt; note      the artifact IS the image</span></div>
+          <figcaption class="note">Bare frame stands in for the image: a monospace document excerpt, no chrome.</figcaption>
+        </figure>
+        <p class="cap k5-cap"><em>Oxanium head 28 + Roboto Flex body 18/1.6 + Space Mono doc-excerpt 16 · 62ch · left · 1px frame · r4 · 5rem:1.75rem — similar to Stripe.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ K3 — long-text handling (list) + CTA ============ -->
+    <!-- template: prose-list · treatment: 37signals/Basecamp -->
+    <section class="blk grad-recede">
+      <div class="col">
+        <h2 class="k3-head">Long-text handling</h2>
+        <ul class="k3-list serif">
+          <li><b>Stripe Press</b> — book typography on the web. Measure control, no chrome, headings that hold their own without decoration.</li>
+          <li><b>Works in Progress</b> — sidenotes, footnotes, sustained reading. Relevant to your Notion-docs layer and the sample teardowns.</li>
+          <li><b>37signals / Basecamp</b> — plain speech, opinionated blocks, one CTA, active refusal of decoration. The nearest ethos match to your §6 and §9.</li>
+        </ul>
+        <!-- template: plain-cta · treatment: Basecamp -->
+        <div class="cta">
+          <a class="btn" href="/varpage/teardown/">Request a free teardown &rarr;</a>
+        </div>
+        <p class="cap k3-cap"><em>Cuprum head 30 + Newsreader serif reading 19/1.7, one clay CTA · 62ch · left · no border · r4 · 5rem:1.15rem — similar to 37signals / Basecamp. Serif reading face: Newsreader.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ K4 — block rhythm and sequencing (stat-dense) ============ -->
+    <!-- template: stat-dense · treatment: Stripe -->
+    <section class="blk blk--tint">
+      <div class="col">
+        <p class="k4-eyebrow">// block rhythm and sequencing — big SaaS</p>
+        <div class="stat">
+          <div class="fig">Linear</div>
+          <p class="src">take the spacing rhythm and the restraint, invert the palette. The lesson is vertical rhythm, and whitespace used structurally.</p>
+        </div>
+        <div class="stat">
+          <div class="fig">Stripe</div>
+          <p class="src">how to sequence dense information so density stops feeling heavy. Useful for your §5, where you have a statistic plus a source plus a caveat in one block.</p>
+        </div>
+        <p class="cap k4-cap"><em>Space Mono figure 28 + Roboto Flex source 18, eyebrow/caveat 16 note · 62ch · left · 1px rule between · r4 · 5rem:1.25rem — similar to Stripe.</em></p>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

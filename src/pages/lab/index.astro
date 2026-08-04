@@ -1,0 +1,75 @@
+---
+/*
+  /lab/ — index for the surface + specimen comparison set.
+  Standalone shell, no BaseLayout, no global nav (per the /lab/ brief).
+  Links: one font specimen + four palette surfaces sharing one fixed
+  seven-block set, reordered per page. Spec lives in repo /04.08/:
+  lab-editing-map.md, editing-choices-directory.md, technical-editing.md.
+*/
+const pages = [
+  { href: '/lab/specimen/',  name: 'Specimen',  note: 'Your six fonts, one per block, each a different role. Where techno faces meet real paragraphs.' },
+  { href: '/lab/mercury/',   name: 'Mercury',   note: 'Premium-restrained off-white. Hairline borders, cream tone-shift depth, one indigo CTA.' },
+  { href: '/lab/anthropic/', name: 'Anthropic', note: 'Warm ivory, serif reading (Newsreader), single clay accent. Calm-default, low saturation.' },
+  { href: '/lab/attio/',     name: 'Attio',     note: 'Crisp white, 1px carved inner borders, single teal on all-neutral. Tight grid.' },
+  { href: '/lab/notion/',    name: 'Notion',    note: 'Warm-grey ecru cards, 12/8 radius ceiling, warm-tinted shadow.' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>/lab/ — surface & specimen comparison</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..700&family=Space+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root{ --surface:#F7F6F3; --ink:#22201C; --muted:#6B6A64; --rule:#E4E2DB; --accent:#B4531F; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--surface);color:var(--ink);
+      font-family:'Roboto Flex',system-ui,sans-serif;font-size:18px;line-height:1.6;
+      -webkit-font-smoothing:antialiased;}
+    .wrap{max-width:60ch;margin-inline:auto;padding:8vh 1.5rem 12vh;}
+    .eyebrow{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--muted);margin:0 0 1.5rem;}
+    h1{font-size:34px;line-height:1.15;font-weight:520;margin:0 0 1rem;letter-spacing:-.01em;}
+    .lede{color:var(--muted);margin:0 0 3.5rem;}
+    ul{list-style:none;padding:0;margin:0;}
+    li{border-top:1px solid var(--rule);}
+    li:last-child{border-bottom:1px solid var(--rule);}
+    a.card{display:block;text-decoration:none;color:inherit;padding:1.4rem 0;transition:padding-left .18s ease;}
+    a.card:hover{padding-left:.6rem;}
+    .name{font-size:22px;font-weight:520;}
+    .name .arrow{color:var(--accent);}
+    .cardnote{color:var(--muted);font-size:16px;margin-top:.3rem;}
+    .foot{margin-top:4rem;font-family:'Space Mono',monospace;font-size:13px;color:var(--muted);line-height:1.7;}
+    .foot a{color:var(--accent);}
+    @media (prefers-reduced-motion: reduce){a.card{transition:none}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="eyebrow">First Action Fix · /lab/</p>
+    <h1>Surface &amp; specimen comparison</h1>
+    <p class="lede">One fixed set of seven blocks, reordered per page. The specimen isolates the fonts; the four surfaces isolate palette, border, radius, and shadow. Same words throughout, so only the treatment changes.</p>
+
+    <ul>
+      {pages.map((p) => (
+        <li>
+          <a class="card" href={p.href}>
+            <div class="name">{p.name} <span class="arrow">&rarr;</span></div>
+            <div class="cardnote">{p.note}</div>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="foot">
+      Build spec (repo /04.08/): lab-editing-map.md &middot; editing-choices-directory.md &middot; technical-editing.md<br />
+      Contact: <a href="mailto:adennagleng@gmail.com">adennagleng@gmail.com</a> &middot; 2026
+    </p>
+  </main>
+</body>
+</html>
