@@ -6,12 +6,16 @@
   seven-block set, reordered per page. Spec lives in repo /04.08/:
   lab-editing-map.md, editing-choices-directory.md, technical-editing.md.
 */
-const pages = [
+const iter1 = [
   { href: '/lab/specimen/',  name: 'Specimen',  note: 'Your six fonts, one per block, each a different role. Where techno faces meet real paragraphs.' },
   { href: '/lab/mercury/',   name: 'Mercury',   note: 'Premium-restrained off-white. Hairline borders, cream tone-shift depth, one indigo CTA.' },
   { href: '/lab/anthropic/', name: 'Anthropic', note: 'Warm ivory, serif reading (Newsreader), single clay accent. Calm-default, low saturation.' },
   { href: '/lab/attio/',     name: 'Attio',     note: 'Crisp white, 1px carved inner borders, single teal on all-neutral. Tight grid.' },
   { href: '/lab/notion/',    name: 'Notion',    note: 'Warm-grey ecru cards, 12/8 radius ceiling, warm-tinted shadow.' },
+];
+const iter2 = [
+  { href: '/lab/dark/',  name: 'Dark',  note: 'Near-black + dark-blue grounds, orange accent, inverse blocks, double-outline, solid-inside/gradient-outside. Bigger type, wider measure, no Roboto.' },
+  { href: '/lab/white/', name: 'White (new mixes)', note: 'Alternating whites + gradient grounds, one real hue per block, inverse near-black close. Less gray, more voltage.' },
 ];
 ---
 
@@ -35,7 +39,9 @@ const pages = [
     .eyebrow{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.08em;
       text-transform:uppercase;color:var(--muted);margin:0 0 1.5rem;}
     h1{font-size:34px;line-height:1.15;font-weight:520;margin:0 0 1rem;letter-spacing:-.01em;}
-    .lede{color:var(--muted);margin:0 0 3.5rem;}
+    .lede{color:var(--muted);margin:0 0 2.5rem;}
+    .section-label{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--muted);margin:0 0 .5rem;padding-top:1rem;border-top:1px solid var(--rule);}
     ul{list-style:none;padding:0;margin:0;}
     li{border-top:1px solid var(--rule);}
     li:last-child{border-bottom:1px solid var(--rule);}
@@ -55,8 +61,23 @@ const pages = [
     <h1>Surface &amp; specimen comparison</h1>
     <p class="lede">One fixed set of seven blocks, reordered per page. The specimen isolates the fonts; the four surfaces isolate palette, border, radius, and shadow. Same words throughout, so only the treatment changes.</p>
 
+    <h2 class="section-label">First Iteration</h2>
+
     <ul>
-      {pages.map((p) => (
+      {iter1.map((p) => (
+        <li>
+          <a class="card" href={p.href}>
+            <div class="name">{p.name} <span class="arrow">&rarr;</span></div>
+            <div class="cardnote">{p.note}</div>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <h2 class="section-label">Second Iteration</h2>
+
+    <ul>
+      {iter2.map((p) => (
         <li>
           <a class="card" href={p.href}>
             <div class="name">{p.name} <span class="arrow">&rarr;</span></div>

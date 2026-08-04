@@ -1,0 +1,402 @@
+---
+/*
+  /lab/white/ — iteration 2, white copy-base with NEW MIXES.
+
+  The "White kind (current) with new mixes" Andrew asked for. Iteration 1 read
+  "too gray"; the fix here is real color and gradient range on a white
+  foundation — no greige flatness, no Roboto.
+
+  B1–B7 (technical-editing.md §5) in natural order, each painted with:
+    - Alternated base whites: cool near-white #FCFCFB (Attio-clean) and
+      warm off-white #FAF9F5, plus gradient grounds (white↔soft warm,
+      white↔soft blue tint, soft-orange band, near-black inverse).
+    - One strong accent per block: orange #D2691E, blue #2F5FE0, clay #CC785C,
+      teal #0E7C66 — rotated so no two neighbours share a hue.
+    - §4 block catalog: solid-inside/gradient-outside (B1, B4), double-outline
+      (B2), accent-tint color band (B3), carved frame (B5), sidenote card (B6),
+      inverse near-black block (B7). Card vs full-bleed band alternated.
+    - GRADIENTS live on the ground OUTSIDE the lined/carded block; the block
+      interior is always a solid fill.
+    - Fonts alternated block-to-block, no consecutive pairing repeat; serif
+      reading faces (Newsreader/Spectral/Source Serif 4) carry the long blocks.
+
+  Every block closes with an italic muted caption in its own font, leading with
+  a plain-language "Feel:" descriptor. Own shell — no BaseLayout. Static.
+  Content verbatim. B3 CTA → /varpage/teardown/.
+*/
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>/lab/white — white base, new mixes</title>
+  <meta
+    name="description"
+    content="Iteration 2 white copy-base: alternated near-whites, gradient grounds, one strong accent per block, §4 block catalog. Less gray, more voltage — no Roboto."
+  />
+
+  <!-- Fonts via Google Fonts. Iteration-2 roster (no Roboto). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Cuprum:ital,wght@0,400;0,700;1,400;1,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nova+Square&family=Oxanium:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,400;0,600;1,400&family=Ubuntu+Condensed&display=swap"
+    rel="stylesheet"
+  />
+
+  <style is:global>
+    :root {
+      /* Base whites — alternated (iteration-2 notes §2/§3) */
+      --cool: #FCFCFB;        /* cool near-white — the Attio-preferred clean white */
+      --warm: #FAF9F5;        /* warm off-white */
+      --warm-lift: #FAF5EC;   /* warmer near-white — soft end of the warm gradient */
+      --blue-tint: #EDF1FD;   /* soft blue tint — cool end of a gradient ground */
+      --orange-wash: #FBEEE1; /* soft orange wash — accent-tint band */
+      --orange-wash-deep: #F6DEC7;
+
+      /* Inks */
+      --ink: #1B1C1F;         /* near-black text on light */
+      --ink-soft: rgba(27, 28, 31, 0.66);
+      --ink-mute: rgba(27, 28, 31, 0.54);
+
+      /* Inverse ground (near-black block dropped into the white page) */
+      --dark: #17181C;
+      --dark-deep: #101115;
+      --paper: #F4F3EE;       /* warm paper text on dark */
+      --paper-soft: rgba(244, 243, 238, 0.68);
+
+      /* Accents — real hues, one strong per block */
+      --orange: #D2691E;      --orange-deep: #B4571A;
+      --blue: #2F5FE0;        --blue-deep: #2249B8;
+      --clay: #CC785C;        --clay-deep: #B15F44;
+      --teal: #0E7C66;        --teal-deep: #0A6352;
+
+      /* Rules */
+      --rule: #E5E3DC;        /* warm hairline */
+      --rule-cool: #E2E5E8;   /* cool hairline */
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--cool);
+      color: var(--ink);
+      /* Default body face is a serif reading face — never Roboto. */
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 20px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page { display: block; }
+
+    /* One block = one editing treatment. Wide, airy grounds — no skinny column. */
+    .blk { padding: 5.5rem 1.5rem; }
+
+    /* Alternated / gradient grounds. Gradient lives on the GROUND, outside any
+       lined or carded block; the block interior below stays a solid fill. */
+    .g-warm  { background: linear-gradient(180deg, var(--cool) 0%, var(--warm-lift) 100%); }
+    .g-flat-warm { background: var(--warm); }
+    .g-blue  { background: linear-gradient(175deg, var(--cool) 0%, var(--blue-tint) 100%); }
+    .g-cool  { background: var(--cool); }
+
+    /* Wider measures — kill the 62ch skinny column. */
+    .col   { max-width: 74ch; margin-inline: auto; }
+    .col-w { max-width: 80ch; margin-inline: auto; }
+    .wrap-w{ max-width: 88ch; margin-inline: auto; }
+
+    /* Captions: italic, muted, in the block's own font, lead with Feel:. */
+    .cap { font-size: 16px; line-height: 1.5; color: var(--ink-mute); margin-top: 1.9rem; }
+    .cap em { font-style: italic; }
+    .note { font-size: 16px; color: var(--ink-soft); }
+
+    a { color: var(--orange); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: var(--orange-deep); }
+
+    /* ---------- B1 — premise (prose) — Stripe Press ----------
+       Solid-inside / gradient-outside: a solid white carved card seated on a
+       white↔soft-warm gradient ground. Fraunces head + Newsreader serif body. */
+    .b1-card {
+      background: #FFFFFF;                 /* solid interior — no gradient inside */
+      box-shadow: inset 0 0 0 1px var(--rule);
+      border-radius: 10px;
+      padding: 2.6rem 2.4rem;
+    }
+    .b1-eyebrow {
+      font-family: 'Fraunces', serif;
+      font-weight: 600; font-size: 15px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--orange); margin: 0 0 1rem;
+    }
+    .b1-head {
+      font-family: 'Fraunces', serif;
+      font-weight: 600; font-size: 34px; line-height: 1.15;
+      letter-spacing: -0.01em; color: var(--ink); margin: 0 0 1.4rem;
+    }
+    .b1-body { font-family: 'Newsreader', serif; font-size: 21px; line-height: 1.62; margin: 0; }
+
+    /* ---------- B2 — palette + surface (rhythm list) — Linear ----------
+       DOUBLE-OUTLINE: two thin borders 3px apart, solid white inside. Heading
+       takes the blue accent. Ubuntu Condensed head + Hanken Grotesk items. */
+    .b2-card {
+      background: #FFFFFF;
+      border: 1px solid var(--blue);
+      box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 4px var(--blue);
+      border-radius: 6px;
+      padding: 1.4rem 2rem;
+    }
+    .b2-eyebrow {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 600; font-size: 14px;
+      letter-spacing: 0.4px; text-transform: uppercase;
+      color: var(--blue); margin: 0 0 0.9rem;
+    }
+    .b2-head {
+      font-family: 'Ubuntu Condensed', sans-serif;
+      font-size: 42px; line-height: 1.08; letter-spacing: -0.022em;
+      color: var(--blue-deep); margin: 0 0 1.9rem;   /* heading takes the accent */
+    }
+    .b2-list { list-style: none; padding: 0; margin: 0; }
+    .b2-list li {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 20px; line-height: 1.55;
+      padding-block: 1.05rem; border-top: 1px solid var(--rule-cool);
+    }
+    .b2-list li:first-child { border-top: none; }
+    .b2-list li b { font-weight: 600; color: var(--blue-deep); }
+
+    /* ---------- B3 — long-text handling (list) + CTA — 37signals ----------
+       ACCENT-TINT COLOR BLOCK, full-bleed BAND: soft-orange wash with
+       contrasting dark text. A band, not a lined card, so the soft gradient is
+       allowed here. Cuprum head + Spectral serif reading. */
+    .band-orange {
+      background: linear-gradient(160deg, var(--orange-wash) 0%, var(--orange-wash-deep) 100%);
+      color: #2A1B10;
+    }
+    .b3-head {
+      font-family: 'Cuprum', sans-serif;
+      font-weight: 700; font-size: 32px; line-height: 1.15;
+      color: var(--orange-deep); margin: 0 0 1.5rem;
+    }
+    .b3-list { list-style: none; padding: 0; margin: 0 0 2.2rem; font-family: 'Spectral', serif; }
+    .b3-list li { font-size: 21px; line-height: 1.55; margin: 0 0 1.2rem; }
+    .b3-list b { font-weight: 600; }
+    .b3-cta { margin-top: 0.4rem; }
+    .btn {
+      display: inline-block;
+      font-family: 'Cuprum', sans-serif;
+      font-size: 20px; font-weight: 700; letter-spacing: 0.01em;
+      background: var(--ink); color: var(--orange-wash);
+      padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none;
+    }
+    .btn:hover { background: #000; color: var(--orange-wash); }
+
+    /* ---------- B4 — block rhythm (stat-dense) — Stripe ----------
+       Solid-inside / gradient-outside: solid white carved stat cards on a
+       white↔soft-blue gradient ground. Space Mono head + Source Serif 4 body. */
+    .b4-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 15px; letter-spacing: 0.02em;
+      color: var(--ink-soft); margin: 0 0 1.6rem;
+    }
+    .b4-grid { display: grid; gap: 1.15rem; }
+    .b4-stat {
+      background: #FFFFFF;                 /* solid interior on the gradient ground */
+      box-shadow: inset 0 0 0 1px var(--rule-cool);
+      border-radius: 8px; padding: 1.5rem 1.7rem;
+    }
+    .b4-fig {
+      font-family: 'Space Mono', monospace;
+      font-size: 30px; line-height: 1.15; font-weight: 700;
+      color: var(--blue); margin: 0 0 0.55rem;
+    }
+    .b4-src { font-family: 'Source Serif 4', serif; font-size: 20px; line-height: 1.55; margin: 0; }
+
+    /* ---------- B5 — bare imagery (bare frame / doc-excerpt) ----------
+       Carved single frame on cool near-white; no images — the monospace
+       document IS the image. Oxanium head + Hanken Grotesk body + Space Mono. */
+    .b5-head {
+      font-family: 'Oxanium', system-ui, sans-serif;
+      font-weight: 600; font-size: 30px; line-height: 1.15;
+      color: var(--clay-deep); margin: 0 0 1.3rem;
+    }
+    .b5-body { font-family: 'Hanken Grotesk', sans-serif; font-size: 20px; line-height: 1.55; margin: 0 0 1.9rem; }
+    .bare { margin: 0; }
+    .doc-excerpt {
+      box-shadow: inset 0 0 0 1px var(--rule);
+      border-radius: 8px; padding: 1.6rem;
+      background: #FFFFFF;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 16px; line-height: 1.7; color: var(--ink-soft);
+      white-space: pre-wrap; overflow-x: auto;
+    }
+    .doc-excerpt .anno { color: var(--clay); }
+    figcaption { margin-top: 1rem; }
+
+    /* ---------- B6 — the 2026 warning (sidenote) — Works in Progress ----------
+       Flat warm off-white ground; teal accent. Chakra Petch head + Newsreader
+       serif body, teal margin note. */
+    .b6-head {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 600; font-size: 34px; line-height: 1.14;
+      color: var(--teal-deep); margin: 0 0 1.6rem;
+    }
+    .b6-wrap { display: grid; grid-template-columns: minmax(0, 74ch) 16rem; gap: 2.6rem; align-items: start; }
+    .b6-body { font-family: 'Newsreader', serif; font-size: 21px; line-height: 1.6; margin: 0; }
+    .b6-side {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 17px; line-height: 1.5; color: var(--teal);
+      padding-top: 0.35rem; border-left: 3px solid var(--teal); padding-left: 1rem;
+    }
+    @media (max-width: 860px) { .b6-wrap { grid-template-columns: 1fr; } }
+
+    /* ---------- B7 — harvest close (statement) ----------
+       INVERSE BLOCK: a near-black full-bleed band dropped into the white page,
+       with a whisper focal gradient toward darker. Orange headline. Nova Square
+       (sparingly) head + Cuprum body, paper text. */
+    .band-dark {
+      background: linear-gradient(180deg, var(--dark) 0%, var(--dark-deep) 100%);
+      color: var(--paper);
+    }
+    .b7-head {
+      font-family: 'Nova Square', system-ui, sans-serif;
+      font-size: 44px; line-height: 1.1; letter-spacing: -0.01em;
+      color: var(--orange); margin: 0 0 1.4rem;
+    }
+    .b7-body { font-family: 'Cuprum', sans-serif; font-size: 21px; line-height: 1.6; color: var(--paper); margin: 0; }
+    .b7-body + .b7-body { margin-top: 1.1rem; }
+    .band-dark .cap { color: var(--paper-soft); }
+
+    /* Per-block caption fonts (each caption in its own block's font). */
+    .b1-cap { font-family: 'Fraunces', serif; }
+    .b2-cap { font-family: 'Ubuntu Condensed', sans-serif; letter-spacing: 0.01em; }
+    .b3-cap { font-family: 'Cuprum', sans-serif; color: rgba(42, 27, 16, 0.62); }
+    .b4-cap { font-family: 'Space Mono', monospace; }
+    .b5-cap { font-family: 'Oxanium', sans-serif; }
+    .b6-cap { font-family: 'Chakra Petch', sans-serif; }
+    .b7-cap { font-family: 'Cuprum', sans-serif; }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <!-- ============ B1 — premise (prose) ============ -->
+    <!-- template: prose · treatment: Stripe Press (solid card, gradient-outside ground) -->
+    <section class="blk g-warm">
+      <div class="col">
+        <div class="b1-card">
+          <p class="b1-eyebrow">Premise</p>
+          <h1 class="b1-head">A live site is a better template source than a marketplace.</h1>
+          <p class="b1-body">Your premise holds. A live site is a better template source than a template marketplace, because you can read the decisions rather than inherit someone's content model. And the reskin is only about six variables: neutral ramp, one accent, radius scale, spacing scale, text measure, border weight. Fix those six and any layout you admire becomes yours.</p>
+        </div>
+        <p class="cap b1-cap"><em>Feel: warm, editorial, book-like. Fraunces 34 head + Newsreader 21/1.62 body · 74ch · solid white carved card on a white↔soft-warm gradient ground · orange accent — similar to Stripe Press.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B2 — palette + surface (rhythm list) ============ -->
+    <!-- template: rhythm-list · treatment: Linear (double-outline card) -->
+    <section class="blk g-flat-warm">
+      <div class="col-w">
+        <p class="b2-eyebrow">Palette + surface</p>
+        <h2 class="b2-head">The white-main systems worth copying wholesale</h2>
+        <div class="b2-card">
+          <ul class="b2-list">
+            <li><b>Mercury</b> — the reference for premium-restrained off-white. Near-invisible borders, almost no shadow, one accent used sparingly. Serious without being cold, which is your construction-buyer problem exactly.</li>
+            <li><b>Anthropic</b> — warm ivory ground, serif headings, very low saturation. Closest live example of your §1 brief: calm enough to read as a default rather than a pitch.</li>
+            <li><b>Attio</b> — white, precise, tight grid. Shows how far a single accent goes when everything else is neutral.</li>
+            <li><b>Notion</b> — the smoothed-edges reference. Radius scale, soft card fills, warm white. Study it for where rounding stops; over-rounding is what makes a premium site read as a toy.</li>
+          </ul>
+        </div>
+        <p class="cap b2-cap"><em>Feel: crisp, structural, precise. Ubuntu Condensed 42 blue head + Hanken Grotesk 20/1.55 items · 80ch · double-outline card (2×1px, 3px apart), solid white inside on flat warm off-white · blue accent — similar to Linear.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B3 — long-text handling (list) + CTA ============ -->
+    <!-- template: prose-list + plain-cta · treatment: 37signals/Basecamp (accent-tint color band) -->
+    <section class="blk band-orange">
+      <div class="col-w">
+        <h2 class="b3-head">Long-text handling</h2>
+        <ul class="b3-list">
+          <li><b>Stripe Press</b> — book typography on the web. Measure control, no chrome, headings that hold their own without decoration.</li>
+          <li><b>Works in Progress</b> — sidenotes, footnotes, sustained reading. Relevant to your Notion-docs layer and the sample teardowns.</li>
+          <li><b>37signals / Basecamp</b> — plain speech, opinionated blocks, one CTA, active refusal of decoration. The nearest ethos match to your §6 and §9.</li>
+        </ul>
+        <div class="b3-cta">
+          <a class="btn" href="/varpage/teardown/">Request a free teardown &rarr;</a>
+        </div>
+        <p class="cap b3-cap"><em>Feel: warm, plain-spoken, one clear ask. Cuprum 32 head + Spectral 21/1.55 serif reading, one ink CTA · 80ch · full-bleed soft-orange wash band (contrasting dark text), no lined card · orange accent — similar to 37signals / Basecamp.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B4 — block rhythm and sequencing (stat-dense) ============ -->
+    <!-- template: stat-dense · treatment: Stripe (solid cards, gradient-outside ground) -->
+    <section class="blk g-blue">
+      <div class="col-w">
+        <p class="b4-eyebrow">// block rhythm and sequencing — big SaaS</p>
+        <div class="b4-grid">
+          <div class="b4-stat">
+            <div class="b4-fig">Linear</div>
+            <p class="b4-src">take the spacing rhythm and the restraint, invert the palette. The lesson is vertical rhythm, and whitespace used structurally.</p>
+          </div>
+          <div class="b4-stat">
+            <div class="b4-fig">Stripe</div>
+            <p class="b4-src">how to sequence dense information so density stops feeling heavy. Useful for your §5, where you have a statistic plus a source plus a caveat in one block.</p>
+          </div>
+        </div>
+        <p class="cap b4-cap"><em>Feel: technical, sequenced, calm-dense. Space Mono 30 blue figure + Source Serif 4 20/1.55 source · 80ch · solid white carved cards on a white↔soft-blue gradient ground · blue accent — similar to Stripe.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B5 — bare imagery (bare frame / doc-excerpt) ============ -->
+    <!-- template: bare-frame · treatment: Stripe (carved frame, no image) -->
+    <section class="blk g-cool">
+      <div class="col-w">
+        <h2 class="b5-head">Bare imagery</h2>
+        <p class="b5-body">Mercury, Ramp, and Arc all show images without device frames, drop shadows, or perspective tilt. That is the current premium signal, and it happens to be the only image treatment that fits you.</p>
+        <figure class="bare">
+          <div class="doc-excerpt"><span class="anno"># teardown — annotation layer</span>
+&gt; hero      no device frame · no shadow · no tilt
+&gt; measure   80ch
+&gt; radius    8px
+&gt; border    1px inner (carved)
+<span class="anno">&gt; note      the artifact IS the image</span></div>
+          <figcaption class="note">Bare frame stands in for the image: a monospace document excerpt, no chrome.</figcaption>
+        </figure>
+        <p class="cap b5-cap"><em>Feel: bare, document-like, no chrome. Oxanium 30 clay head + Hanken Grotesk 20/1.55 body + Space Mono 16 doc-excerpt · 80ch · solid white carved frame on cool near-white · clay accent — similar to Stripe.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B6 — the 2026 warning (sidenote) ============ -->
+    <!-- template: sidenote · treatment: Works in Progress (flat ground, margin note) -->
+    <section class="blk g-flat-warm">
+      <div class="wrap-w">
+        <h2 class="b6-head">One warning about the 2026 consensus</h2>
+        <div class="b6-wrap">
+          <div>
+            <p class="b6-body">Every roundup this year says the same three things: put the product in motion at the top, add micro-interactions, consider dark mode. Two of those are wrong for you. You have no product UI to demo, and dark mode fights the calm-default frame you decided to install. Your equivalent of the interactive product moment is a real teardown excerpt rendered as a document — styled like a page from the artifact the client would receive, monospace annotations and all.</p>
+          </div>
+          <aside class="b6-side">That is your hero image and your §7 proof in one object.</aside>
+        </div>
+        <p class="cap b6-cap"><em>Feel: editorial, quiet, annotated. Chakra Petch 34 teal head + Newsreader 21/1.6 serif body · 74ch main + 16rem teal margin note · flat warm off-white, no lined card · teal accent — similar to Works in Progress.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ B7 — harvest close (statement) ============ -->
+    <!-- template: statement · treatment: Stripe Press (inverse near-black band, focal grad) -->
+    <section class="blk band-dark">
+      <div class="col">
+        <h2 class="b7-head">Five numbers and two fonts.</h2>
+        <p class="b7-body">Open each of these, then write down only: the radius value, the body measure in characters, the border color and weight, the ratio between section padding and paragraph spacing, the type pairing. Five numbers and two fonts.</p>
+        <p class="b7-body">That set, applied to any block library, gets you closer to a coherent site than any theme purchase will.</p>
+        <p class="cap b7-cap"><em>Feel: hard, decisive, high-contrast close. Nova Square 44 orange head + Cuprum 21/1.6 paper body · 74ch · inverse near-black full-bleed band with a whisper focal gradient (toward darker), no lined card · orange accent — similar to Stripe Press.</em></p>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
