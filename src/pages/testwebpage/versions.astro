@@ -1,0 +1,65 @@
+---
+/*
+  TestWebpage — versions index (/testwebpage/versions/).
+  Lists the base page + the three iterations, each a distinct presentation
+  experiment over the same offer. Own shell; includes the switcher.
+*/
+import TestVersions from '../../components/TestVersions.astro';
+const rows = [
+  { href: '/testwebpage/',   name: 'v1 · Base',     note: 'The build-copy hand-off, rendered straight. Calm serif, one accent — the reference the iterations depart from.' },
+  { href: '/testwebpage/v2/', name: 'v2 · Sourced',  note: 'Copy grounded in verified 2026 benchmarks, cited inline with a real Sources list. Data-forward editorial presentation.' },
+  { href: '/testwebpage/v3/', name: 'v3 · Expanded', note: 'The napkin math from ITERATIONS.md: Lean/Strong scenario tables, disqualifier boxes, obligation ledger. Worksheet / technical presentation.' },
+  { href: '/testwebpage/v4/', name: 'v4 · Custom',   note: 'My own synthesis — spare, human, one confident CTA. Quiet-premium presentation.' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TestWebpage — iterations</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Space+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root{ --paper:#FBFAF7; --ink:#1A1A17; --muted:#6E6B62; --rule:#E7E4DC; --accent:#C2410C; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;
+      font-size:20px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+    .wrap{max-width:60ch;margin-inline:auto;padding:3.5rem 1.5rem 6rem;}
+    .eyebrow{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 1rem;}
+    h1{font-size:34px;line-height:1.15;font-weight:600;margin:0 0 .6rem;letter-spacing:-.01em;}
+    .lede{color:var(--muted);margin:0 0 2.5rem;}
+    ul{list-style:none;padding:0;margin:0;}
+    li{border-top:1px solid var(--rule);}
+    li:last-child{border-bottom:1px solid var(--rule);}
+    a.card{display:block;text-decoration:none;color:inherit;padding:1.3rem 0;transition:padding-left .18s ease;}
+    a.card:hover{padding-left:.5rem;}
+    .name{font-size:21px;font-weight:600;font-family:'Space Mono',monospace;}
+    .name .arrow{color:var(--accent);}
+    .cardnote{color:var(--muted);font-size:16px;margin-top:.3rem;}
+    .foot{margin-top:3rem;font-family:'Space Mono',monospace;font-size:13px;color:var(--muted);}
+    @media (prefers-reduced-motion: reduce){a.card{transition:none}}
+  </style>
+</head>
+<body>
+  <TestVersions active="all" />
+  <main class="wrap">
+    <p class="eyebrow">First Action Fix · TestWebpage</p>
+    <h1>Iterations</h1>
+    <p class="lede">One offer, four presentations. Same construction-software EEC + behavioral-email pitch; each version enhances the copy a different way and tests a different way to present it.</p>
+    <ul>
+      {rows.map((r) => (
+        <li>
+          <a class="card" href={r.href}>
+            <div class="name">{r.name} <span class="arrow">&rarr;</span></div>
+            <div class="cardnote">{r.note}</div>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="foot">Spec: /04.08/testweb-iterations-brief.md &middot; source: ITERATIONS-source.md</p>
+  </main>
+</body>
+</html>

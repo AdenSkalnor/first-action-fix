@@ -1,0 +1,193 @@
+---
+/*
+  /testwebpage/v4/ — the "Custom" iteration of the TestWebpage.
+
+  Quiet-premium presentation (Mercury / Anthropic calm): a warm near-white
+  ground with a whisper of gradient, one refined accent, generous whitespace,
+  a serif reading face, and a single confident CTA. Deliberately spare — the
+  copy breathes; no numbers on screen beyond the disqualifier's floor.
+
+  Own shell — no BaseLayout. Static. Copy verbatim from
+  04.08/testweb-iterations-brief.md → "v4 — Custom copy".
+*/
+import TestVersions from '../../../components/TestVersions.astro';
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TestWebpage · v4 — Custom</title>
+  <meta
+    name="description"
+    content="Your signups leave before the product gets to prove itself. I bring them back taught. A five-day course and behavioral email, run on your real numbers."
+  />
+
+  <!-- Fonts via Google Fonts. Newsreader — serif reading face; Inter — quiet UI/label sans. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <style is:global>
+    :root {
+      /* Quiet-premium tokens — warm near-white ground, one refined accent. */
+      --ground:   #FBFAF7;   /* warm near-white */
+      --ground-2: #F5F3ED;   /* deeper warm tone for the whisper of gradient */
+      --ink:      #23211C;   /* warm near-black */
+      --ink-soft: rgba(35, 33, 28, 0.66);
+      --ink-mute: rgba(35, 33, 28, 0.50);
+      --accent:   #8A5A2B;   /* one refined accent — warm bronze */
+      --accent-deep: #6E4720;
+      --rule:     rgba(35, 33, 28, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(180deg, var(--ground) 0%, var(--ground-2) 100%);
+      background-attachment: fixed;
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-size: 21px;
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap { max-width: 40rem; margin-inline: auto; padding: 0 1.5rem; }
+
+    /* Movements — roomy vertical rhythm, no lined boxes. */
+    .lede    { padding: 7rem 0 4rem; }
+    .mvt     { padding: 3.25rem 0; }
+    .close   { padding: 4rem 0 8rem; }
+
+    .eyebrow {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin: 0 0 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin: 0;
+      max-width: 20ch;
+    }
+
+    h2 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 1.1rem;
+    }
+
+    p { margin: 0 0 1.3rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .rule {
+      border: 0;
+      border-top: 1px solid var(--rule);
+      max-width: 40rem;
+      margin: 0 auto;
+    }
+
+    /* Close — single primary CTA, two quiet secondaries. */
+    .cta-primary {
+      display: inline-block;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: var(--ground);
+      background: var(--accent);
+      text-decoration: none;
+      padding: 0.95rem 2.1rem;
+      border-radius: 40px;
+      transition: background 0.18s ease;
+    }
+    .cta-primary:hover { background: var(--accent-deep); }
+
+    .secondaries {
+      margin-top: 2.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.6rem;
+    }
+    .cta-quiet {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+      transition: color 0.18s ease, border-color 0.18s ease;
+    }
+    .cta-quiet:hover { color: var(--accent); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <TestVersions active="v4" />
+
+  <main>
+    <!-- Headline -->
+    <header class="lede wrap">
+      <p class="eyebrow">Educational email · behavioral email</p>
+      <h1>Your signups leave before the product gets to prove itself. I bring them back taught.</h1>
+    </header>
+
+    <hr class="rule" />
+
+    <!-- Movement 1 — the problem -->
+    <section class="mvt wrap">
+      <h2>The problem</h2>
+      <p>A signup arrives at full attention and spends it fast. The product asks for more — another setup step, another tooltip — and the tab closes. Nothing on the calendar reaches the person after that; the funnel reports a rate and hides every individual exit.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- Movement 2 — the two instruments -->
+    <section class="mvt wrap">
+      <h2>The two instruments</h2>
+      <p>A five-day course teaches the problem before it asks for anything, and ends at the product — the visitor who declined the demo still learns, and comes back using the account. Behavioral email fires on the moment a customer acts — setup abandoned, trial gone quiet, card declined — instead of on a date. Calendar mail hits the week; a trigger hits the moment.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- Movement 3 — the honesty -->
+    <section class="mvt wrap">
+      <h2>The honesty</h2>
+      <p>I run the arithmetic on your real numbers before a lesson is written. Below the floor — under ~50 signups a month, or under ~400 sessions a month — I tell you to wait, and say which side of marginal you're on. The list keeps working after a campaign stops; a demo booked once is spent once.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- Close — one door -->
+    <section class="close wrap">
+      <!-- Primary CTA → EEC landing (placeholder) -->
+      <a class="cta-primary" href="#">Join the course</a>
+      <div class="secondaries">
+        <!-- Read the reasoning → the base TestWebpage -->
+        <a class="cta-quiet" href="/testwebpage/">Read the reasoning</a>
+        <!-- Reply in the DM → LinkedIn thread (placeholder) -->
+        <a class="cta-quiet" href="#">Reply in the DM</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,60 @@
+---
+/*
+  TestWebpage — PAGE 1, Home (/testwebpage/).
+  Copy verbatim from 12-BUILD-COPY.md. Box/note markers not rendered.
+  Buttons: PAGE 2 -> /testwebpage/educational/, PAGE 3 -> /testwebpage/behavioral/,
+  EEC landing + LinkedIn thread are unresolved placeholders (href="#").
+*/
+import TestLayout from '../../layouts/TestLayout.astro';
+---
+<TestLayout
+  title="First Action Fix — educational email for construction software"
+  description="Turning construction-software signups the product never activates into active accounts, using educational email."
+  active="home"
+>
+  <!-- Box 1 — headline -->
+  <section class="hero box">
+    <h1>I help construction-software companies turn signups the product never activates into active accounts, using educational email.</h1>
+  </section>
+
+  <!-- Box 2 — who it's for -->
+  <section class="box">
+    <p>For construction software with a trial or freemium tier — field management, bidding, scheduling, job costing — where signups arrive and most never reach a second session.</p>
+  </section>
+
+  <!-- Box 3 — what changes -->
+  <section class="box">
+    <p>Educational email changes the order: teaching lands before the demo, answers before the support ticket. A signup reads, applies, and comes back to an account already in use.</p>
+  </section>
+
+  <!-- Box 4 — the reasoning + deeper reads -->
+  <section class="box">
+    <p>The reasoning sits on the page, not in a testimonial. Why teaching before the ask changes activation, and why a send that fires on a customer's action beats one on a calendar:</p>
+    <div class="btns">
+      <a class="btn btn--ghost" href="/testwebpage/educational/">Why educational email works</a>
+      <a class="btn btn--ghost" href="/testwebpage/behavioral/">Why behavioral email works</a>
+    </div>
+  </section>
+
+  <!-- Box 5 — limits -->
+  <section class="box">
+    <p>It works when the product has an activation moment and a trial long enough to reach it. It will not fix a product nobody wants, or onboarding that breaks before the email matters.</p>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- Box 6 — close, choice of three; "Join" primary -->
+  <section class="box">
+    <p class="lead">Three ways on.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="#">Join the course</a><!-- -> EEC landing (external, other chat) -->
+      <a class="btn btn--ghost" href="/testwebpage/educational/">Read how it works</a>
+      <a class="btn btn--ghost" href="#">Reply in the DM</a><!-- -> LinkedIn thread -->
+    </div>
+  </section>
+
+  <!-- Box 7 — after -->
+  <section class="box">
+    <p>The course is five days of lifecycle email, one a day, each usable on the current trial. The last asks what is still missing; the reply names what to build next.</p>
+  </section>
+</TestLayout>

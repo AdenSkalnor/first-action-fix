@@ -1,0 +1,355 @@
+---
+/*
+  TestWebpage — v3 "Expanded" iteration (/testwebpage/v3/).
+  Presentation: napkin worksheet / technical. Mono accents, Lean vs Strong
+  scenario tables front and centre, disqualifier callout boxes, obligation ledger,
+  sticky section stepper (EEC · Behavioral · Well-set gate · Obligations).
+  Copy verbatim from 04.08/testweb-iterations-brief.md "v3 — Expanded copy".
+  Numbers reproduced exactly — not recomputed. Own shell (no BaseLayout).
+  CTA placeholder -> EEC landing (external, other chat).
+*/
+import TestVersions from '../../../components/TestVersions.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The arithmetic, on your numbers — First Action Fix (v3)</title>
+  <meta name="description" content="The napkin worksheet: Lean vs Strong scenario tables for educational and behavioral email, recomputed from a rate and a base on the page." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <TestVersions active="v3" />
+
+  <div class="page">
+    <!-- sticky section stepper -->
+    <aside class="stepper" aria-label="Section stepper">
+      <p class="stepper__tag">// worksheet</p>
+      <ol class="stepper__list">
+        <li><a href="#eec">EEC</a></li>
+        <li><a href="#behavioral">Behavioral</a></li>
+        <li><a href="#gate">Well-set gate</a></li>
+        <li><a href="#obligations">Obligations</a></li>
+      </ol>
+    </aside>
+
+    <main class="doc">
+      <!-- lead -->
+      <header class="lead">
+        <p class="kicker">The arithmetic, on your numbers</p>
+        <p class="lead__body">
+          Every figure recomputes from a rate and a base on this page (R6); wide bands
+          split into Lean (defended) and Strong (ceiling) scenarios (R7).
+        </p>
+      </header>
+
+      <!-- EEC per 10,000 sessions -->
+      <section id="eec" class="block">
+        <h2 class="h2"><span class="h2__num">01</span> EEC — per 10,000 sessions/month, person-based</h2>
+        <p class="note">
+          Sessions ÷1.4 ≈ 7,150 people; ×0.8 ≈ 5,700 buying units.
+        </p>
+
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th scope="col">Step</th>
+                <th scope="col" class="num">Lean (defended)</th>
+                <th scope="col" class="num">Strong (ceiling)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Unique people (÷1.4 Lean / ÷1.2 Strong)</th>
+                <td class="num">~7,150</td>
+                <td class="num">~8,300</td>
+              </tr>
+              <tr>
+                <th scope="row">Primary door, no course (1–3% / 4–7% of sessions)</th>
+                <td class="num">~100–300/mo</td>
+                <td class="num">~400–700/mo</td>
+              </tr>
+              <tr>
+                <th scope="row">Popup: email inserted (1.8% / 3.9% of people)</th>
+                <td class="num">~129</td>
+                <td class="num">~324</td>
+              </tr>
+              <tr>
+                <th scope="row">Course CTA → page → email inserted (2%→20% / 5%→40%)</th>
+                <td class="num">~29</td>
+                <td class="num">~166</td>
+              </tr>
+              <tr class="tbl__sum">
+                <th scope="row">New addresses/month (sum of both paths)</th>
+                <td class="num">~158</td>
+                <td class="num">~490</td>
+              </tr>
+              <tr>
+                <th scope="row">Reach lesson 5 (25% / 40% of addresses)</th>
+                <td class="num">~40</td>
+                <td class="num">~196</td>
+              </tr>
+              <tr>
+                <th scope="row">Trial or conversation (5% / 15% of addresses)</th>
+                <td class="num">~8/mo</td>
+                <td class="num">~73/mo</td>
+              </tr>
+              <tr>
+                <th scope="row">Standing on list after sequence</th>
+                <td class="num">~150</td>
+                <td class="num">~417</td>
+              </tr>
+              <tr class="tbl__sum">
+                <th scope="row">Addresses at month 12 (×10.7, 2%/mo unsub)</th>
+                <td class="num">~1,600</td>
+                <td class="num">~4,460</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- disqualifier callout (R10) -->
+        <div class="callout">
+          <p class="callout__tag">Disqualifier — R10</p>
+          <p>
+            The instrument earns its mid-four-figure cost from ~1,400 people/mo
+            (~2,000 sessions) up; at ~290 people (400 sessions) it yields one conversion
+            a quarter — I decline that build. I say which side of marginal your sessions
+            count puts you on before a single lesson gets built.
+          </p>
+        </div>
+      </section>
+
+      <!-- Behavioral per 1,000 signups -->
+      <section id="behavioral" class="block">
+        <h2 class="h2"><span class="h2__num">02</span> Behavioral — per 1,000 signups, forked (R4/R7)</h2>
+
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th scope="col">System</th>
+                <th scope="col" class="num">Trial→paid</th>
+                <th scope="col" class="num">Paid of 1,000</th>
+                <th scope="col" class="num">ARR delta @ $3.3k ACV</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">No mail</th>
+                <td class="num">3–5%</td>
+                <td class="num">30–50</td>
+                <td class="num">—</td>
+              </tr>
+              <tr>
+                <th scope="row">Drip (calendar; ships today)</th>
+                <td class="num">+2 pts</td>
+                <td class="num">+20</td>
+                <td class="num">+$66k</td>
+              </tr>
+              <tr>
+                <th scope="row">Behavioral, less-than-optimal (2 triggers, guessed thresholds)</th>
+                <td class="num">+1 pt over drip</td>
+                <td class="num">+10 over drip</td>
+                <td class="num">+$33k over drip</td>
+              </tr>
+              <tr>
+                <th scope="row">Behavioral, vendor ceiling (refused as a promise)</th>
+                <td class="num">+5–10 pts</td>
+                <td class="num">+50–100</td>
+                <td class="num">$165–330k</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- well-set gate paragraph -->
+      <section id="gate" class="block">
+        <h2 class="h2"><span class="h2__num">03</span> The well-set gate</h2>
+        <p class="prose">
+          The well-set gate — the first deliverable is a ten-minute map of which systems
+          already emit a reachable event, scored on four binary checks:
+          <strong>Defined · Routable · Identity-joined · Historied</strong> (~90 days).
+          Fail any and behavioral is drip in costume — I sell drip, at drip's price, with
+          the wiring named as the gap. Under ~50 signups a month I decline the build: at
+          that volume you writing personally beats any system.
+        </p>
+      </section>
+
+      <!-- obligation ledger (R11) -->
+      <section id="obligations" class="block">
+        <h2 class="h2"><span class="h2__num">04</span> Obligation ledger</h2>
+        <p class="note">R11 — each line quoted verbatim from the copy above.</p>
+        <ul class="ledger">
+          <li>"the first deliverable is a ten-minute map"</li>
+          <li>"Under ~50 signups a month I decline the build"</li>
+          <li>"I say which side of marginal your sessions count puts you on before a single lesson gets built"</li>
+          <li>"I sell drip, at drip's price, with the wiring named as the gap."</li>
+        </ul>
+
+        <!-- single quiet CTA -->
+        <div class="cta">
+          <a class="cta__a" href="#"><!-- -> EEC landing (external, other chat) -->Run the arithmetic on your real numbers →</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <style is:global>
+    :root{
+      --ink:#1A1B1E;
+      --ink-soft:#4B4D53;
+      --paper:#F4F1EA;
+      --card:#FBFAF6;
+      --rule:#D8D3C7;
+      --rule-strong:#B7B1A2;
+      --accent:#C24A1E;
+      --mono:'Space Mono', ui-monospace, 'IBM Plex Mono', monospace;
+      --serif:'Newsreader', Georgia, serif;
+    }
+    *{box-sizing:border-box;}
+    html{-webkit-text-size-adjust:100%;}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(194,74,30,.06), transparent 60%),
+        var(--paper);
+      color:var(--ink);
+      font-family:var(--serif);
+      font-size:20px;
+      line-height:1.6;
+    }
+  </style>
+
+  <style>
+    .page{
+      max-width:1100px;
+      margin-inline:auto;
+      display:grid;
+      grid-template-columns:180px 1fr;
+      gap:2.5rem;
+      padding:2.4rem 1.4rem 5rem;
+      align-items:start;
+    }
+
+    /* stepper */
+    .stepper{position:sticky;top:1.4rem;}
+    .stepper__tag{
+      font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+      color:var(--accent);text-transform:uppercase;margin:0 0 .7rem;
+    }
+    .stepper__list{
+      list-style:none;margin:0;padding:0;border-left:2px solid var(--rule-strong);
+    }
+    .stepper__list li{margin:0;}
+    .stepper__list a{
+      display:block;font-family:var(--mono);font-size:13px;
+      color:var(--ink-soft);text-decoration:none;
+      padding:.4rem 0 .4rem .8rem;margin-left:-2px;
+      border-left:2px solid transparent;transition:color .15s,border-color .15s;
+    }
+    .stepper__list a:hover{color:var(--accent);border-left-color:var(--accent);}
+
+    .doc{min-width:0;}
+
+    /* lead */
+    .lead{margin:0 0 2.6rem;}
+    .kicker{
+      font-family:var(--mono);font-weight:700;font-size:clamp(24px,4vw,34px);
+      letter-spacing:-.01em;margin:0 0 .8rem;color:var(--ink);line-height:1.2;
+    }
+    .lead__body{margin:0;max-width:60ch;color:var(--ink-soft);}
+
+    /* blocks */
+    .block{margin:0 0 3.2rem;}
+    .h2{
+      font-family:var(--mono);font-weight:700;font-size:19px;
+      letter-spacing:.02em;text-transform:uppercase;color:var(--ink);
+      margin:0 0 .7rem;padding-bottom:.5rem;border-bottom:1px solid var(--rule-strong);
+      display:flex;align-items:baseline;gap:.6rem;
+    }
+    .h2__num{color:var(--accent);}
+    .note{
+      font-family:var(--mono);font-size:14px;color:var(--ink-soft);
+      margin:0 0 1rem;
+    }
+    .prose{max-width:62ch;margin:0;}
+    .prose strong{font-family:var(--mono);font-weight:700;font-size:.9em;letter-spacing:.01em;}
+
+    /* tables */
+    .table-wrap{overflow-x:auto;}
+    .tbl{
+      width:100%;border-collapse:collapse;background:var(--card);
+      font-variant-numeric:tabular-nums;
+      border:1px solid var(--rule-strong);
+    }
+    .tbl thead th{
+      font-family:var(--mono);font-weight:700;font-size:12.5px;
+      letter-spacing:.04em;text-transform:uppercase;text-align:left;
+      color:var(--ink);padding:.75rem .9rem;
+      border-bottom:1px solid var(--rule-strong);white-space:nowrap;
+    }
+    .tbl tbody th{
+      font-family:var(--serif);font-weight:500;font-size:16px;text-align:left;
+      color:var(--ink);padding:.7rem .9rem;line-height:1.35;
+    }
+    .tbl td{
+      font-family:var(--mono);font-size:15px;padding:.7rem .9rem;
+      color:var(--ink);white-space:nowrap;
+    }
+    .tbl tbody tr + tr th,
+    .tbl tbody tr + tr td{border-top:1px solid var(--rule);}
+    .tbl .num{text-align:right;}
+    .tbl thead th.num{text-align:right;}
+    .tbl__sum th,.tbl__sum td{background:#F1ECE0;font-weight:700;}
+    .tbl__sum td{font-weight:700;}
+
+    /* disqualifier callout */
+    .callout{
+      margin-top:1.4rem;background:var(--card);
+      border:1px solid var(--accent);border-left:4px solid var(--accent);
+      padding:1rem 1.2rem;
+    }
+    .callout__tag{
+      font-family:var(--mono);font-weight:700;font-size:12px;
+      letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+      margin:0 0 .5rem;
+    }
+    .callout p:last-child{margin:0;max-width:64ch;}
+
+    /* obligation ledger */
+    .ledger{list-style:none;margin:.4rem 0 0;padding:0;}
+    .ledger li{
+      font-family:var(--mono);font-size:15px;line-height:1.5;color:var(--ink);
+      background:var(--card);border:1px solid var(--rule);
+      border-left:3px solid var(--rule-strong);
+      padding:.7rem .9rem;margin:0 0 .55rem;max-width:70ch;
+    }
+
+    /* cta */
+    .cta{margin-top:2rem;}
+    .cta__a{
+      display:inline-block;font-family:var(--mono);font-weight:700;font-size:15px;
+      color:var(--accent);text-decoration:none;
+      border:1px solid var(--accent);padding:.7rem 1.1rem;
+      transition:background .15s,color .15s;
+    }
+    .cta__a:hover{background:var(--accent);color:var(--card);}
+
+    @media (max-width:760px){
+      .page{grid-template-columns:1fr;gap:1.4rem;}
+      .stepper{position:static;}
+      .stepper__list{display:flex;flex-wrap:wrap;border-left:0;gap:.4rem;}
+      .stepper__list a{
+        border:1px solid var(--rule-strong);border-left:1px solid var(--rule-strong);
+        padding:.35rem .6rem;margin-left:0;
+      }
+    }
+  </style>
+</body>
+</html>

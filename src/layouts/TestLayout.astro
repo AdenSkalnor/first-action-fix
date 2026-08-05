@@ -1,0 +1,115 @@
+---
+/*
+  TestLayout — shell for the separate "TestWebpage" mini-site (/testwebpage/).
+  Three pages: Home, Why educational email works, Why behavioral email works.
+  Copy comes verbatim from 12-BUILD-COPY.md; notes/box-markers are not rendered.
+  Calm B2B register: statements, one accent, generous measure.
+*/
+const { title = 'First Action Fix', description = '', active = '' } = Astro.props;
+const nav = [
+  { key: 'home',        href: '/testwebpage/',             label: 'Home' },
+  { key: 'educational', href: '/testwebpage/educational/', label: 'Educational email' },
+  { key: 'behavioral',  href: '/testwebpage/behavioral/',  label: 'Behavioral email' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Space+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --paper:#FBFAF7; --ink:#1A1A17; --muted:#6E6B62; --rule:#E7E4DC; --rule-strong:#D5D1C6;
+      --accent:#C2410C; --accent-ink:#9A330A;
+    }
+    *{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{
+      margin:0;background:var(--paper);color:var(--ink);
+      font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.6;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    }
+    .site{
+      border-bottom:1px solid var(--rule);
+      display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.5rem;
+      max-width:960px;margin-inline:auto;padding:1.1rem 1.5rem;
+    }
+    .brand{
+      font-family:'Space Mono',monospace;font-size:14px;letter-spacing:.04em;
+      color:var(--ink);text-decoration:none;margin-right:auto;
+    }
+    .site nav{display:flex;flex-wrap:wrap;gap:.3rem}
+    .navlink{
+      font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;
+      color:var(--muted);text-decoration:none;padding:.35rem .6rem;border-radius:6px;
+    }
+    .navlink:hover{color:var(--ink);background:#F0EEE7}
+    .navlink.is-active{color:var(--accent);}
+    .doc{max-width:660px;margin-inline:auto;padding:3.5rem 1.5rem 5rem;}
+    .hero h1{
+      font-family:'Hanken Grotesk',sans-serif;font-weight:700;
+      font-size:clamp(30px,5vw,44px);line-height:1.12;letter-spacing:-.015em;
+      margin:0 0 .4em;
+    }
+    .box{margin:0 0 2.4rem;}
+    .box p{margin:0 0 1rem;}
+    .box p:last-child{margin-bottom:0}
+    h2{
+      font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:28px;
+      line-height:1.2;letter-spacing:-.01em;margin:0 0 .6rem;
+    }
+    .lead{font-size:22px;}
+    .rule{border:0;border-top:1px solid var(--rule-strong);margin:3rem 0;}
+    .btns{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem;}
+    .btn{
+      display:inline-block;font-family:'Hanken Grotesk',sans-serif;font-weight:600;
+      font-size:16px;line-height:1;padding:14px 22px;border-radius:9px;text-decoration:none;
+      transition:background .15s ease,color .15s ease,border-color .15s ease;
+    }
+    .btn--primary{background:var(--accent);color:#fff;border:1px solid var(--accent);}
+    .btn--primary:hover{background:var(--accent-ink);border-color:var(--accent-ink);}
+    .btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--rule-strong);}
+    .btn--ghost:hover{border-color:var(--ink);}
+    table{
+      width:100%;border-collapse:collapse;margin:1.4rem 0 .2rem;
+      font-family:'Hanken Grotesk',sans-serif;font-size:16px;
+    }
+    caption{caption-side:top;text-align:left;font-family:'Space Mono',monospace;
+      font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;}
+    th,td{text-align:left;padding:.7rem .8rem;border-bottom:1px solid var(--rule);}
+    thead th{border-bottom:1px solid var(--rule-strong);color:var(--muted);font-weight:600;}
+    tbody td:first-child{color:var(--ink);}
+    tbody td:nth-child(2),tbody td:nth-child(3){font-variant-numeric:tabular-nums;}
+    .foot{
+      max-width:960px;margin-inline:auto;padding:2rem 1.5rem 3rem;
+      border-top:1px solid var(--rule);
+      font-family:'Space Mono',monospace;font-size:13px;color:var(--muted);line-height:1.7;
+    }
+    .foot a{color:var(--accent-ink);}
+  </style>
+</head>
+<body>
+  <header class="site">
+    <a class="brand" href="/testwebpage/">First Action Fix</a>
+    <nav>
+      {nav.map((n) => (
+        <a href={n.href} class:list={['navlink', { 'is-active': n.key === active }]} aria-current={n.key === active ? 'page' : undefined}>{n.label}</a>
+      ))}
+    </nav>
+  </header>
+
+  <main class="doc">
+    <slot />
+  </main>
+
+  <footer class="foot">
+    First Action Fix &middot; 2026 &middot; <a href="mailto:adennagleng@gmail.com">adennagleng@gmail.com</a>
+  </footer>
+</body>
+</html>

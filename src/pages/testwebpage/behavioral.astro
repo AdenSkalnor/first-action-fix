@@ -1,0 +1,58 @@
+---
+/*
+  TestWebpage — PAGE 3, Why behavioral email works (/testwebpage/behavioral/).
+  Copy verbatim from 12-BUILD-COPY.md. Box/note markers + question numbers not rendered.
+  Buttons: EEC landing + LinkedIn thread are unresolved placeholders (href="#").
+*/
+import TestLayout from '../../layouts/TestLayout.astro';
+---
+<TestLayout
+  title="Why behavioral email works — First Action Fix"
+  description="Email that fires on a customer's action instead of on a date."
+  active="behavioral"
+>
+  <!-- Box 1 — what it is -->
+  <section class="hero box">
+    <h1>Why behavioral email works</h1>
+    <p class="lead">Email that fires on a customer's action — abandoned signup, quiet trial, upgrade page opened and closed, failed card — instead of on a date.</p>
+  </section>
+
+  <!-- Box 2 — who -->
+  <section class="box">
+    <p>For a trial with enough signups that individual moments go unanswered.</p>
+  </section>
+
+  <!-- Box 3 — what changes -->
+  <section class="box">
+    <p>The message arrives at the moment of a decision instead of on a schedule.</p>
+  </section>
+
+  <!-- Box 4 — why it works, prose -->
+  <section class="box">
+    <p>The message competes for a crowded inbox: the average worker takes ~120 emails a day, and the company behind the trial runs ~11 separate software tools, each sending its own nudges. The difference between a message that reads "they noticed me" and one that reads "a statistic I didn't need" is the difference between a habit of trust and a habit of ignoring — both compound.</p>
+
+    <p>Calendar mail hits the week; a trigger hits the moment. With no mail, 3–5 of every 100 trials pay. Calendar drip lifts that a couple of points, to about 5–7. Behavioral, set up modestly, adds roughly one more, to 6–8 — the gain comes from landing at the moment of a decision rather than on a schedule.</p>
+
+    <p>The plumbing case computes plainest. Say 100 customers cancel in a year. 20–40 of those are failed cards, not decisions — people who meant to stay. Left alone, about 6–12 come back. With retry logic and card updaters, 11–28 do — roughly 5–16 accounts saved, for the least writing of anything here.</p>
+  </section>
+
+  <!-- Box 5 — the catch -->
+  <section class="box">
+    <p>It works best where the events already exist — reaching the sender, carrying an identity, with ~90 days of history behind them. Where they do not, drip is usually the better place to start, the wiring named as the gap. Under ~50 signups a month, a founder often does better writing personally.</p>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- Box 6 — close -->
+  <section class="box">
+    <div class="btns">
+      <a class="btn btn--primary" href="#">Join the course</a><!-- -> EEC landing (external, other chat) -->
+      <a class="btn btn--ghost" href="#">Reply in the DM</a><!-- -> LinkedIn thread -->
+    </div>
+  </section>
+
+  <!-- Box 7 — after -->
+  <section class="box">
+    <p>Written once, each sequence fires for every future signup and stops at the people it would annoy.</p>
+  </section>
+</TestLayout>

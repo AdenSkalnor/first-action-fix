@@ -1,0 +1,252 @@
+---
+/*
+  TestWebpage — v2 "Sourced" (/testwebpage/v2/).
+  Data-forward editorial presentation. Own shell (no BaseLayout/TestLayout).
+  Copy verbatim from testweb-iterations-brief.md § "v2 — Sourced copy".
+  Numbers are checker-corrected; do not alter. Every figure traces to a footnote.
+  The four verified stats resolve to the Sources list at the foot.
+  Buttons: Join the course -> EEC landing (href="#"),
+           Read the reasoning -> /testwebpage/,
+           Reply in the DM -> LinkedIn thread (href="#").
+*/
+import TestVersions from '../../../components/TestVersions.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The baseline, counted — First Action Fix (Sourced)</title>
+  <meta name="description" content="A data-forward, sourced case for educational email in construction software: the real 1,000, counted, with every figure cited." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --paper:#FBFAF6; --ground:#F4F1EA; --ink:#1B1A16; --muted:#67635A;
+      --rule:#E5E1D7; --rule-strong:#D3CEC1;
+      --accent:#2C5578; --accent-ink:#213F58;
+    }
+    *{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{
+      margin:0;background:var(--paper);color:var(--ink);
+      font-family:'Spectral',Georgia,'Times New Roman',serif;
+      font-size:20px;line-height:1.62;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    }
+    .sans{font-family:'Inter',system-ui,sans-serif;}
+
+    /* editorial masthead ground (gradient on ground only) */
+    .masthead{
+      background:linear-gradient(180deg,var(--ground) 0%,var(--paper) 100%);
+      border-bottom:1px solid var(--rule);
+    }
+    .wrap{max-width:720px;margin-inline:auto;padding-inline:1.5rem;}
+    .kicker{
+      font-family:'Inter',system-ui,sans-serif;font-size:12.5px;font-weight:600;
+      letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);
+      margin:0;
+    }
+    .masthead .wrap{padding-top:3rem;padding-bottom:2.6rem;}
+    .rulemark{
+      display:flex;align-items:center;gap:.9rem;margin:.4rem 0 1.6rem;
+      color:var(--muted);font-family:'Inter',system-ui,sans-serif;
+      font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    }
+    .rulemark::before,.rulemark::after{content:"";height:1px;background:var(--rule-strong);flex:1;}
+    h1{
+      font-family:'Spectral',Georgia,serif;font-weight:600;
+      font-size:clamp(30px,5.2vw,46px);line-height:1.14;letter-spacing:-.01em;
+      margin:0;
+    }
+
+    .doc{max-width:720px;margin-inline:auto;padding:3rem 1.5rem 2rem;}
+    .doc p{margin:0 0 1.15rem;max-width:68ch;}
+    .doc p:last-child{margin-bottom:0;}
+    section.block{margin:0 0 2.7rem;}
+    .label{
+      font-family:'Inter',system-ui,sans-serif;font-size:12.5px;font-weight:600;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+      margin:0 0 .55rem;
+    }
+    .lede{font-size:22px;line-height:1.5;}
+
+    /* footnote superscript marks */
+    sup.fn{line-height:0;}
+    sup.fn a{
+      font-family:'Inter',system-ui,sans-serif;font-size:.62em;font-weight:600;
+      color:var(--accent-ink);text-decoration:none;padding:0 .04em;
+    }
+    sup.fn a:hover{text-decoration:underline;}
+
+    /* cited stat callout — restrained accent aside */
+    .callout{
+      margin:2.4rem 0;padding:1.4rem 1.5rem;
+      border-left:3px solid var(--accent);background:#F1F5F8;border-radius:0 10px 10px 0;
+    }
+    .callout .fig{
+      font-family:'Spectral',Georgia,serif;font-weight:600;
+      font-size:clamp(26px,4.4vw,34px);line-height:1.12;color:var(--accent-ink);
+      margin:0 0 .35rem;letter-spacing:-.01em;
+    }
+    .callout .cap{
+      font-family:'Inter',system-ui,sans-serif;font-size:14px;color:var(--muted);
+      margin:0;line-height:1.5;
+    }
+
+    .rule{border:0;border-top:1px solid var(--rule-strong);margin:3rem 0;}
+
+    /* close CTAs */
+    .btns{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem;}
+    .btn{
+      display:inline-block;font-family:'Inter',system-ui,sans-serif;font-weight:600;
+      font-size:16px;line-height:1;padding:14px 22px;border-radius:9px;text-decoration:none;
+      transition:background .15s ease,color .15s ease,border-color .15s ease;
+    }
+    .btn--primary{background:var(--accent);color:#fff;border:1px solid var(--accent);}
+    .btn--primary:hover{background:var(--accent-ink);border-color:var(--accent-ink);}
+    .btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--rule-strong);}
+    .btn--ghost:hover{border-color:var(--ink);}
+
+    /* Sources */
+    .sources{
+      background:var(--ground);border-top:1px solid var(--rule);
+    }
+    .sources .wrap{padding:2.6rem 1.5rem 3.4rem;}
+    .sources h2{
+      font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:700;
+      letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+      margin:0 0 1.2rem;
+    }
+    ol.srclist{margin:0;padding:0 0 0 1.4rem;list-style:decimal;}
+    ol.srclist li{
+      font-size:15px;line-height:1.6;color:var(--ink);margin:0 0 1rem;
+      padding-left:.3rem;max-width:70ch;
+    }
+    ol.srclist li:last-child{margin-bottom:0;}
+    ol.srclist a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+    ol.srclist a:hover{color:var(--accent);}
+    .srcnote{font-family:'Inter',system-ui,sans-serif;color:var(--muted);}
+
+    .colophon{
+      max-width:720px;margin-inline:auto;padding:1.8rem 1.5rem 3rem;
+      font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--muted);
+    }
+    .colophon a{color:var(--accent-ink);}
+  </style>
+</head>
+<body>
+  <TestVersions active="v2" />
+
+  <!-- Headline -->
+  <header class="masthead">
+    <div class="wrap">
+      <p class="kicker">First Action Fix · Sourced</p>
+      <div class="rulemark">The arithmetic, cited</div>
+      <h1>Of every 1,000 visitors your construction-software site earns, 950&ndash;980 leave without a trace. Educational email brings a share of them back &mdash; taught, and using the account.</h1>
+    </div>
+  </header>
+
+  <main class="doc">
+    <!-- Who -->
+    <section class="block">
+      <p class="label">Who</p>
+      <p class="lede">For construction software with a trial or freemium tier &mdash; field management, bidding, scheduling, job costing &mdash; where signups arrive and most never reach a second session.</p>
+    </section>
+
+    <!-- The baseline, counted -->
+    <section class="block">
+      <p class="label">The baseline, counted</p>
+      <p>A SaaS landing page converts a median ~3.8% of visitors; the B2B working band is 2&ndash;5%<sup class="fn"><a href="#src1" id="ref1a" aria-label="Footnote 1">1</a></sup>, and a demo-request page runs 1.5&ndash;4%<sup class="fn"><a href="#src1" id="ref1b" aria-label="Footnote 1">1</a></sup>. Of 1,000 visitors, 20&ndash;50 take the primary door and 950&ndash;980 leave without a trace &mdash; reachable again only at ad rates. I count your real 1,000, not the benchmark, before I quote anything.</p>
+
+      <aside class="callout">
+        <p class="fig">950&ndash;980 of 1,000 leave without a trace.</p>
+        <p class="cap">Only 20&ndash;50 take the primary door<sup class="fn"><a href="#src1" aria-label="Footnote 1">1</a></sup> &mdash; the rest are reachable again only at ad rates. The second door is for them.</p>
+      </aside>
+    </section>
+
+    <!-- The second door (EEC) -->
+    <section class="block">
+      <p class="label">The second door (EEC)</p>
+      <p>The visitor who declines the demo takes a free five-day course on a problem he already has &mdash; in construction software, crew adoption. Welcome-class email is the highest-opening send there is, above 40%<sup class="fn"><a href="#src2" id="ref2a" aria-label="Footnote 2">2</a></sup>; Apple's Mail Privacy Protection inflates that by 15&ndash;20 points<sup class="fn"><a href="#src2" id="ref2b" aria-label="Footnote 2">2</a></sup>, so I read clicks with you, not opens. Completion is the qualification: whoever finishes five lessons on crew adoption has verifiably got the problem, and the first call starts inside a frame you wrote.</p>
+    </section>
+
+    <!-- Disqualifier (both sides) -->
+    <section class="block">
+      <p class="label">Disqualifier (both sides)</p>
+      <p>At 400 visits/month the chain is small enough to name: ~1.6% become addresses (&asymp;6/month), ~5% of those convert &mdash; about one conversion a quarter, against a mid-four-figure build. I run that arithmetic on your real sessions before a lesson is written, and if the ceiling is under the cost, I say so and we work above the funnel instead.</p>
+    </section>
+
+    <!-- Behavioral -->
+    <section class="block">
+      <p class="label">Behavioral</p>
+      <p>Trial systems with no sequenced mail convert 3&ndash;5% trial&rarr;paid<sup class="fn"><a href="#src4" id="ref4a" aria-label="Footnote 4">4</a></sup>; sequenced mail moves the median upward &mdash; a direction from the mechanism, not a promised number (R5). The surest line is plumbing: involuntary churn &mdash; failed cards, customers who meant to stay &mdash; is 20&ndash;40% of all churn<sup class="fn"><a href="#src3" id="ref3a" aria-label="Footnote 3">3</a></sup>. On 45 cancels a year that is 9&ndash;18 failed-card cancels; lifting recovery from ~30% to ~60%<sup class="fn"><a href="#src3" id="ref3b" aria-label="Footnote 3">3</a></sup> keeps an extra ~3&ndash;5 accounts, for the least writing of anything here.</p>
+    </section>
+
+    <!-- Disqualifier -->
+    <section class="block">
+      <p class="label">Disqualifier</p>
+      <p>Under ~50 signups/month, a founder writing personally beats any system &mdash; I decline the build.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- Close -->
+    <section class="block">
+      <p class="label">Three ways on</p>
+      <p class="lede">Read the reasoning, or start where the qualifying happens &mdash; the course.</p>
+      <div class="btns">
+        <a class="btn btn--primary" href="#">Join the course</a><!-- -> EEC landing (external) -->
+        <a class="btn btn--ghost" href="/testwebpage/">Read the reasoning</a>
+        <a class="btn btn--ghost" href="#">Reply in the DM</a><!-- -> LinkedIn thread -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Sources -->
+  <section class="sources" id="sources">
+    <div class="wrap">
+      <h2>Sources</h2>
+      <ol class="srclist">
+        <li id="src1">
+          SaaS landing page conversion median ~3.8%; B2B working band 2&ndash;5%; demo/request pages 1.5&ndash;4%.
+          <span class="srcnote">
+            <a href="https://landerlab.io/blog/landing-page-conversion-rate">Landerlab</a> ·
+            <a href="https://foundrycro.com/blog/landing-page-conversion-rate-benchmarks-2026/">Foundry CRO</a> ·
+            <a href="https://www.saashero.net/strategy/b2b-saas-conversion-rate-benchmarks/">SaaSHero</a>
+          </span>
+        </li>
+        <li id="src2">
+          Welcome/automated emails open ~35&ndash;51% (highest-opening send), but Apple MPP inflates reported opens 15&ndash;20+ pts (~49% of opens). Read clicks.
+          <span class="srcnote">
+            <a href="https://www.omnisend.com/blog/email-open-rate/">Omnisend</a> ·
+            <a href="https://research.stripo.email/b2b-email-open-rate-benchmarks-2026">Stripo</a> ·
+            <a href="https://www.klaviyo.com/uk/blog/email-marketing-benchmarks-open-click-and-conversion-rates">Klaviyo</a>
+          </span>
+        </li>
+        <li id="src3">
+          Involuntary churn (failed cards, customers who meant to stay) = 20&ndash;40% of churn (some sources up to 53%). Dunning recovery: emails ~42%, combined retry + card updater + sequence up to ~70%; 60&ndash;80% recoverable.
+          <span class="srcnote">
+            <a href="https://www.finsi.ai/blog/involuntary-churn-hidden-revenue-leak/">Finsi</a> ·
+            <a href="https://www.digitalapplied.com/blog/failed-payment-recovery-dunning-playbook-2026">Digital Applied</a> ·
+            <a href="https://www.butterpayments.com/guides/disputes-chargebacks-guides/involuntary-churn/">Butter</a>
+          </span>
+        </li>
+        <li id="src4">
+          Trial&rarr;paid: median B2B ~18.5% (2025); a 200-product 2026 median ~8%; opt-in no-CC ~9&ndash;18%; freemium ~2.6%. No-mail trial systems 3&ndash;5%.
+          <span class="srcnote">
+            <a href="https://userpilot.com/blog/saas-average-conversion-rate/">Userpilot</a> ·
+            <a href="https://adv.me/articles/conversion-optimization/saas-free-trial-conversion-rate-benchmarks-2025/">ADV.me</a>
+          </span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    First Action Fix &middot; 2026 &middot; <a href="mailto:adennagleng@gmail.com">adennagleng@gmail.com</a>
+  </footer>
+</body>
+</html>

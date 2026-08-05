@@ -1,0 +1,67 @@
+---
+/*
+  TestWebpage — PAGE 2, Why educational email works (/testwebpage/educational/).
+  Copy verbatim from 12-BUILD-COPY.md. Box/note markers + question numbers not rendered.
+  Buttons: EEC landing + LinkedIn thread are unresolved placeholders (href="#").
+*/
+import TestLayout from '../../layouts/TestLayout.astro';
+---
+<TestLayout
+  title="Why educational email works — First Action Fix"
+  description="A free five-day email course that teaches a problem the buyer already has, and ends at the product."
+  active="educational"
+>
+  <!-- Box 1 — what it is -->
+  <section class="hero box">
+    <h1>Why educational email works</h1>
+    <p class="lead">A free five-day email course that teaches a problem the buyer already has, and ends at the product.</p>
+  </section>
+
+  <!-- Box 2 — who -->
+  <section class="box">
+    <p>For construction software where signups arrive and most never reach a second session.</p>
+  </section>
+
+  <!-- Box 3 — what changes -->
+  <section class="box">
+    <p>A visitor who would have left leaves an address instead — and comes back taught.</p>
+  </section>
+
+  <!-- Box 4 — why it works + table -->
+  <section class="box">
+    <p>Buyers compare across thousands of vendors, jumping tab to tab. Winning that attention with genuine advice — and a contact — is a large gain over a visitor who just left and costs ad rates to reach again. A landing page keeps 2–5%; the course keeps more of the rest, and a known sender reads as safe.</p>
+
+    <!-- Box 4b — table, per 10,000 unique visits -->
+    <table>
+      <caption>Per 10,000 unique visits</caption>
+      <thead>
+        <tr><th>Per 10,000 unique visits</th><th>Usual</th><th>With the course</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Take the primary door</td><td>200–500</td><td>200–500</td></tr>
+        <tr><td>Leave, reachable only at ad rates</td><td>9,500–9,800</td><td>fewer</td></tr>
+        <tr><td>Addresses kept</td><td>0</td><td>~200</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Box 5 — the catch -->
+  <section class="box">
+    <p>Below ~2,000 sessions a month it recovers a rounding error, and around 400 it is about one conversion a quarter — thin enough that I would usually suggest waiting, and not a case for buying clicks to feed it.</p>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- Box 6 — close -->
+  <section class="box">
+    <div class="btns">
+      <a class="btn btn--primary" href="#">Join the course</a><!-- -> EEC landing (external, other chat) -->
+      <a class="btn btn--ghost" href="#">Reply in the DM</a><!-- -> LinkedIn thread -->
+    </div>
+  </section>
+
+  <!-- Box 7 — after -->
+  <section class="box">
+    <p>Five lessons, one a day, each usable on the current trial; the last asks what is still missing.</p>
+  </section>
+</TestLayout>

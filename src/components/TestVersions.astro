@@ -1,0 +1,36 @@
+---
+/*
+  TestVersions — slim iteration switcher for the TestWebpage experiments.
+  Self-contained bar; sits at the very top of each iteration page.
+  Usage: import TestVersions from '../../../components/TestVersions.astro'; <TestVersions active="v2" />
+  (import depth varies by page location — adjust ../ count accordingly.)
+*/
+const { active = '' } = Astro.props;
+const items = [
+  { key: 'v1',  href: '/testwebpage/',          label: 'v1 · Base' },
+  { key: 'v2',  href: '/testwebpage/v2/',        label: 'v2 · Sourced' },
+  { key: 'v3',  href: '/testwebpage/v3/',        label: 'v3 · Expanded' },
+  { key: 'v4',  href: '/testwebpage/v4/',        label: 'v4 · Custom' },
+  { key: 'all', href: '/testwebpage/versions/',  label: 'All' },
+];
+---
+<nav class="tv" aria-label="Iteration switcher">
+  <div class="tv__inner">
+    <span class="tv__tag">TestWebpage</span>
+    <div class="tv__links">
+      {items.map((i) => (
+        <a href={i.href} class:list={['tv__a', { 'is-active': i.key === active }]} aria-current={i.key === active ? 'page' : undefined}>{i.label}</a>
+      ))}
+    </div>
+  </div>
+</nav>
+<style>
+  .tv{background:#17181B;border-bottom:1px solid #2B2D31;font-family:ui-monospace,'Space Mono',monospace;}
+  .tv__inner{max-width:1100px;margin-inline:auto;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1rem;padding:.55rem 1.1rem;}
+  .tv__tag{color:#C9CAD0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-right:auto;}
+  .tv__links{display:flex;flex-wrap:wrap;gap:.35rem;}
+  .tv__a{color:#D7D8DE;background:#25262B;border:1px solid #383A40;border-radius:7px;
+    padding:.4rem .7rem;font-size:12px;text-decoration:none;transition:background .15s,color .15s;}
+  .tv__a:hover{background:#383A40;color:#fff;}
+  .tv__a.is-active{background:#E4632A;color:#141417;border-color:#E4632A;font-weight:700;}
+</style>
