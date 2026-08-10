@@ -1,0 +1,102 @@
+---
+/*
+  PairedLayout — shell for the "paired spine" four-page set (/versions/v2/).
+  Source: 13-COPY-PAIRED.md, ITERATION 2. Copy renders verbatim; the file's
+  link grammar is honoured — one act button per page, laterals inline, a footer
+  return to the hub. Surface is chosen here (deferred in the file, O12):
+  quiet editorial — warm paper, one forest accent, serif reading body,
+  no second person, austere register.
+*/
+const { title = 'First Action Fix', description = '', active = '' } = Astro.props;
+const base = '/versions/v2';
+const nav = [
+  { key: 'home',        href: `${base}/`,             label: 'Home' },
+  { key: 'educational', href: `${base}/educational/`, label: 'Educational' },
+  { key: 'behavioral',  href: `${base}/behavioral/`,  label: 'Behavioral' },
+  { key: 'methods',     href: `${base}/methods/`,     label: 'Methods' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Space+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --paper:#FBFAF6; --ink:#1B1A16; --muted:#6C6A60; --rule:#E5E2D8; --rule-strong:#D3CFC2;
+      --accent:#2E5D4B; --accent-deep:#234838; --accent-tint:#EDF2EE;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);
+      font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.62;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+    /* slim wayfinding bar — quiet, does not compete with the act */
+    .site{border-bottom:1px solid var(--rule);}
+    .site__in{max-width:900px;margin-inline:auto;display:flex;flex-wrap:wrap;align-items:baseline;
+      gap:.4rem 1.4rem;padding:.9rem 1.5rem;}
+    .brand{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.04em;color:var(--ink);
+      text-decoration:none;margin-right:auto;}
+    .site nav{display:flex;flex-wrap:wrap;gap:.2rem .9rem;}
+    .navlink{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.02em;color:var(--muted);
+      text-decoration:none;padding:.15rem 0;border-bottom:1px solid transparent;}
+    .navlink:hover{color:var(--ink);}
+    .navlink.is-active{color:var(--accent);border-bottom-color:var(--accent);}
+    .doc{max-width:64ch;margin-inline:auto;padding:3.2rem 1.5rem 4.5rem;}
+    .arrival{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--muted);margin:0 0 1.6rem;}
+    .hero h1{font-family:'Newsreader',serif;font-weight:600;font-size:clamp(28px,4.4vw,40px);
+      line-height:1.16;letter-spacing:-.01em;margin:0 0 .2em;}
+    .box{margin:0 0 1.9rem;}
+    .box p{margin:0 0 1rem;} .box p:last-child{margin-bottom:0;}
+    h2{font-family:'Newsreader',serif;font-weight:600;font-size:25px;line-height:1.22;margin:0 0 .5rem;}
+    .lead{font-size:22px;}
+    a.lateral{color:var(--accent);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px;}
+    a.lateral:hover{color:var(--accent-deep);}
+    .divider{border:0;border-top:1px solid var(--rule-strong);margin:2.6rem 0;}
+    .act{display:inline-block;font-family:'Space Mono',monospace;font-weight:700;font-size:15px;letter-spacing:.01em;
+      background:var(--accent);color:#fff;padding:14px 24px;border-radius:8px;text-decoration:none;margin-top:.4rem;
+      transition:background .15s ease;}
+    .act:hover{background:var(--accent-deep);}
+    .ret{font-family:'Space Mono',monospace;font-size:13px;}
+    .ret a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule-strong);}
+    .ret a:hover{color:var(--ink);}
+    .plain{color:var(--muted);font-size:17px;}
+    table{width:100%;border-collapse:collapse;margin:1.3rem 0 .3rem;font-family:'Space Mono',monospace;font-size:15px;}
+    th,td{text-align:left;padding:.65rem .8rem;border-bottom:1px solid var(--rule);}
+    thead th{border-bottom:1px solid var(--rule-strong);color:var(--muted);font-weight:400;}
+    tbody td:nth-child(n+2){font-variant-numeric:tabular-nums;}
+    .ascent{margin:1.2rem 0 0;padding:0;list-style:none;}
+    .ascent li{padding:1.1rem 0;border-top:1px solid var(--rule);}
+    .ascent li:first-child{border-top:0;}
+    .ascent b{font-family:'Space Mono',monospace;font-size:15px;font-weight:700;letter-spacing:.01em;}
+    .panel{background:var(--accent-tint);border:1px solid #D8E2DB;border-radius:10px;padding:1.2rem 1.3rem;margin:0 0 1.9rem;}
+    .panel p{margin:0;}
+    .siteftr{max-width:900px;margin-inline:auto;padding:1.6rem 1.5rem 3rem;border-top:1px solid var(--rule);
+      font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="site__in">
+      <a class="brand" href="/versions/v2/">First Action Fix</a>
+      <nav>
+        {nav.map((n) => (
+          <a href={n.href} class:list={['navlink', { 'is-active': n.key === active }]} aria-current={n.key === active ? 'page' : undefined}>{n.label}</a>
+        ))}
+      </nav>
+    </div>
+  </header>
+
+  <main class="doc">
+    <slot />
+  </main>
+
+  <footer class="siteftr">First Action Fix &middot; paired spine, iteration 2 &middot; 2026</footer>
+</body>
+</html>

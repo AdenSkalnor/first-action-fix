@@ -1,0 +1,49 @@
+---
+/*
+  /versions/v2/behavioral/ — P2. Source: 13-COPY-PAIRED.md ITERATION 2 §6.
+  Copy verbatim; links renamespaced. /course -> "#" placeholder.
+*/
+import PairedLayout from '../../../layouts/PairedLayout.astro';
+---
+<PairedLayout
+  title="Why behavioral email works — First Action Fix"
+  description="Email that fires on a customer's action instead of on a date, at the moment of the decision."
+  active="behavioral"
+>
+  <section class="hero box">
+    <h1>Email that fires on a customer's action — abandoned signup, quiet trial, upgrade page opened and closed, failed card — instead of on a date.</h1>
+  </section>
+
+  <section class="box">
+    <p>For a trial with enough signups that individual moments go unanswered.</p>
+  </section>
+
+  <section class="box">
+    <p>The message arrives at the moment of a decision instead of on a schedule.</p>
+  </section>
+
+  <section class="box">
+    <p>The message competes for a crowded inbox: the average worker takes ~120 emails a day, and the company behind the trial runs ~11 separate software tools, each sending its own nudges. The difference between a message that reads "they noticed me" and one that reads "a statistic I didn't need" is the difference between a habit of trust and a habit of ignoring — both compound.</p>
+    <p>Calendar mail hits the week; a trigger hits the moment. With no mail, 3–5 of every 100 trials pay. Calendar drip lifts that a couple of points, to about 5–7. Behavioral, set up modestly, adds roughly one more, to 6–8 — the gain comes from landing at the moment of a decision rather than on a schedule.</p>
+    <p>The plumbing case computes plainest. Say 100 customers cancel in a year. 20–40 of those are failed cards, not decisions — people who meant to stay. Left alone, about 6–12 come back. With retry logic and card updaters, 11–28 do — roughly 5–16 accounts saved, for the least writing of anything here.</p>
+  </section>
+
+  <section class="box">
+    <p>It works best where the events already exist — reaching the sender, carrying an identity, with ~90 days of history behind them. Where they do not, drip is usually the better place to start, the wiring named as the gap. Under ~50 signups a month, a founder often does better writing personally.</p>
+  </section>
+
+  <section class="box">
+    <p>The card case is the same reasoning applied to billing rather than to teaching. It runs the same way across five other places — <a class="lateral" href="/versions/v2/methods/">the six, and what each is worth &rarr;</a>.</p>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="box">
+    <p>Written once, each sequence fires for every future signup and stops at the people it would annoy.</p>
+    <a class="act" href="#">Join the course &rarr;</a><!-- -> /course (external, other chat) -->
+  </section>
+
+  <section class="box ret">
+    <a href="/versions/v2/">Back to the start</a>
+  </section>
+</PairedLayout>
